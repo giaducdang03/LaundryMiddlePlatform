@@ -21,5 +21,13 @@ namespace LaundryMiddlePlatform_WinApp
         {
             Application.Exit();
         }
+
+        private void btnStoreManagement_Click(object sender, EventArgs e)
+        {
+            frmStoreManagement f = new frmStoreManagement();
+            f.Show();
+            this.Hide();
+
+        }
     }
 }

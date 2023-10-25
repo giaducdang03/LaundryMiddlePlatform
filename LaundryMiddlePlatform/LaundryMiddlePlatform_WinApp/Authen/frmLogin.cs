@@ -19,6 +19,7 @@ namespace LaundryMiddlePlatform_WinApp
                 if (loginUser.Role == "Admin")
                 {
                     frmLaundryManagement f = new frmLaundryManagement();
+                    f.loginAccount = loginUser;
                     f.Show();
                     this.Hide();
                 }
@@ -40,6 +41,11 @@ namespace LaundryMiddlePlatform_WinApp
         {
             frmRegister register = new frmRegister();
             register.ShowDialog();
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

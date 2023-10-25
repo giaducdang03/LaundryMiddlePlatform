@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessObjects.Models;
+using LaundryMiddlePlatform_WinApp.Admin;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,7 @@ namespace LaundryMiddlePlatform_WinApp
 {
     public partial class frmLaundryManagement : Form
     {
+        public Account loginAccount { get; set; }
         public frmLaundryManagement()
         {
             InitializeComponent();
@@ -22,12 +25,15 @@ namespace LaundryMiddlePlatform_WinApp
             Application.Exit();
         }
 
-        private void btnStoreManagement_Click(object sender, EventArgs e)
+        private void accountManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmStoreManagement f = new frmStoreManagement();
+            frmAccountManagement f = new frmAccountManagement();
+            f.loginAccount = loginAccount;
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
             f.Show();
-            this.Hide();
-
         }
+
+        
     }
 }

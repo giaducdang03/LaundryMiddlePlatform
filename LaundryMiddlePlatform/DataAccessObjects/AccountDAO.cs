@@ -55,5 +55,118 @@ namespace DataAccessObjects
             }
             
         }
+
+        public List<Account> GetAllAccounts(string? txtSearch, string? role, string? sortType)
+        {
+            List<Account> accounts = new List<Account>();
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var query = db.Accounts.Where(a => a.Status == true).AsQueryable();
+
+                // sort and filter
+                if (!string.IsNullOrEmpty(txtSearch))
+                {
+                    query = query.Where(a => a.FullName.ToLower().Contains(txtSearch.ToLower()));
+                }
+                if (!string.IsNullOrEmpty(role) && role != "All")
+                {
+                    query = query.Where(a => a.Role == role);
+                }
+                if (!string.IsNullOrEmpty(sortType))
+                {
+                    if (sortType == "Name: A -> Z")
+                    {
+                        query = query.OrderBy(a => a.FullName);
+                    }
+                    if (sortType == "Name: Z -> A")
+                    {
+                        query = query.OrderByDescending(a => a.FullName);
+                    }
+                }
+                if (!query.Any())
+                {
+                    throw new Exception("Not found.");
+                }
+
+                accounts = query.ToList();
+
+                return accounts;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool UpdateAccount(Account account)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                db.Accounts.Update(account);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool DeleteAccount(Account account)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var updateAccount = db.Accounts.SingleOrDefault(a => a.AccountId == account.AccountId);
+                if (updateAccount != null)
+                {
+                    updateAccount.Status = false; 
+                    db.Accounts.Update(updateAccount);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool ResetPassword(Account account)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var updateAccount = db.Accounts.SingleOrDefault(a => a.AccountId == account.AccountId);
+                if (updateAccount != null)
+                {
+                    updateAccount.Password = "1";
+                    db.Accounts.Update(updateAccount);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Account GetAccountById(int accountId)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                return db.Accounts.SingleOrDefault(a => a.AccountId == accountId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

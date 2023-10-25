@@ -33,7 +33,5 @@ namespace LaundryMiddlePlatform_WinApp
             f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
-
-        
     }
 }

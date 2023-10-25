@@ -39,10 +39,12 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, systemToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1153, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(1318, 30);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -50,43 +52,44 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItem, exitToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(112, 22);
+            logoutToolStripMenuItem.Size = new Size(224, 26);
             logoutToolStripMenuItem.Text = "Logout";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(112, 22);
+            exitToolStripMenuItem.Size = new Size(224, 26);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // systemToolStripMenuItem
             // 
             systemToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { accountManagementToolStripMenuItem });
             systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            systemToolStripMenuItem.Size = new Size(90, 20);
+            systemToolStripMenuItem.Size = new Size(111, 24);
             systemToolStripMenuItem.Text = "Management";
             // 
             // accountManagementToolStripMenuItem
             // 
             accountManagementToolStripMenuItem.Name = "accountManagementToolStripMenuItem";
-            accountManagementToolStripMenuItem.Size = new Size(193, 22);
+            accountManagementToolStripMenuItem.Size = new Size(238, 26);
             accountManagementToolStripMenuItem.Text = "Account management";
             accountManagementToolStripMenuItem.Click += accountManagementToolStripMenuItem_Click;
             // 
             // frmLaundryManagement
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1153, 661);
+            ClientSize = new Size(1318, 881);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmLaundryManagement";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Laundry Middle Platform";

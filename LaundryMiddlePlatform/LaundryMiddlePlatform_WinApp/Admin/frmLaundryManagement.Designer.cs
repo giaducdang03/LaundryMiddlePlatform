@@ -56,14 +56,16 @@
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(112, 22);
+            logoutToolStripMenuItem.Size = new Size(180, 22);
             logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(112, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // systemToolStripMenuItem
             // 
@@ -90,6 +92,7 @@
             Name = "frmLaundryManagement";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Laundry Middle Platform";
+            FormClosing += frmLaundryManagement_FormClosing;
             FormClosed += frmLaundryManagement_FormClosed;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

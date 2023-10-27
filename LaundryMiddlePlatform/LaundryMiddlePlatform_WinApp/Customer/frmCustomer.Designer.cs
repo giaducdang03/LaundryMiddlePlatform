@@ -30,16 +30,18 @@
         {
             menuStrip1 = new MenuStrip();
             yourProfileToolStripMenuItem = new ToolStripMenuItem();
-            manageOrderToolStripMenuItem = new ToolStripMenuItem();
             logOutToolStripMenuItem = new ToolStripMenuItem();
             homeToolStripMenuItem = new ToolStripMenuItem();
+            orderHistoryToolStripMenuItem = new ToolStripMenuItem();
+            yourProfileToolStripMenuItem2 = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { yourProfileToolStripMenuItem, homeToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { yourProfileToolStripMenuItem, yourProfileToolStripMenuItem2, orderHistoryToolStripMenuItem, homeToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1224, 28);
@@ -48,24 +50,16 @@
             // 
             // yourProfileToolStripMenuItem
             // 
-            yourProfileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageOrderToolStripMenuItem, logOutToolStripMenuItem });
+            yourProfileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logOutToolStripMenuItem, exitToolStripMenuItem });
             yourProfileToolStripMenuItem.Name = "yourProfileToolStripMenuItem";
-            yourProfileToolStripMenuItem.Size = new Size(99, 24);
-            yourProfileToolStripMenuItem.Text = "Your Profile";
-            yourProfileToolStripMenuItem.Click += yourProfileToolStripMenuItem_Click;
-            // 
-            // manageOrderToolStripMenuItem
-            // 
-            manageOrderToolStripMenuItem.Name = "manageOrderToolStripMenuItem";
-            manageOrderToolStripMenuItem.Size = new Size(224, 26);
-            manageOrderToolStripMenuItem.Text = "Order management";
-            manageOrderToolStripMenuItem.Click += manageOrderToolStripMenuItem_Click;
+            yourProfileToolStripMenuItem.Size = new Size(60, 24);
+            yourProfileToolStripMenuItem.Text = "Menu";
             // 
             // logOutToolStripMenuItem
             // 
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
             logOutToolStripMenuItem.Size = new Size(224, 26);
-            logOutToolStripMenuItem.Text = "Log out";
+            logOutToolStripMenuItem.Text = "Logout";
             // 
             // homeToolStripMenuItem
             // 
@@ -75,6 +69,25 @@
             homeToolStripMenuItem.Size = new Size(64, 24);
             homeToolStripMenuItem.Text = "Home";
             homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
+            // 
+            // orderHistoryToolStripMenuItem
+            // 
+            orderHistoryToolStripMenuItem.Name = "orderHistoryToolStripMenuItem";
+            orderHistoryToolStripMenuItem.Size = new Size(112, 24);
+            orderHistoryToolStripMenuItem.Text = "Order History";
+            // 
+            // yourProfileToolStripMenuItem2
+            // 
+            yourProfileToolStripMenuItem2.Name = "yourProfileToolStripMenuItem2";
+            yourProfileToolStripMenuItem2.Size = new Size(99, 24);
+            yourProfileToolStripMenuItem2.Text = "Your Profile";
+            yourProfileToolStripMenuItem2.Click += yourProfileToolStripMenuItem2_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(139, 26);
+            exitToolStripMenuItem.Text = "Exit";
             // 
             // frmCustomer
             // 
@@ -96,7 +109,9 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem yourProfileToolStripMenuItem;
         private ToolStripMenuItem homeToolStripMenuItem;
-        private ToolStripMenuItem manageOrderToolStripMenuItem;
         private ToolStripMenuItem logOutToolStripMenuItem;
+        private ToolStripMenuItem orderHistoryToolStripMenuItem;
+        private ToolStripMenuItem yourProfileToolStripMenuItem2;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }

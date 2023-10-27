@@ -33,5 +33,10 @@ namespace LaundryMiddlePlatform_WinApp
             f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

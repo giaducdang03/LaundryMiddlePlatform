@@ -44,7 +44,7 @@
             dgvStore.Name = "dgvStore";
             dgvStore.RowHeadersWidth = 51;
             dgvStore.RowTemplate.Height = 29;
-            dgvStore.Size = new Size(798, 321);
+            dgvStore.Size = new Size(1259, 624);
             dgvStore.TabIndex = 0;
             dgvStore.DoubleClick += dgvStore_DoubleClick;
             // 
@@ -52,7 +52,7 @@
             // 
             lbHeader.AutoSize = true;
             lbHeader.Font = new Font("Stencil", 28.2F, FontStyle.Italic, GraphicsUnit.Point);
-            lbHeader.Location = new Point(232, 9);
+            lbHeader.Location = new Point(448, 9);
             lbHeader.Name = "lbHeader";
             lbHeader.Size = new Size(390, 56);
             lbHeader.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             txtFilter.AutoSize = true;
             txtFilter.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            txtFilter.Location = new Point(657, 102);
+            txtFilter.Location = new Point(1129, 105);
             txtFilter.Name = "txtFilter";
             txtFilter.Size = new Size(50, 20);
             txtFilter.TabIndex = 2;
@@ -73,7 +73,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Alphabet", "Rate" });
-            comboBox1.Location = new Point(713, 97);
+            comboBox1.Location = new Point(1185, 99);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(62, 28);
             comboBox1.TabIndex = 3;
@@ -101,7 +101,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1258, 752);
             Controls.Add(btnSearch);
             Controls.Add(textBox1);
             Controls.Add(comboBox1);

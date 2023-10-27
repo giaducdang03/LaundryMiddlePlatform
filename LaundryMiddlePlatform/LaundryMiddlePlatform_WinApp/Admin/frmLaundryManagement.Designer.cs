@@ -47,6 +47,7 @@
             menuStrip1.Size = new Size(1318, 30);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
             // fileToolStripMenuItem
             // 

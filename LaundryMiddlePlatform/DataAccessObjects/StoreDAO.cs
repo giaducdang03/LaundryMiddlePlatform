@@ -9,7 +9,25 @@ namespace DataAccessObjects
 {
     public class StoreDAO
     {
-        public static List<Store> getStore()
+        public static StoreDAO instance = null;
+        public static object lockObject = new object();
+
+        private StoreDAO() { }
+        public static StoreDAO Instance
+        {
+            get
+            {
+                lock (lockObject)
+                {
+                    if (instance == null)
+                    {
+                        instance = new StoreDAO();
+                    }
+                }
+                return instance;
+            }
+        }
+        public List<Store> GetStore()
         {
             List<Store> listStore = new List<Store>();
             try
@@ -24,24 +42,35 @@ namespace DataAccessObjects
             }
             return listStore;
         }
-        public static void SaveStore(Store store)
+        public void SaveStore(Store store)
         {
             using var db = new LaundryManagementPrnContext();   
             db.Stores.Add(store);
             db.SaveChanges();
         }
-        public static void DeleteStore(Store store)
+        public void DeleteStore(Store store)
         {
             using var db = new LaundryManagementPrnContext();
+            store.Status = false;
             db.Stores.Remove(store);
             db.SaveChanges();
         }
-        public static void UpdaterStore(Store store)
+        public void UpdaterStore(Store store)
         {
             using var db = new LaundryManagementPrnContext();
             db.Stores.Update(store);
             db.SaveChanges();
+        }
+        public Store GetStoreById(int id)
+        {
+            using var db = new LaundryManagementPrnContext();
+            return db.Stores.SingleOrDefault(s => s.StoreId == id && s.Status == true);
+        }
 
+        public Store GetStoreByManagerId(int managerId)
+        {
+            using var db = new LaundryManagementPrnContext();
+            return db.Stores.SingleOrDefault(s => s.ManagementId == managerId && s.Status == true);
         }
     }
        

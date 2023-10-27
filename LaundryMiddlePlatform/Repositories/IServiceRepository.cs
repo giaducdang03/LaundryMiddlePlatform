@@ -9,12 +9,10 @@ namespace Repositories
 {
     public interface IServiceRepository
     {
-        List<Service> GetAllService();
-        void AddService(Service service);
-        void DeleteService(Service service);
-        void UpdateService(Service service);
-        Service GetServiceByStoreId(int storeId);
-
-    
+        List<Service> GetSerivcesByStoreId(int storeId);
+        bool AddService(Service service);
+        bool UpdateService(Service service);
+        bool DeleteService(Service service);
+        List<ServiceDetail> GetServiceDetailsByServiceId(int serviceId);
     }
 }

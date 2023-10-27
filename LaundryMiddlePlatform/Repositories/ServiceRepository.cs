@@ -10,14 +10,19 @@ namespace Repositories
 {
     public class ServiceRepository : IServiceRepository
     {
-        public void AddService(Service service) => ServiceDAO.Instance.AddService(service);
+        public bool AddService(Service service)
+            => ServiceDAO.Instance.AddService(service);
 
-        public void DeleteService(Service service) => ServiceDAO.Instance.DeleteService(service);
+        public bool DeleteService(Service service)
+            => ServiceDAO.Instance.DeleteService(service);
 
-        public List<Service> GetAllService() => ServiceDAO.Instance.GetAllService();
+        public List<Service> GetSerivcesByStoreId(int storeId)
+            => ServiceDAO.Instance.GetServicesByStoreId(storeId);
 
-        public Service GetServiceByStoreId(int storeId) => ServiceDAO.Instance.GetServiceByStoreId(storeId);
+        public bool UpdateService(Service service)
+            => ServiceDAO.Instance.UpdateService(service);
 
-        public void UpdateService(Service service) => ServiceDAO.Instance.UpdaterService(service);
+        public List<ServiceDetail> GetServiceDetailsByServiceId(int serviceId)
+            => ServiceDAO.Instance.GetServiceDetailsBySericeId(serviceId);
     }
 }

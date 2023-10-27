@@ -26,6 +26,8 @@ public partial class LaundryManagementPrnContext : DbContext
 
     public virtual DbSet<Store> Stores { get; set; }
 
+    public virtual DbSet<ServiceDetail> ServiceDetails { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString());
 
@@ -104,16 +106,29 @@ public partial class LaundryManagementPrnContext : DbContext
             entity.ToTable("Service");
 
             entity.Property(e => e.Description).HasMaxLength(100);
-            entity.Property(e => e.Duration)
-                .HasMaxLength(10)
-                .IsFixedLength();
+            //entity.Property(e => e.Duration)
+            //    .HasMaxLength(10)
+            //    .IsFixedLength();
             entity.Property(e => e.Name).HasMaxLength(50);
-            entity.Property(e => e.WashOption).HasMaxLength(50);
-            entity.Property(e => e.WashType).HasMaxLength(50);
+            //entity.Property(e => e.WashOption).HasMaxLength(50);
+            //entity.Property(e => e.WashType).HasMaxLength(50);
 
             entity.HasOne(d => d.Store).WithMany(p => p.Services)
                 .HasForeignKey(d => d.StoreId)
                 .HasConstraintName("FK_Service_Store");
+        });
+
+        modelBuilder.Entity<ServiceDetail>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_ServiceDetail");
+
+            entity.ToTable("ServiceDetail");
+            entity.Property(e => e.Type).HasMaxLength(50);
+            entity.Property(e => e.WashOption).HasMaxLength(20);
+
+            entity.HasOne(d => d.Service).WithMany(p => p.ServiceDetails)
+                .HasForeignKey(d => d.ServiceId)
+                .HasConstraintName("FK_ServiceDetail_Service");
         });
 
         modelBuilder.Entity<Store>(entity =>
@@ -128,6 +143,8 @@ public partial class LaundryManagementPrnContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false);
         });
+
+        
 
         OnModelCreatingPartial(modelBuilder);
     }

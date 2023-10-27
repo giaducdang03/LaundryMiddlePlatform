@@ -34,9 +34,33 @@ namespace LaundryMiddlePlatform_WinApp
             f.Show();
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            DialogResult d;
+            d = MessageBox.Show("Are you sure logout the system?", "Laundry Middle Platform",
+                   MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                   MessageBoxDefaultButton.Button1);
+            if (d == DialogResult.OK)
+            {
+                loginAccount = null;
+                frmLogin f = new frmLogin();
+                f.Show();
+                this.Hide();
+            }
         }
+
+        private void frmLaundryManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult d;
+            d = MessageBox.Show("Do you want exit?", "Laundry Middle Platform",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+            if (d == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
     }
 }

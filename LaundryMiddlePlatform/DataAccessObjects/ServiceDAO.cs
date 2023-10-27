@@ -1,6 +1,6 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,8 @@ namespace DataAccessObjects
     public class ServiceDAO
     {
         public static ServiceDAO instance = null;
-        public static object lockObject = new Object();
+        public static object lockObject = new object();
+
         private ServiceDAO() { }
         public static ServiceDAO Instance
         {
@@ -27,35 +28,33 @@ namespace DataAccessObjects
                 return instance;
             }
         }
-        public List<Service> GetAllService()
+        public List<Service> GetServicesByStoreId(int storeId)
         {
-            List<Service> listService = new List<Service>();
+            List<Service> services = new List<Service>();
             try
             {
-                using (var context = new LaundryManagementPrnContext())
-                {
-                    listService = context.Services.ToList();
-                }
+                using var db = new LaundryManagementPrnContext();
+                services = db.Services
+                    .Where(s => s.StoreId == storeId && s.Status == true)
+                    .Include(s => s.Store)
+                    .Include(s => s.ServiceDetails)
+                    .ToList();
+                return services;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return listService;
         }
 
-        public void AddService(Service service)
+        public bool AddService(Service service)
         {
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                var userExist = db.Services.SingleOrDefault(a => a.Name == service.Name && a.StoreId == service.StoreId);
-                if (userExist != null)
-                {
-                    throw new Exception("Service is exist. Please change ");
-                }
                 db.Services.Add(service);
                 db.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
@@ -63,44 +62,51 @@ namespace DataAccessObjects
             }
         }
 
-        public void DeleteService(Service service)
-        {
-            try
-            {
-                using var db = new LaundryManagementPrnContext();
-                var updateAccount = db.Services.SingleOrDefault(a => a.ServiceId == service.ServiceId && a.StoreId == service.StoreId );
-                if (updateAccount != null)
-                {
-                    updateAccount.Status = false;
-                    db.Services.Update(service);
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public void UpdaterService(Service service)
+        public bool UpdateService(Service service)
         {
             try
             {
                 using var db = new LaundryManagementPrnContext();
                 db.Services.Update(service);
                 db.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-
         }
-        public Service GetServiceByStoreId(int storeId)
+
+        public bool DeleteService(Service service)
         {
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                return db.Services.SingleOrDefault(s => s.StoreId == storeId);
+                var delService = db.Services.SingleOrDefault(s => s.ServiceId == service.ServiceId);
+                if (delService != null)
+                {
+                    delService.Status = false;
+                    db.Services.Update(delService);
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<ServiceDetail> GetServiceDetailsBySericeId(int sericeId)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var serviceDetail = db.ServiceDetails
+                    .Where(s => s.ServiceId == sericeId && s.Status == true)
+                    .Include(s => s.Service)
+                    .ToList();
+                return serviceDetail;
             }
             catch (Exception ex)
             {

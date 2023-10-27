@@ -269,17 +269,6 @@ namespace LaundryMiddlePlatform_WinApp.Admin
             }
         }
 
-        private void lblAccount_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void lblDate_Click(object sender, EventArgs e)
-        {
-        }
+        private void btnClose_Click(object sender, EventArgs e) => Close();
     }
 }

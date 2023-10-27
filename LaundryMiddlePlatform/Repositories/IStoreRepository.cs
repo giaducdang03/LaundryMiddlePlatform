@@ -14,5 +14,7 @@ namespace Repositories
         void DeleteStore(Store store); 
         void UpdateStore(Store store);
         List<Store> GetStores();
+        Store GetStoreById(int id);
+        Store GetStoreByManagerId(int managerId);
     }
 }

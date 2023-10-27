@@ -10,10 +10,15 @@ namespace Repositories
 {
     public class StoreRepository : IStoreRepository
     {
-        public List<Store> GetStores() => StoreDAO.getStore();
-        public void SaveStore(Store store) => StoreDAO.SaveStore(store);
-        public void UpdateStore(Store store) => StoreDAO.UpdaterStore(store);
-        public void DeleteStore(Store store) => StoreDAO.DeleteStore(store);
+        public List<Store> GetStores() => StoreDAO.Instance.GetStore();
+        public void SaveStore(Store store) => StoreDAO.Instance.SaveStore(store);
+        public void UpdateStore(Store store) => StoreDAO.Instance.UpdaterStore(store);
+        public void DeleteStore(Store store) => StoreDAO.Instance.DeleteStore(store);
 
+        public Store GetStoreById(int id)
+            => StoreDAO.Instance.GetStoreById(id);
+
+        public Store GetStoreByManagerId(int managerId)
+            => StoreDAO.Instance.GetStoreByManagerId(managerId);
     }
 }

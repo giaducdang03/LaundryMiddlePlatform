@@ -71,6 +71,7 @@
             storeInfomationToolStripMenuItem.Name = "storeInfomationToolStripMenuItem";
             storeInfomationToolStripMenuItem.Size = new Size(108, 20);
             storeInfomationToolStripMenuItem.Text = "Store infomation";
+            storeInfomationToolStripMenuItem.Click += storeInfomationToolStripMenuItem_Click;
             // 
             // servicesToolStripMenuItem
             // 

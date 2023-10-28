@@ -9,7 +9,7 @@ public partial class OrderDetail
 
     public int? OrderId { get; set; }
 
-    public int? ServiceId { get; set; }
+    public int? ServiceDetailId { get; set; }
 
     public double? Weight { get; set; }
 
@@ -19,5 +19,5 @@ public partial class OrderDetail
 
     public virtual Order? Order { get; set; }
 
-    public virtual Service? Service { get; set; }
+    public virtual ServiceDetail? ServiceDetail { get; set; }
 }

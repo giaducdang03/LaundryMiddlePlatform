@@ -65,7 +65,7 @@ namespace DataAccessObjects
                 var query = db.Accounts.Where(a => a.Status == true).AsQueryable();
 
                 // sort and filter
-                if (!string.IsNullOrEmpty(txtSearch))
+                if (!string.IsNullOrEmpty(txtSearch.Trim()))
                 {
                     query = query.Where(a => a.FullName.ToLower().Contains(txtSearch.ToLower()));
                 }

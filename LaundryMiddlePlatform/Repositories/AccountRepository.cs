@@ -28,15 +28,15 @@ namespace Repositories
 
         public bool SaveAccount(Account account)
         {
-            if (!AccountValidation.IsValidEmail(account.Email))
+            if (!CommonValidation.IsValidEmail(account.Email))
             {
                 throw new Exception("Email is invalid. Ex. example@email.com");
             }
-            if (!AccountValidation.CheckString(account.FullName, 4, 50))
+            if (!CommonValidation.CheckString(account.FullName, 4, 50))
             {
                 throw new Exception("Full name must be 4 to 50 characters");
             }
-            if (!AccountValidation.CheckString(account.Address, 4, 50))
+            if (!CommonValidation.CheckString(account.Address, 4, 50))
             {
                 throw new Exception("Address must be 4 to 50 characters");
             }
@@ -45,15 +45,15 @@ namespace Repositories
 
         public bool UpdateAccount(Account account)
         {
-            if (!AccountValidation.IsValidEmail(account.Email))
+            if (!CommonValidation.IsValidEmail(account.Email))
             {
                 throw new Exception("Email is invalid. Ex. example@email.com");
             }
-            if (!AccountValidation.CheckString(account.FullName, 4, 50))
+            if (!CommonValidation.CheckString(account.FullName, 4, 50))
             {
                 throw new Exception("Full name must be 4 to 50 characters");
             }
-            if (!AccountValidation.CheckString(account.Address, 4, 50))
+            if (!CommonValidation.CheckString(account.Address, 4, 50))
             {
                 throw new Exception("Address must be 4 to 50 characters");
             }

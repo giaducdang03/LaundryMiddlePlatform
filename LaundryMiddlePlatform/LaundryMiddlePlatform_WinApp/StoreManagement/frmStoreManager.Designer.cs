@@ -1,6 +1,6 @@
-﻿namespace LaundryMiddlePlatform_WinApp
+﻿namespace LaundryMiddlePlatform_WinApp.StoreManagement
 {
-    partial class frmLaundryManagement
+    partial class frmStoreManager
     {
         /// <summary>
         /// Required designer variable.
@@ -32,18 +32,19 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            systemToolStripMenuItem = new ToolStripMenuItem();
-            accountManagementToolStripMenuItem = new ToolStripMenuItem();
+            storeInfomationToolStripMenuItem = new ToolStripMenuItem();
+            servicesToolStripMenuItem = new ToolStripMenuItem();
+            orderToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, systemToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, storeInfomationToolStripMenuItem, servicesToolStripMenuItem, orderToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1153, 24);
-            menuStrip1.TabIndex = 0;
+            menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
@@ -56,32 +57,35 @@
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(180, 22);
+            logoutToolStripMenuItem.Size = new Size(112, 22);
             logoutToolStripMenuItem.Text = "Logout";
-            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(112, 22);
             exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // systemToolStripMenuItem
+            // storeInfomationToolStripMenuItem
             // 
-            systemToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { accountManagementToolStripMenuItem });
-            systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            systemToolStripMenuItem.Size = new Size(90, 20);
-            systemToolStripMenuItem.Text = "Management";
+            storeInfomationToolStripMenuItem.Name = "storeInfomationToolStripMenuItem";
+            storeInfomationToolStripMenuItem.Size = new Size(108, 20);
+            storeInfomationToolStripMenuItem.Text = "Store infomation";
             // 
-            // accountManagementToolStripMenuItem
+            // servicesToolStripMenuItem
             // 
-            accountManagementToolStripMenuItem.Name = "accountManagementToolStripMenuItem";
-            accountManagementToolStripMenuItem.Size = new Size(193, 22);
-            accountManagementToolStripMenuItem.Text = "Account management";
-            accountManagementToolStripMenuItem.Click += accountManagementToolStripMenuItem_Click;
+            servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
+            servicesToolStripMenuItem.Size = new Size(61, 20);
+            servicesToolStripMenuItem.Text = "Services";
+            servicesToolStripMenuItem.Click += servicesToolStripMenuItem_Click;
             // 
-            // frmLaundryManagement
+            // orderToolStripMenuItem
+            // 
+            orderToolStripMenuItem.Name = "orderToolStripMenuItem";
+            orderToolStripMenuItem.Size = new Size(49, 20);
+            orderToolStripMenuItem.Text = "Order";
+            // 
+            // frmStoreManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -89,11 +93,11 @@
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Name = "frmLaundryManagement";
+            Name = "frmStoreManager";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Laundry Middle Platform";
-            FormClosing += frmLaundryManagement_FormClosing;
-            FormClosed += frmLaundryManagement_FormClosed;
+            Text = "Store Management";
+            FormClosing += frmStoreManager_FormClosing;
+            FormClosed += frmStoreManager_FormClosed;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -106,7 +110,8 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem logoutToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem systemToolStripMenuItem;
-        private ToolStripMenuItem accountManagementToolStripMenuItem;
+        private ToolStripMenuItem storeInfomationToolStripMenuItem;
+        private ToolStripMenuItem servicesToolStripMenuItem;
+        private ToolStripMenuItem orderToolStripMenuItem;
     }
 }

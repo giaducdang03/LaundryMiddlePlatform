@@ -28,32 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            dgvServices = new DataGridView();
+            dgvServiceDetails = new DataGridView();
+            lbService = new Label();
+            btnOrder = new Button();
+            btnSearch = new Button();
+            textBox1 = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvServiceDetails).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // dgvServices
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvServices.Location = new Point(-9, 70);
+            dgvServices.Name = "dgvServices";
+            dgvServices.RowHeadersWidth = 51;
+            dgvServices.RowTemplate.Height = 29;
+            dgvServices.Size = new Size(1160, 249);
+            dgvServices.TabIndex = 0;
+            dgvServices.CellDoubleClick += dgvServices_CellDoubleClick;
+            // 
+            // dgvServiceDetails
+            // 
+            dgvServiceDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvServiceDetails.Location = new Point(1, 325);
+            dgvServiceDetails.Name = "dgvServiceDetails";
+            dgvServiceDetails.RowHeadersWidth = 51;
+            dgvServiceDetails.RowTemplate.Height = 29;
+            dgvServiceDetails.Size = new Size(1150, 188);
+            dgvServiceDetails.TabIndex = 0;
+            // 
+            // lbService
+            // 
+            lbService.AutoSize = true;
+            lbService.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lbService.Location = new Point(956, 26);
+            lbService.Name = "lbService";
+            lbService.Size = new Size(195, 41);
+            lbService.TabIndex = 1;
+            lbService.Text = "Service Table";
+            lbService.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // btnOrder
+            // 
+            btnOrder.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnOrder.Location = new Point(1157, 285);
+            btnOrder.Name = "btnOrder";
+            btnOrder.Size = new Size(90, 80);
+            btnOrder.TabIndex = 2;
+            btnOrder.Text = "Order";
+            btnOrder.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(1, 37);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(66, 29);
+            btnSearch.TabIndex = 3;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(73, 39);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 4;
             // 
             // frmServiceOfStore
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label1);
+            ClientSize = new Size(1259, 503);
+            Controls.Add(textBox1);
+            Controls.Add(btnSearch);
+            Controls.Add(btnOrder);
+            Controls.Add(lbService);
+            Controls.Add(dgvServiceDetails);
+            Controls.Add(dgvServices);
             Name = "frmServiceOfStore";
             Text = "frmServiceOfStore";
+            Load += frmServiceOfStore_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvServices).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvServiceDetails).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private DataGridView dgvServices;
+        private DataGridView dgvServiceDetails;
+        private Label lbService;
+        private Button btnOrder;
+        private Button btnSearch;
+        private TextBox textBox1;
     }
 }

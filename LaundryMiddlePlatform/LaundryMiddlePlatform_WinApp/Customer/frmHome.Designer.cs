@@ -46,7 +46,7 @@
             dgvStore.RowTemplate.Height = 29;
             dgvStore.Size = new Size(1259, 624);
             dgvStore.TabIndex = 0;
-            dgvStore.DoubleClick += dgvStore_DoubleClick;
+            dgvStore.CellDoubleClick += dgvStore_CellDoubleClick;
             // 
             // lbHeader
             // 

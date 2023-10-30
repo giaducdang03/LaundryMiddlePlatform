@@ -1,4 +1,6 @@
-﻿using Repositories;
+﻿using BusinessObjects.Models;
+using Microsoft.VisualBasic.ApplicationServices;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
     public partial class frmHome : Form
     {
         IStoreRepository resp = new StoreRepository();
+        public Store currentStore { get; set; }
         public frmHome()
         {
             InitializeComponent();
@@ -31,8 +34,15 @@ namespace LaundryMiddlePlatform_WinApp.Customer
             {
                 var storeList = resp.GetStores();
                 BindingSource source = new BindingSource();
-                source.DataSource = storeList;
+                var storeView = storeList.Select(p => new
+                {
+                    p.StoreId,
+                    p.Name,
+                    p.Address,
+                    p.PhoneNumber
 
+                });
+                source.DataSource = storeView;
                 dgvStore.DataSource = null;
                 dgvStore.DataSource = source;
             }
@@ -47,9 +57,10 @@ namespace LaundryMiddlePlatform_WinApp.Customer
 
         }
 
-        private void dgvStore_DoubleClick(object sender, EventArgs e)
+        private void dgvStore_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             frmServiceOfStore f = new frmServiceOfStore();
+            f.currentStore = currentStore;
             f.Show();
             this.Hide();
         }

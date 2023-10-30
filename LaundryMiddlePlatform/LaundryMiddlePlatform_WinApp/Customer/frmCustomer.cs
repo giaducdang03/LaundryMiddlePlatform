@@ -16,7 +16,8 @@ namespace LaundryMiddlePlatform_WinApp
 {
     public partial class frmCustomer : Form
     {
-        public Account loginUser {  get; set; }
+        public Account loginUser { get; set; }
+        public Store currentStore { get; set; }
         IAccountRepository _repo = new AccountRepository();
 
         public Account loginAccount { get; set; }
@@ -38,17 +39,30 @@ namespace LaundryMiddlePlatform_WinApp
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmHome f = new frmHome();
-            f.MdiParent = this;
-            f.WindowState = FormWindowState.Maximized;
+            f.currentStore = currentStore;
             f.Show();
         }
-        private void yourProfileToolStripMenuItem2_Click(object sender, EventArgs e)
+
+        private void yourProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProfile f = new frmProfile();
             f.loginUser = loginUser;
-            f.MdiParent = this;
-            f.WindowState = FormWindowState.Maximized;
             f.Show();
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult d;
+            d = MessageBox.Show("Are you sure logout the system?", "Laundry Middle Platform",
+                   MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                   MessageBoxDefaultButton.Button1);
+            if (d == DialogResult.OK)
+            {
+                loginAccount = null;
+                frmLogin f = new frmLogin();
+                f.Show();
+                this.Hide();
+            }
         }
     }
 }

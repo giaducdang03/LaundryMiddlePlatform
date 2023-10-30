@@ -31,10 +31,10 @@
             menuStrip1 = new MenuStrip();
             yourProfileToolStripMenuItem = new ToolStripMenuItem();
             logOutToolStripMenuItem = new ToolStripMenuItem();
-            homeToolStripMenuItem = new ToolStripMenuItem();
-            orderHistoryToolStripMenuItem = new ToolStripMenuItem();
-            yourProfileToolStripMenuItem2 = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            yourProfileToolStripMenuItem2 = new ToolStripMenuItem();
+            orderHistoryToolStripMenuItem = new ToolStripMenuItem();
+            homeToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -44,7 +44,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { yourProfileToolStripMenuItem, yourProfileToolStripMenuItem2, orderHistoryToolStripMenuItem, homeToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1224, 28);
+            menuStrip1.Size = new Size(1318, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -60,6 +60,26 @@
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
             logOutToolStripMenuItem.Size = new Size(224, 26);
             logOutToolStripMenuItem.Text = "Logout";
+            logOutToolStripMenuItem.Click += logOutToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(224, 26);
+            exitToolStripMenuItem.Text = "Exit";
+            // 
+            // yourProfileToolStripMenuItem2
+            // 
+            yourProfileToolStripMenuItem2.Name = "yourProfileToolStripMenuItem2";
+            yourProfileToolStripMenuItem2.Size = new Size(99, 24);
+            yourProfileToolStripMenuItem2.Text = "Your Profile";
+            yourProfileToolStripMenuItem2.Click += yourProfileToolStripMenuItem_Click;
+            // 
+            // orderHistoryToolStripMenuItem
+            // 
+            orderHistoryToolStripMenuItem.Name = "orderHistoryToolStripMenuItem";
+            orderHistoryToolStripMenuItem.Size = new Size(112, 24);
+            orderHistoryToolStripMenuItem.Text = "Order History";
             // 
             // homeToolStripMenuItem
             // 
@@ -70,30 +90,11 @@
             homeToolStripMenuItem.Text = "Home";
             homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
             // 
-            // orderHistoryToolStripMenuItem
-            // 
-            orderHistoryToolStripMenuItem.Name = "orderHistoryToolStripMenuItem";
-            orderHistoryToolStripMenuItem.Size = new Size(112, 24);
-            orderHistoryToolStripMenuItem.Text = "Order History";
-            // 
-            // yourProfileToolStripMenuItem2
-            // 
-            yourProfileToolStripMenuItem2.Name = "yourProfileToolStripMenuItem2";
-            yourProfileToolStripMenuItem2.Size = new Size(99, 24);
-            yourProfileToolStripMenuItem2.Text = "Your Profile";
-            yourProfileToolStripMenuItem2.Click += yourProfileToolStripMenuItem2_Click;
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(139, 26);
-            exitToolStripMenuItem.Text = "Exit";
-            // 
             // frmCustomer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1224, 404);
+            ClientSize = new Size(1318, 881);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "frmCustomer";

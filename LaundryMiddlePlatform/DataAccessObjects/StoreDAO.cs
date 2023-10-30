@@ -27,16 +27,35 @@ namespace DataAccessObjects
                 return instance;
             }
         }
-        public List<Store> GetStore()
+        public List<Store> GetStore(string? sortType)
         {
             List<Store> listStore = new List<Store>();
+           
             try
             {
-                using(var context = new LaundryManagementPrnContext())
+                using var db = new LaundryManagementPrnContext();
+                var query = db.Stores.Where(a => a.Status == true).AsQueryable();
+                if (!string.IsNullOrEmpty(sortType))
                 {
-                    listStore = context.Stores.ToList();
+                    if (sortType == "Name: A -> Z")
+                    {
+                        query = query.OrderBy(a => a.Name);
+                    }
+                    if (sortType == "Name: Z -> A")
+                    {
+                        query = query.OrderByDescending(a => a.Name);
+                    }
                 }
-            }catch (Exception ex)
+                if (!query.Any())
+                {
+                    throw new Exception("Not found.");
+                }
+
+                listStore = query.ToList();
+
+                return listStore;
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

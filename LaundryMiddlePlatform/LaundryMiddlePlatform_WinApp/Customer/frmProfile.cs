@@ -33,10 +33,10 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         }
         private void EnableText(bool status)
         {
-            txtFullName.ReadOnly = !status;
+            txtFullName.Enabled = status;
             dtpBirthDate.Enabled = status;
-            txtPhone.ReadOnly = !status;
-            txtAddress.ReadOnly = !status;
+            txtPhone.Enabled = status;
+            txtAddress.Enabled = status;
         }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -50,22 +50,31 @@ namespace LaundryMiddlePlatform_WinApp.Customer
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (btnEdit.Text == "Edit Profile")
+            if (btnEdit.Text.Equals("Edit Profile"))
             {
                 EnableText(true);
                 // btn control
-                btnEdit.Text = "Cancel";
                 btnSave.Enabled = true;
 
 
             }
-            else if (btnEdit.Text == "Cancel") ;
-            EnableText(false);
-            btnEdit.Text = "Edit Profile";
-            btnSave.Enabled = false;
-
         }
 
+        public void loadProfile()
+        {
+            Account user = _repo.GetAccountById(loginUser.AccountId);
+            if (user == null)
+            {
+                MessageBox.Show("User's profile is not found", "Laundry Middle Platform",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            txtAddress.Text = user.Address;
+            txtFullName.Text = user.FullName;
+            txtEmail.Text = user.Email;
+            txtPhone.Text = user.PhoneNumber;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             var account = new Account
@@ -84,25 +93,17 @@ namespace LaundryMiddlePlatform_WinApp.Customer
             bool updateStatus = _repo.UpdateAccount(account);
             if (updateStatus)
             {
+                EnableText(false);
                 MessageBox.Show($"Update account {account.Email} successfully.", "Account management",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                loadProfile();
             }
         }
 
         private void frmProfile_Load(object sender, EventArgs e)
         {
-          Account user =  _repo.GetAccountById(loginUser.AccountId);
-            if(user == null)
-            {
-                MessageBox.Show("User's profile is not found", "Laundry Middle Platform",
-                   MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            txtAddress.Text = user.Address;
-            txtFullName.Text = user.FullName;
-            txtEmail.Text = user.Email;
-            txtPhone.Text = user.PhoneNumber;
+          loadProfile();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
 
         private void dgvServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvServices.SelectedRows.Count > 0)
+            if (e.RowIndex >= 0)
             {
                 int location = dgvServices.CurrentCell.RowIndex;
                 int serviceId = int.Parse(dgvServices.Rows[location].Cells["ServiceId"].Value.ToString());

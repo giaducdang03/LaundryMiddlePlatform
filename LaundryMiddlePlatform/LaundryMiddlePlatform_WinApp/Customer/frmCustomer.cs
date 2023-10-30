@@ -64,5 +64,7 @@ namespace LaundryMiddlePlatform_WinApp
                 this.Hide();
             }
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
     }
 }

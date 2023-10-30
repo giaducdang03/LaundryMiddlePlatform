@@ -15,9 +15,12 @@ using System.Xml.Linq;
 namespace LaundryMiddlePlatform_WinApp.Customer
 {
     public partial class frmHome : Form
+
     {
+        IServiceRepository _serviceRepo = new ServiceRepository();
         IStoreRepository resp = new StoreRepository();
         public Store currentStore { get; set; }
+
         public frmHome()
         {
             InitializeComponent();
@@ -25,14 +28,15 @@ namespace LaundryMiddlePlatform_WinApp.Customer
 
         private void frmHome_Load(object sender, EventArgs e)
         {
-            LoadStoreList();
+            LoadStoreList(cboSort.Text);
+            cboSort.SelectedIndex = 0;
         }
 
-        public void LoadStoreList()
+        public void LoadStoreList(string? sortType)
         {
             try
             {
-                var storeList = resp.GetStores();
+                var storeList = resp.GetStores(sortType);
                 BindingSource source = new BindingSource();
                 var storeView = storeList.Select(p => new
                 {
@@ -60,9 +64,14 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         private void dgvStore_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             frmServiceOfStore f = new frmServiceOfStore();
-            f.currentStore = currentStore;
-            f.Show();
-            this.Hide();
+            if (e.RowIndex >= 0)
+            {
+
+                int storeId = int.Parse(dgvStore.Rows[e.RowIndex].Cells["StoreId"].Value.ToString());
+                f.currentStore = resp.GetStoreById(storeId);
+                f.Show();
+                this.Hide();
+            }
         }
     }
 }

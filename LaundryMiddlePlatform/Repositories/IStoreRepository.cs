@@ -13,7 +13,7 @@ namespace Repositories
         void SaveStore(Store store);
         void DeleteStore(Store store); 
         void UpdateStore(Store store);
-        List<Store> GetStores();
+        List<Store> GetStores(string? sortType);
         Store GetStoreById(int id);
         Store GetStoreByManagerId(int managerId);
     }

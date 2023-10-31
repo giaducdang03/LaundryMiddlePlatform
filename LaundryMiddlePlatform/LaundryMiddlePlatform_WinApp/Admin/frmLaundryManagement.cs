@@ -62,5 +62,13 @@ namespace LaundryMiddlePlatform_WinApp
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+
+        private void storeManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmStoreManagement f = new frmStoreManagement();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
     }
 }

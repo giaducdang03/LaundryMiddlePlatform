@@ -166,6 +166,7 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(402, 31);
             txtName.TabIndex = 13;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // txtStatus
             // 

@@ -27,7 +27,6 @@ public partial class Service
 
     public virtual ICollection<ServiceDetail> ServiceDetails { get; set; } = new List<ServiceDetail>();
 
-    public virtual ICollection<ServiceDetail> ServiceDetails { get; set; } = new List<ServiceDetail>();
 
     public virtual Store? Store { get; set; }
 }

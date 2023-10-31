@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Validation
 {
-    public class AccountValidation
+    public class CommonValidation
     {
         public static bool IsValidEmail(string email)
         {

@@ -35,20 +35,26 @@
             dgvServices = new DataGridView();
             dgvServiceDetails = new DataGridView();
             splitContainer1 = new SplitContainer();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnUpdate = new Button();
+            btnDelete = new Button();
+            btnSave = new Button();
+            btnAdd = new Button();
             groupBox1 = new GroupBox();
-            label3 = new Label();
-            txtSearch = new TextBox();
             btnSearch = new Button();
+            txtSearch = new TextBox();
+            label3 = new Label();
             splitContainer2 = new SplitContainer();
-            button4 = new Button();
+            btnRemove = new Button();
+            btnUpdateDetail = new Button();
+            btnCloseDetail = new Button();
+            btnAddDetail = new Button();
             groupBox2 = new GroupBox();
-            label4 = new Label();
-            label5 = new Label();
-            txtServiceName = new TextBox();
             txtDescription = new TextBox();
+            txtServiceName = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
+            lblDetail = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvServiceDetails).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -108,7 +114,7 @@
             dgvServices.ReadOnly = true;
             dgvServices.RowTemplate.Height = 25;
             dgvServices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvServices.Size = new Size(1020, 204);
+            dgvServices.Size = new Size(1020, 190);
             dgvServices.TabIndex = 1;
             dgvServices.CellDoubleClick += dgvServices_CellDoubleClick;
             // 
@@ -126,7 +132,7 @@
             // 
             // splitContainer1
             // 
-            splitContainer1.Location = new Point(12, 231);
+            splitContainer1.Location = new Point(12, 251);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -135,39 +141,53 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(button3);
-            splitContainer1.Panel2.Controls.Add(button2);
-            splitContainer1.Panel2.Controls.Add(button1);
-            splitContainer1.Size = new Size(1129, 204);
+            splitContainer1.Panel2.Controls.Add(btnUpdate);
+            splitContainer1.Panel2.Controls.Add(btnDelete);
+            splitContainer1.Panel2.Controls.Add(btnSave);
+            splitContainer1.Panel2.Controls.Add(btnAdd);
+            splitContainer1.Size = new Size(1129, 190);
             splitContainer1.SplitterDistance = 1019;
             splitContainer1.TabIndex = 3;
             // 
-            // button3
+            // btnUpdate
             // 
-            button3.Location = new Point(3, 164);
-            button3.Name = "button3";
-            button3.Size = new Size(99, 23);
-            button3.TabIndex = 2;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            btnUpdate.Location = new Point(3, 57);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(99, 23);
+            btnUpdate.TabIndex = 3;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
-            // button2
+            // btnDelete
             // 
-            button2.Location = new Point(3, 91);
-            button2.Name = "button2";
-            button2.Size = new Size(99, 23);
-            button2.TabIndex = 1;
-            button2.Text = "Save";
-            button2.UseVisualStyleBackColor = true;
+            btnDelete.Location = new Point(3, 155);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(99, 23);
+            btnDelete.TabIndex = 2;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
-            // button1
+            // btnSave
             // 
-            button1.Location = new Point(3, 13);
-            button1.Name = "button1";
-            button1.Size = new Size(99, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            btnSave.Location = new Point(3, 106);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(99, 23);
+            btnSave.TabIndex = 1;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(3, 13);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(99, 23);
+            btnAdd.TabIndex = 0;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // groupBox1
             // 
@@ -181,6 +201,24 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Search";
             // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(282, 27);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(75, 23);
+            btnSearch.TabIndex = 2;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(102, 27);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(157, 23);
+            txtSearch.TabIndex = 1;
+            txtSearch.KeyPress += txtSearch_KeyPress;
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -190,25 +228,9 @@
             label3.TabIndex = 0;
             label3.Text = "Service name";
             // 
-            // txtSearch
-            // 
-            txtSearch.Location = new Point(102, 27);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(157, 23);
-            txtSearch.TabIndex = 1;
-            // 
-            // btnSearch
-            // 
-            btnSearch.Location = new Point(282, 27);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(75, 23);
-            btnSearch.TabIndex = 2;
-            btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = true;
-            // 
             // splitContainer2
             // 
-            splitContainer2.Location = new Point(12, 472);
+            splitContainer2.Location = new Point(12, 475);
             splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -217,19 +239,53 @@
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(button4);
+            splitContainer2.Panel2.Controls.Add(btnRemove);
+            splitContainer2.Panel2.Controls.Add(btnUpdateDetail);
+            splitContainer2.Panel2.Controls.Add(btnCloseDetail);
+            splitContainer2.Panel2.Controls.Add(btnAddDetail);
             splitContainer2.Size = new Size(1129, 148);
             splitContainer2.SplitterDistance = 1019;
             splitContainer2.TabIndex = 5;
             // 
-            // button4
+            // btnRemove
             // 
-            button4.Location = new Point(3, 61);
-            button4.Name = "button4";
-            button4.Size = new Size(99, 23);
-            button4.TabIndex = 0;
-            button4.Text = "Add detail";
-            button4.UseVisualStyleBackColor = true;
+            btnRemove.Location = new Point(3, 82);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(99, 23);
+            btnRemove.TabIndex = 3;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
+            // 
+            // btnUpdateDetail
+            // 
+            btnUpdateDetail.Location = new Point(4, 42);
+            btnUpdateDetail.Name = "btnUpdateDetail";
+            btnUpdateDetail.Size = new Size(99, 23);
+            btnUpdateDetail.TabIndex = 2;
+            btnUpdateDetail.Text = "Update";
+            btnUpdateDetail.UseVisualStyleBackColor = true;
+            btnUpdateDetail.Click += btnUpdateDetail_Click;
+            // 
+            // btnCloseDetail
+            // 
+            btnCloseDetail.Location = new Point(3, 122);
+            btnCloseDetail.Name = "btnCloseDetail";
+            btnCloseDetail.Size = new Size(99, 23);
+            btnCloseDetail.TabIndex = 1;
+            btnCloseDetail.Text = "&Close";
+            btnCloseDetail.UseVisualStyleBackColor = true;
+            btnCloseDetail.Click += btnCloseDetail_Click;
+            // 
+            // btnAddDetail
+            // 
+            btnAddDetail.Location = new Point(3, 3);
+            btnAddDetail.Name = "btnAddDetail";
+            btnAddDetail.Size = new Size(99, 23);
+            btnAddDetail.TabIndex = 0;
+            btnAddDetail.Text = "Add detail";
+            btnAddDetail.UseVisualStyleBackColor = true;
+            btnAddDetail.Click += btnAddDetail_Click;
             // 
             // groupBox2
             // 
@@ -244,14 +300,20 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Service";
             // 
-            // label4
+            // txtDescription
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(19, 43);
-            label4.Name = "label4";
-            label4.Size = new Size(77, 15);
-            label4.TabIndex = 0;
-            label4.Text = "Service name";
+            txtDescription.Location = new Point(114, 83);
+            txtDescription.Multiline = true;
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(243, 48);
+            txtDescription.TabIndex = 3;
+            // 
+            // txtServiceName
+            // 
+            txtServiceName.Location = new Point(114, 40);
+            txtServiceName.Name = "txtServiceName";
+            txtServiceName.Size = new Size(243, 23);
+            txtServiceName.TabIndex = 2;
             // 
             // label5
             // 
@@ -262,26 +324,41 @@
             label5.TabIndex = 1;
             label5.Text = "Description";
             // 
-            // txtServiceName
+            // label4
             // 
-            txtServiceName.Location = new Point(114, 40);
-            txtServiceName.Name = "txtServiceName";
-            txtServiceName.Size = new Size(243, 23);
-            txtServiceName.TabIndex = 2;
+            label4.AutoSize = true;
+            label4.Location = new Point(19, 43);
+            label4.Name = "label4";
+            label4.Size = new Size(77, 15);
+            label4.TabIndex = 0;
+            label4.Text = "Service name";
             // 
-            // txtDescription
+            // lblDetail
             // 
-            txtDescription.Location = new Point(114, 83);
-            txtDescription.Multiline = true;
-            txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(243, 48);
-            txtDescription.TabIndex = 3;
+            lblDetail.AutoSize = true;
+            lblDetail.Location = new Point(12, 451);
+            lblDetail.Name = "lblDetail";
+            lblDetail.Size = new Size(90, 15);
+            lblDetail.TabIndex = 7;
+            lblDetail.Text = "Detail of service";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Red;
+            label6.Location = new Point(12, 233);
+            label6.Name = "label6";
+            label6.Size = new Size(191, 15);
+            label6.TabIndex = 8;
+            label6.Text = "* Double click on cell to view detail";
             // 
             // frmServiceManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1153, 661);
+            Controls.Add(label6);
+            Controls.Add(lblDetail);
             Controls.Add(groupBox2);
             Controls.Add(splitContainer2);
             Controls.Add(groupBox1);
@@ -319,19 +396,25 @@
         private DataGridView dgvServices;
         private DataGridView dgvServiceDetails;
         private SplitContainer splitContainer1;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button btnDelete;
+        private Button btnSave;
+        private Button btnAdd;
         private GroupBox groupBox1;
         private Button btnSearch;
         private TextBox txtSearch;
         private Label label3;
         private SplitContainer splitContainer2;
-        private Button button4;
+        private Button btnAddDetail;
         private GroupBox groupBox2;
         private Label label5;
         private Label label4;
         private TextBox txtDescription;
         private TextBox txtServiceName;
+        private Label lblDetail;
+        private Button btnCloseDetail;
+        private Button btnUpdate;
+        private Button btnUpdateDetail;
+        private Label label6;
+        private Button btnRemove;
     }
 }

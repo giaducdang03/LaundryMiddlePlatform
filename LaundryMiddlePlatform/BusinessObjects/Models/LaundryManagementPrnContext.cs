@@ -94,9 +94,13 @@ public partial class LaundryManagementPrnContext : DbContext
                 .HasForeignKey(d => d.OrderId)
                 .HasConstraintName("FK_OrderDetail_Order");
 
-            entity.HasOne(d => d.Service).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.ServiceId)
-                .HasConstraintName("FK_OrderDetail_Service");
+            //entity.HasOne(d => d.Service).WithMany(p => p.OrderDetails)
+            //    .HasForeignKey(d => d.ServiceId)
+            //    .HasConstraintName("FK_OrderDetail_Service");
+
+            entity.HasOne(d => d.ServiceDetail).WithMany(p => p.OrderDetails)
+                .HasForeignKey(d => d.Id)
+                .HasConstraintName("FK_OrderDetail_ServiceDetail");
         });
 
         modelBuilder.Entity<Service>(entity =>
@@ -123,8 +127,10 @@ public partial class LaundryManagementPrnContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK_ServiceDetail");
 
             entity.ToTable("ServiceDetail");
+            entity.Property(e => e.TypeName).HasMaxLength(60);
             entity.Property(e => e.Type).HasMaxLength(50);
             entity.Property(e => e.WashOption).HasMaxLength(20);
+            entity.Property(e => e.Duration).HasColumnType("time");
 
             entity.HasOne(d => d.Service).WithMany(p => p.ServiceDetails)
                 .HasForeignKey(d => d.ServiceId)

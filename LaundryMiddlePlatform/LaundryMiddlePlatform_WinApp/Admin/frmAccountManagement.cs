@@ -270,5 +270,7 @@ namespace LaundryMiddlePlatform_WinApp.Admin
         }
 
         private void btnClose_Click(object sender, EventArgs e) => Close();
+
+    
     }
 }

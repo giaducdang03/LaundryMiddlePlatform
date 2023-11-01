@@ -17,6 +17,9 @@ namespace Repositories
         public bool DeleteAccount(Account account)
             => AccountDAO.Instance.DeleteAccount(account);
 
+        public int GetAccountIdByEmail(string email) 
+            => AccountDAO.Instance.GetAccountIdbyEmail(email);
+
         public Account GetAccountById(int id)
             => AccountDAO.Instance.GetAccountById(id);
 

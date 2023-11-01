@@ -46,7 +46,7 @@
             btnCreate = new Button();
             btnSave = new Button();
             btnDelete = new Button();
-            btnUpdate = new Button();
+            btnExit = new Button();
             groupBox1 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)dgvStore).BeginInit();
             groupBox1.SuspendLayout();
@@ -57,10 +57,12 @@
             dgvStore.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStore.Location = new Point(60, 363);
             dgvStore.Name = "dgvStore";
+            dgvStore.ReadOnly = true;
             dgvStore.RowHeadersWidth = 62;
             dgvStore.RowTemplate.Height = 33;
             dgvStore.Size = new Size(1345, 374);
             dgvStore.TabIndex = 0;
+            dgvStore.CellDoubleClick += dgvStore_CellDoubleClick;
             // 
             // label1
             // 
@@ -205,15 +207,15 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
-            // btnUpdate
+            // btnExit
             // 
-            btnUpdate.Location = new Point(1426, 703);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(112, 34);
-            btnUpdate.TabIndex = 18;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
+            btnExit.Location = new Point(1426, 703);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(112, 34);
+            btnExit.TabIndex = 18;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // groupBox1
             // 
@@ -242,9 +244,9 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1698, 749);
+            ClientSize = new Size(1733, 749);
             Controls.Add(groupBox1);
-            Controls.Add(btnUpdate);
+            Controls.Add(btnExit);
             Controls.Add(btnDelete);
             Controls.Add(btnSave);
             Controls.Add(btnCreate);
@@ -278,7 +280,7 @@
         private Button btnCreate;
         private Button btnSave;
         private Button btnDelete;
-        private Button btnUpdate;
+        private Button btnExit;
         private GroupBox groupBox1;
     }
 }

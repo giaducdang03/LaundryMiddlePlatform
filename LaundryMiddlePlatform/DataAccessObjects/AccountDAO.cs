@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,21 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
             
+        }
+        public int GetAccountIdbyEmail(string txtMail)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                
+                Account account =  db.Accounts.SingleOrDefault(a => a.Email == txtMail);
+                return account.AccountId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public List<Account> GetAllAccounts(string? txtSearch, string? role, string? sortType)

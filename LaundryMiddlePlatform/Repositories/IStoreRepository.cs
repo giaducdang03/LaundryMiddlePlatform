@@ -10,10 +10,10 @@ namespace Repositories
 {
     public interface IStoreRepository
     {
-        void SaveStore(Store store);
-        void DeleteStore(Store store); 
-        void UpdateStore(Store store);
-        List<Store> GetStores(string? sortType);
+        bool SaveStore(Store store);
+        bool DeleteStore(Store store); 
+        bool UpdateStore(Store store);
+        List<Store> GetStores();
         Store GetStoreById(int id);
         Store GetStoreByManagerId(int managerId);
     }

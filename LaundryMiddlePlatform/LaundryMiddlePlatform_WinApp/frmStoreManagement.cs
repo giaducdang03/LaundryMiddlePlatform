@@ -40,7 +40,6 @@ namespace LaundryMiddlePlatform_WinApp
                 ClearData();
                 ClearText();
 
-                btnCreate.Text = "Cancel";
                 btnCreate.Enabled = true;
                 btnSave.Enabled = true;
                 btnDelete.Enabled = false;
@@ -173,6 +172,8 @@ namespace LaundryMiddlePlatform_WinApp
             txtName.ReadOnly = !status;
             txtPhoneNumber.ReadOnly = !status;
             txtStatus.ReadOnly = !status;
+            txtStoreID.ReadOnly = !status;
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -247,8 +248,7 @@ namespace LaundryMiddlePlatform_WinApp
         }
 
         private void btnExit_Click(object sender, EventArgs e) => Close();
-
-    
+        
     }
 }
 

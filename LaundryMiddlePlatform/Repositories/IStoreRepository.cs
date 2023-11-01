@@ -13,7 +13,7 @@ namespace Repositories
         bool SaveStore(Store store);
         bool DeleteStore(Store store); 
         bool UpdateStore(Store store);
-        List<Store> GetStores();
+        List<Store> GetStores(string? sortType);
         Store GetStoreById(int id);
         Store GetStoreByManagerId(int managerId);
     }

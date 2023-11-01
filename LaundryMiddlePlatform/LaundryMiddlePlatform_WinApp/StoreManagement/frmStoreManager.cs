@@ -46,5 +46,25 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
             f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
+
+        private void storeInfomationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmStoreInfo f = new frmStoreInfo();
+            f.managerAccount = managerAccount;
+            f.currentStore = currentStore;
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
+
+        private void orderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOrderManagement f = new frmOrderManagement();
+            f.managerAccount = managerAccount;
+            f.currentStore = currentStore;
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
     }
 }

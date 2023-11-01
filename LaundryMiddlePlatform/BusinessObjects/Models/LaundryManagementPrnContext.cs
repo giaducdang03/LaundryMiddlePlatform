@@ -61,6 +61,10 @@ public partial class LaundryManagementPrnContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false);
             entity.Property(e => e.Role).HasMaxLength(10);
+
+            entity.HasOne(e => e.Store).WithOne(p => p.Manager)
+                .HasForeignKey<Store>(p => p.ManagementId)
+                .HasConstraintName("FK_Store_Account");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -148,6 +152,7 @@ public partial class LaundryManagementPrnContext : DbContext
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(10)
                 .IsUnicode(false);
+            
         });
 
         

@@ -26,4 +26,6 @@ public partial class Account
     public virtual ICollection<Order> OrderCustomers { get; set; } = new List<Order>();
 
     public virtual ICollection<Order> OrderStaffs { get; set; } = new List<Order>();
+
+    public virtual Store? Store { get; set; }
 }

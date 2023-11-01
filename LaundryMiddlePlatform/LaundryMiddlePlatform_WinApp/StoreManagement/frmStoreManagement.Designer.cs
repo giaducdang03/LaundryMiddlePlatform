@@ -96,9 +96,9 @@
             label4.AutoSize = true;
             label4.Location = new Point(706, 30);
             label4.Name = "label4";
-            label4.Size = new Size(133, 25);
+            label4.Size = new Size(117, 25);
             label4.TabIndex = 4;
-            label4.Text = "ManagementId";
+            label4.Text = "Management";
             // 
             // label5
             // 
@@ -131,6 +131,7 @@
             // 
             txtStoreID.Location = new Point(161, 41);
             txtStoreID.Name = "txtStoreID";
+            txtStoreID.ReadOnly = true;
             txtStoreID.Size = new Size(173, 31);
             txtStoreID.TabIndex = 8;
             // 
@@ -147,6 +148,7 @@
             txtManagement.Name = "txtManagement";
             txtManagement.Size = new Size(402, 31);
             txtManagement.TabIndex = 10;
+           
             // 
             // txtPhoneNumber
             // 

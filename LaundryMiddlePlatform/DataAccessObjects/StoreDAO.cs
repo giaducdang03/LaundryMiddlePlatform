@@ -35,6 +35,7 @@ namespace DataAccessObjects
                 using(var context = new LaundryManagementPrnContext())
                 {
                     listStore = context.Stores.ToList();
+                    
                 }
             }catch (Exception ex)
             {

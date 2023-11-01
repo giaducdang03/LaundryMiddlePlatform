@@ -55,7 +55,7 @@ namespace LaundryMiddlePlatform_WinApp
         {
             try
             {
-                var storeList = resp.GetStores();
+                var storeList = resp.GetStores(null);
                 BindingSource source = new BindingSource();
                 source.DataSource = storeList;
 
@@ -66,14 +66,15 @@ namespace LaundryMiddlePlatform_WinApp
                 txtPhoneNumber.DataBindings.Clear();
                 txtStatus.DataBindings.Clear();
                 txtStoreID.DataBindings.Clear();
+                ClearText();
 
-                txtAddress.DataBindings.Add("Text", source, "Address");
-                txtIsAvaiable.DataBindings.Add("Text", source, "IsAvaiable");
+                txtAddress.DataBindings.Add("Text", source, "Address");               
                 txtManagement.DataBindings.Add("Text", source, "ManagementId");
                 txtName.DataBindings.Add("Text", source, "Name");
                 txtPhoneNumber.DataBindings.Add("Text", source, "PhoneNumber");
                 txtStatus.DataBindings.Add("Text", source, "Status");
                 txtStoreID.DataBindings.Add("Text", source, "StoreId");
+                txtIsAvaiable.DataBindings.Add("Text", source, "IsAvailable");
 
                 dgvStore.DataSource = null;
                 dgvStore.DataSource = source;
@@ -159,6 +160,11 @@ namespace LaundryMiddlePlatform_WinApp
 
 
             }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -66,5 +66,22 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
             f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult d;
+            d = MessageBox.Show("Are you sure logout the system?", "Laundry Middle Platform",
+                   MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                   MessageBoxDefaultButton.Button1);
+            if (d == DialogResult.OK)
+            {
+                managerAccount = null;
+                frmLogin f = new frmLogin();
+                f.Show();
+                this.Hide();
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
     }
 }

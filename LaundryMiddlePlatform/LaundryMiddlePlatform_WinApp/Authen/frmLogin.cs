@@ -1,4 +1,5 @@
 using LaundryMiddlePlatform_WinApp.Authen;
+using LaundryMiddlePlatform_WinApp.Staff;
 using LaundryMiddlePlatform_WinApp.StoreManagement;
 using Repositories;
 
@@ -42,7 +43,13 @@ namespace LaundryMiddlePlatform_WinApp
                     f.loginUser = loginUser;
                     f.Show();
                     this.Hide();
-
+                }
+                else
+                {
+                    frmStaff f = new frmStaff();
+                    f.loginAccount = loginUser;
+                    f.Show();
+                    this.Hide();
                 }
             }
             else

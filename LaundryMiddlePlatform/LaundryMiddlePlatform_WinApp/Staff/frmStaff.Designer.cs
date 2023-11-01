@@ -1,6 +1,6 @@
-﻿namespace LaundryMiddlePlatform_WinApp.StoreManagement
+﻿namespace LaundryMiddlePlatform_WinApp.Staff
 {
-    partial class frmStoreManager
+    partial class frmStaff
     {
         /// <summary>
         /// Required designer variable.
@@ -32,15 +32,14 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            storeInfomationToolStripMenuItem = new ToolStripMenuItem();
-            servicesToolStripMenuItem = new ToolStripMenuItem();
-            orderToolStripMenuItem = new ToolStripMenuItem();
+            viewTaskToolStripMenuItem = new ToolStripMenuItem();
+            profileToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, storeInfomationToolStripMenuItem, servicesToolStripMenuItem, orderToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, viewTaskToolStripMenuItem, profileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1153, 24);
@@ -68,28 +67,19 @@
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // storeInfomationToolStripMenuItem
+            // viewTaskToolStripMenuItem
             // 
-            storeInfomationToolStripMenuItem.Name = "storeInfomationToolStripMenuItem";
-            storeInfomationToolStripMenuItem.Size = new Size(108, 20);
-            storeInfomationToolStripMenuItem.Text = "Store infomation";
-            storeInfomationToolStripMenuItem.Click += storeInfomationToolStripMenuItem_Click;
+            viewTaskToolStripMenuItem.Name = "viewTaskToolStripMenuItem";
+            viewTaskToolStripMenuItem.Size = new Size(68, 20);
+            viewTaskToolStripMenuItem.Text = "View task";
             // 
-            // servicesToolStripMenuItem
+            // profileToolStripMenuItem
             // 
-            servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
-            servicesToolStripMenuItem.Size = new Size(61, 20);
-            servicesToolStripMenuItem.Text = "Services";
-            servicesToolStripMenuItem.Click += servicesToolStripMenuItem_Click;
+            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            profileToolStripMenuItem.Size = new Size(53, 20);
+            profileToolStripMenuItem.Text = "Profile";
             // 
-            // orderToolStripMenuItem
-            // 
-            orderToolStripMenuItem.Name = "orderToolStripMenuItem";
-            orderToolStripMenuItem.Size = new Size(49, 20);
-            orderToolStripMenuItem.Text = "Order";
-            orderToolStripMenuItem.Click += orderToolStripMenuItem_Click;
-            // 
-            // frmStoreManager
+            // frmStaff
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -97,11 +87,11 @@
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Name = "frmStoreManager";
+            Name = "frmStaff";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Store Management";
-            FormClosing += frmStoreManager_FormClosing;
-            FormClosed += frmStoreManager_FormClosed;
+            Text = "Staff";
+            FormClosing += frmStaff_FormClosing;
+            FormClosed += frmStaff_FormClosed;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -114,8 +104,7 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem logoutToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
-        private ToolStripMenuItem storeInfomationToolStripMenuItem;
-        private ToolStripMenuItem servicesToolStripMenuItem;
-        private ToolStripMenuItem orderToolStripMenuItem;
+        private ToolStripMenuItem viewTaskToolStripMenuItem;
+        private ToolStripMenuItem profileToolStripMenuItem;
     }
 }

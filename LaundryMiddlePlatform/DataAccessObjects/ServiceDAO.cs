@@ -62,7 +62,7 @@ namespace DataAccessObjects
                     .Include(s => s.ServiceDetails)
                     .SingleOrDefault(s => s.ServiceId == serviceId);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

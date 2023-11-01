@@ -13,9 +13,9 @@ namespace BusinessObjects.Models
         public string? TypeName { get; set; }
         public string? Type { get; set; }
         public string? WashOption { get; set; }
-        public TimeSpan? Duration { get; set; }
         public double? PricePerUnit { get; set; }
         public bool? Status { get; set; }
+        public TimeSpan? Duration { get; set; }
         public virtual Service? Service { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }

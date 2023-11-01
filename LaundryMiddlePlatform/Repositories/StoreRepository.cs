@@ -11,7 +11,7 @@ namespace Repositories
 {
     public class StoreRepository : IStoreRepository
     {
-        public List<Store> GetStores() => StoreDAO.Instance.GetStore();
+        public List<Store> GetStores(string? sortType) => StoreDAO.Instance.GetStore(sortType);
         public bool SaveStore(Store store)
         {
             if (!CommonValidation.CheckString(store.Name, 4, 50))

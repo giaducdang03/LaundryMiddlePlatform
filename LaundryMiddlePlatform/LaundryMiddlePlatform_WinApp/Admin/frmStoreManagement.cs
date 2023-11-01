@@ -65,7 +65,7 @@ namespace LaundryMiddlePlatform_WinApp
         {
             try
             {
-                var storeList = resp.GetStores();
+                var storeList = resp.GetStores(null);
                 BindingSource source = new BindingSource();
 
                 var storeView = storeList.Select(p => new

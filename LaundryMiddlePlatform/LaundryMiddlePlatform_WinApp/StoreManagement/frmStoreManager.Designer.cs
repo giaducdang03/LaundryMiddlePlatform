@@ -71,6 +71,7 @@
             storeInfomationToolStripMenuItem.Name = "storeInfomationToolStripMenuItem";
             storeInfomationToolStripMenuItem.Size = new Size(108, 20);
             storeInfomationToolStripMenuItem.Text = "Store infomation";
+            storeInfomationToolStripMenuItem.Click += storeInfomationToolStripMenuItem_Click;
             // 
             // servicesToolStripMenuItem
             // 
@@ -84,6 +85,7 @@
             orderToolStripMenuItem.Name = "orderToolStripMenuItem";
             orderToolStripMenuItem.Size = new Size(49, 20);
             orderToolStripMenuItem.Text = "Order";
+            orderToolStripMenuItem.Click += orderToolStripMenuItem_Click;
             // 
             // frmStoreManager
             // 

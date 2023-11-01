@@ -42,40 +42,49 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
         // for service
         private void LoadServiceData()
         {
-            var services = _repo.GetSerivcesByStoreId(currentStore.StoreId, txtSearch.Text);
-            var serviceView = services.Select(p => new
+            try
             {
-                p.ServiceId,
-                StoreName = p.Store.Name,
-                ServiceName = p.Name,
-                p.Description
-            });
+                var services = _repo.GetSerivcesByStoreId(currentStore.StoreId, txtSearch.Text);
+                var serviceView = services.Select(p => new
+                {
+                    p.ServiceId,
+                    StoreName = p.Store.Name,
+                    ServiceName = p.Name,
+                    p.Description
+                });
 
-            BindingSource source = new BindingSource();
-            source.DataSource = serviceView;
+                BindingSource source = new BindingSource();
+                source.DataSource = serviceView;
 
-            ClearData();
+                ClearData();
 
-            txtServiceName.DataBindings.Add("Text", source, "ServiceName");
-            txtDescription.DataBindings.Add("Text", source, "Description");
+                txtServiceName.DataBindings.Add("Text", source, "ServiceName");
+                txtDescription.DataBindings.Add("Text", source, "Description");
 
-            dgvServices.DataSource = null;
-            dgvServices.DataSource = source;
+                dgvServices.DataSource = null;
+                dgvServices.DataSource = source;
 
-            EnableText(false);
+                EnableText(false);
 
-            btnSave.Enabled = false;
-            btnAdd.Enabled = true;
-            btnUpdate.Enabled = true;
+                btnSave.Enabled = false;
+                btnAdd.Enabled = true;
+                btnUpdate.Enabled = true;
 
-            dgvServiceDetails.Visible = false;
-            btnAddDetail.Visible = false;
-            btnCloseDetail.Visible = false;
-            btnUpdateDetail.Visible = false;
-            btnRemove.Visible = false;
-            lblDetail.Visible = false;
+                dgvServiceDetails.Visible = false;
+                btnAddDetail.Visible = false;
+                btnCloseDetail.Visible = false;
+                btnUpdateDetail.Visible = false;
+                btnRemove.Visible = false;
+                lblDetail.Visible = false;
 
-            serviceDetails.Clear();
+                serviceDetails.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Service Management",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

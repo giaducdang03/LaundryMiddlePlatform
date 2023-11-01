@@ -34,6 +34,14 @@ namespace LaundryMiddlePlatform_WinApp
                     f.managerAccount = loginUser;
                     f.Show();
                     this.Hide();
+                    
+                }
+                else if (loginUser.Role == "User")
+                {
+                    frmCustomer f = new frmCustomer();
+                    f.loginUser = loginUser;
+                    f.Show();
+                    this.Hide();
 
                 }
             }

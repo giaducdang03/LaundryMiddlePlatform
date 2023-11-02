@@ -41,29 +41,29 @@
             // dgvServices
             // 
             dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServices.Location = new Point(-9, 70);
+            dgvServices.Location = new Point(1, 68);
             dgvServices.Name = "dgvServices";
             dgvServices.RowHeadersWidth = 51;
             dgvServices.RowTemplate.Height = 29;
-            dgvServices.Size = new Size(1160, 249);
+            dgvServices.Size = new Size(940, 131);
             dgvServices.TabIndex = 0;
             dgvServices.CellDoubleClick += dgvServices_CellDoubleClick;
             // 
             // dgvServiceDetails
             // 
             dgvServiceDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServiceDetails.Location = new Point(1, 325);
+            dgvServiceDetails.Location = new Point(1, 205);
             dgvServiceDetails.Name = "dgvServiceDetails";
             dgvServiceDetails.RowHeadersWidth = 51;
             dgvServiceDetails.RowTemplate.Height = 29;
-            dgvServiceDetails.Size = new Size(1150, 188);
+            dgvServiceDetails.Size = new Size(940, 112);
             dgvServiceDetails.TabIndex = 0;
             // 
             // lbService
             // 
             lbService.AutoSize = true;
             lbService.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lbService.Location = new Point(956, 26);
+            lbService.Location = new Point(746, 25);
             lbService.Name = "lbService";
             lbService.Size = new Size(195, 41);
             lbService.TabIndex = 1;
@@ -73,9 +73,9 @@
             // btnOrder
             // 
             btnOrder.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnOrder.Location = new Point(1157, 285);
+            btnOrder.Location = new Point(947, 68);
             btnOrder.Name = "btnOrder";
-            btnOrder.Size = new Size(90, 80);
+            btnOrder.Size = new Size(96, 247);
             btnOrder.TabIndex = 2;
             btnOrder.Text = "Order";
             btnOrder.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1259, 503);
+            ClientSize = new Size(1045, 329);
             Controls.Add(textBox1);
             Controls.Add(btnSearch);
             Controls.Add(btnOrder);

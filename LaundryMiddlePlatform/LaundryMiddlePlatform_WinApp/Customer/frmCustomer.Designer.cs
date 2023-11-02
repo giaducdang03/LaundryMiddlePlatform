@@ -58,14 +58,14 @@
             // logOutToolStripMenuItem
             // 
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            logOutToolStripMenuItem.Size = new Size(224, 26);
+            logOutToolStripMenuItem.Size = new Size(139, 26);
             logOutToolStripMenuItem.Text = "Logout";
             logOutToolStripMenuItem.Click += logOutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(224, 26);
+            exitToolStripMenuItem.Size = new Size(139, 26);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -97,6 +97,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1318, 881);
             Controls.Add(menuStrip1);
+            IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "frmCustomer";
             Text = "frmCustomer";

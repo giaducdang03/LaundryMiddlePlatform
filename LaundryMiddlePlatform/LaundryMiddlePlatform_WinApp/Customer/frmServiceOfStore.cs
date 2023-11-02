@@ -40,11 +40,13 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         }
         private void frmServiceOfStore_Load(object sender, EventArgs e)
         {
+            dgvServiceDetails.Visible = false;
             LoadServiceData();
         }
 
         private void dgvServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0)
             {
                 int location = dgvServices.CurrentCell.RowIndex;
@@ -64,6 +66,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 source.DataSource = serviceDetail;
 
                 dgvServiceDetails.DataSource = null;
+                dgvServiceDetails.Visible = true;
                 dgvServiceDetails.DataSource = serviceDetail;
             }
         }

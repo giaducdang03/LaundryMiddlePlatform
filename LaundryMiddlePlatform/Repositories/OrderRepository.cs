@@ -10,10 +10,13 @@ namespace Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        public bool CreateOrder(Order order) => OrderDAO.Instance.CreateOrder(order);
+        public Order GetOrderById(int id)
+            => OrderDAO.Instance.GetOrderById(id);
 
-        public bool DeleteOrder(Order order) => OrderDAO.Instance.DeleteOrder(order);
+        public List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to)
+            => OrderDAO.Instance.GetOrders(sortBy, from, to);
 
-        public List<Order> GetAllOrderOfCustomer(int customerId) => OrderDAO.Instance.GetAllOrderByCustomerId(customerId);
+        public bool UpdateOrder(Order order)
+            => OrderDAO.Instance.UpdateOrder(order);
     }
 }

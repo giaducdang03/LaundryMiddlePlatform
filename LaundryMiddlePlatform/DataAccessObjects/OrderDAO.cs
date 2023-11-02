@@ -29,38 +29,40 @@ namespace DataAccessObjects
                 return instance;
             }
         }
-
-        public List<Order> GetAllOrderByCustomerId(int id)
-        {
-            List<Order> orders = new List<Order>();
-            try
-            {
-                using var db = new LaundryManagementPrnContext();
-                orders = db.Orders
-                    .Where(s => s.CustomerId == id)
-                    .Include(s => s.Customer)
-                    .Include(s => s.OrderDetails)
-                    .ToList();
-                return orders;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public bool DeleteOrder(Order order)
+        public List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to)
         {
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                var delOrder = db.Orders.SingleOrDefault(s => s.OrderId == order.OrderId && s.CustomerId == order.CustomerId);
-                if (delOrder != null)
-                {
-                    db.Orders.Remove(delOrder);
-                    db.SaveChanges();
+                var query = db.Orders
+                    .Include(o => o.OrderDetails)
+                    .Include(o => o.Store)
+                    .Include(o => o.Customer)
+                    .Include(o => o.Staff)
+                    .AsQueryable();
+                // filter
+                if (!string.IsNullOrEmpty(sortBy)) 
+                { 
+                    if (sortBy == "Newest")
+                    {
+                        query = query.OrderByDescending(o => o.CreateDate);
+                    } 
+                    else
+                    {
+                        query = query.OrderBy(o => o.CreateDate);
+                    }
                 }
-                return true;
+                if (from != null && to != null)
+                {
+                    query = query.Where(o => o.CreateDate.Value.Date >= from.Value.Date 
+                    && o.CreateDate.Value.Date <= to.Value.Date);
+                }
+                if (!query.Any())
+                {
+                    throw new Exception("Not found");
+                }
+                
+                return query.ToList();
             }
             catch (Exception ex)
             {
@@ -68,12 +70,35 @@ namespace DataAccessObjects
             }
         }
 
-        public bool CreateOrder(Order order)
+        public Order GetOrderById(int id)
         {
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                db.Orders.Add(order);
+                var order = db.Orders
+                    .Include(o => o.Store)
+                    .Include(o => o.Customer)
+                    .Include(o => o.Staff)
+                    .Include(o => o.OrderDetails).ThenInclude(od => od.ServiceDetail)
+                    .SingleOrDefault(o => o.OrderId == id);
+                if (order == null)
+                {
+                    throw new Exception("Not found");
+                }
+                return order;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool UpdateOrder(Order order)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                db.Orders.Update(order);
                 db.SaveChanges();
                 return true;
             }

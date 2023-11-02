@@ -23,7 +23,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         }
         private void LoadServiceData()
         {
-            var services = _repo.GetSerivcesByStoreId(currentStore.StoreId);
+            var services = _repo.GetSerivcesByStoreId(currentStore.StoreId, txtSearch.Text);
             var serviceView = services.Select(p => new
             {
                 p.ServiceId,

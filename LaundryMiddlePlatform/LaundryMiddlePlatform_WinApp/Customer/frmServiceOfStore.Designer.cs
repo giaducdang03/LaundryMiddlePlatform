@@ -33,7 +33,7 @@
             lbService = new Label();
             btnOrder = new Button();
             btnSearch = new Button();
-            textBox1 = new TextBox();
+            txtSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvServiceDetails).BeginInit();
             SuspendLayout();
@@ -41,31 +41,33 @@
             // dgvServices
             // 
             dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServices.Location = new Point(1, 68);
+            dgvServices.Location = new Point(-8, 52);
+            dgvServices.Margin = new Padding(3, 2, 3, 2);
             dgvServices.Name = "dgvServices";
             dgvServices.RowHeadersWidth = 51;
             dgvServices.RowTemplate.Height = 29;
-            dgvServices.Size = new Size(940, 131);
+            dgvServices.Size = new Size(1015, 187);
             dgvServices.TabIndex = 0;
             dgvServices.CellDoubleClick += dgvServices_CellDoubleClick;
             // 
             // dgvServiceDetails
             // 
             dgvServiceDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServiceDetails.Location = new Point(1, 205);
+            dgvServiceDetails.Location = new Point(1, 244);
+            dgvServiceDetails.Margin = new Padding(3, 2, 3, 2);
             dgvServiceDetails.Name = "dgvServiceDetails";
             dgvServiceDetails.RowHeadersWidth = 51;
             dgvServiceDetails.RowTemplate.Height = 29;
-            dgvServiceDetails.Size = new Size(940, 112);
+            dgvServiceDetails.Size = new Size(1006, 141);
             dgvServiceDetails.TabIndex = 0;
             // 
             // lbService
             // 
             lbService.AutoSize = true;
             lbService.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            lbService.Location = new Point(746, 25);
+            lbService.Location = new Point(836, 20);
             lbService.Name = "lbService";
-            lbService.Size = new Size(195, 41);
+            lbService.Size = new Size(156, 32);
             lbService.TabIndex = 1;
             lbService.Text = "Service Table";
             lbService.TextAlign = ContentAlignment.TopCenter;
@@ -73,42 +75,46 @@
             // btnOrder
             // 
             btnOrder.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnOrder.Location = new Point(947, 68);
+            btnOrder.Location = new Point(1012, 214);
+            btnOrder.Margin = new Padding(3, 2, 3, 2);
             btnOrder.Name = "btnOrder";
-            btnOrder.Size = new Size(96, 247);
+            btnOrder.Size = new Size(79, 60);
             btnOrder.TabIndex = 2;
             btnOrder.Text = "Order";
             btnOrder.UseVisualStyleBackColor = true;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(1, 37);
+            btnSearch.Location = new Point(1, 28);
+            btnSearch.Margin = new Padding(3, 2, 3, 2);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(66, 29);
+            btnSearch.Size = new Size(58, 22);
             btnSearch.TabIndex = 3;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtSearch
             // 
-            textBox1.Location = new Point(73, 39);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 4;
+            txtSearch.Location = new Point(64, 29);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(110, 23);
+            txtSearch.TabIndex = 4;
             // 
             // frmServiceOfStore
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1045, 329);
-            Controls.Add(textBox1);
+            ClientSize = new Size(1102, 377);
+            Controls.Add(txtSearch);
             Controls.Add(btnSearch);
             Controls.Add(btnOrder);
             Controls.Add(lbService);
             Controls.Add(dgvServiceDetails);
             Controls.Add(dgvServices);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmServiceOfStore";
-            Text = "frmServiceOfStore";
+            Text = "Service Of Store";
             Load += frmServiceOfStore_Load;
             ((System.ComponentModel.ISupportInitialize)dgvServices).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvServiceDetails).EndInit();
@@ -123,6 +129,6 @@
         private Label lbService;
         private Button btnOrder;
         private Button btnSearch;
-        private TextBox textBox1;
+        private TextBox txtSearch;
     }
 }

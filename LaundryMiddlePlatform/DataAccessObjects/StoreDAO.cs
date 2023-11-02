@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,24 +62,54 @@ namespace DataAccessObjects
             }
             return listStore;
         }
-        public void SaveStore(Store store)
+        public bool SaveStore(Store store)
         {
-            using var db = new LaundryManagementPrnContext();   
-            db.Stores.Add(store);
-            db.SaveChanges();
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                db.Stores.Add(store);
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-        public void DeleteStore(Store store)
+        public bool DeleteStore(Store store)
         {
-            using var db = new LaundryManagementPrnContext();
-            store.Status = false;
-            db.Stores.Remove(store);
-            db.SaveChanges();
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var updateStore = db.Stores.SingleOrDefault(a => a.StoreId == store.StoreId);
+                if (updateStore != null)
+                {
+                    updateStore.Status = false;
+                    db.Stores.Update(updateStore);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
         }
-        public void UpdaterStore(Store store)
+        public bool UpdaterStore(Store store)
         {
-            using var db = new LaundryManagementPrnContext();
-            db.Stores.Update(store);
-            db.SaveChanges();
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                db.Stores.Update(store);
+                db.SaveChanges();
+                return true;
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
         public Store GetStoreById(int id)
         {

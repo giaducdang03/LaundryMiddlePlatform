@@ -15,6 +15,7 @@ namespace Repositories
         bool UpdateAccount(Account account);
         bool DeleteAccount(Account account);
         bool ResetPassword(Account account);
+        int GetAccountIdByEmail(string email);
         Account GetAccountById(int id);
     }
 }

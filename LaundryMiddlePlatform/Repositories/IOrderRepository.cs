@@ -9,8 +9,8 @@ namespace Repositories
 {
     public interface IOrderRepository
     {
-        public List<Order> GetAllOrderOfCustomer(int customerId);
-        public bool DeleteOrder(Order order);
-        public bool CreateOrder(Order order);
+        List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to);
+        Order GetOrderById(int id);
+        bool UpdateOrder(Order order);
     }
 }

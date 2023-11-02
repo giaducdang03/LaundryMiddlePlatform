@@ -1,5 +1,4 @@
 ﻿using BusinessObjects.Models;
-using LaundryMiddlePlatform_WinApp.Admin;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,28 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LaundryMiddlePlatform_WinApp
+namespace LaundryMiddlePlatform_WinApp.Staff
 {
-    public partial class frmLaundryManagement : Form
+    public partial class frmStaff : Form
     {
         public Account loginAccount { get; set; }
-        public frmLaundryManagement()
+        public frmStaff()
         {
             InitializeComponent();
-        }
-
-        private void frmLaundryManagement_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void accountManagementToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmAccountManagement f = new frmAccountManagement();
-            f.loginAccount = loginAccount;
-            f.MdiParent = this;
-            f.WindowState = FormWindowState.Maximized;
-            f.Show();
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,7 +34,9 @@ namespace LaundryMiddlePlatform_WinApp
             }
         }
 
-        private void frmLaundryManagement_FormClosing(object sender, FormClosingEventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+
+        private void frmStaff_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult d;
             d = MessageBox.Show("Do you want exit?", "Laundry Middle Platform",
@@ -61,14 +48,9 @@ namespace LaundryMiddlePlatform_WinApp
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
-
-        private void storeManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        private void frmStaff_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmStoreManagement f = new frmStoreManagement();
-            f.MdiParent = this;
-            f.WindowState = FormWindowState.Maximized;
-            f.Show();
+            Application.Exit();
         }
     }
 }

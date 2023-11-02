@@ -1,8 +1,10 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DataAccessObjects
@@ -55,6 +57,21 @@ namespace DataAccessObjects
             }
             
         }
+        public int GetAccountIdbyEmail(string txtMail)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                
+                Account account =  db.Accounts.SingleOrDefault(a => a.Email == txtMail);
+                return account.AccountId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
 
         public List<Account> GetAllAccounts(string? txtSearch, string? role, string? sortType)
         {
@@ -65,9 +82,16 @@ namespace DataAccessObjects
                 var query = db.Accounts.Where(a => a.Status == true).AsQueryable();
 
                 // sort and filter
-                if (!string.IsNullOrEmpty(txtSearch))
+                if (!string.IsNullOrEmpty(txtSearch.Trim()))
                 {
-                    query = query.Where(a => a.FullName.ToLower().Contains(txtSearch.ToLower()));
+                    //query = query.Where(a => a.FullName.ToLower().Contains(txtSearch.ToLower()));
+                    query = query.Where(delegate (Account c)
+                    {
+                        if (ConvertToUnSign(c.FullName.ToLower()).IndexOf(txtSearch.ToLower(), StringComparison.CurrentCultureIgnoreCase) >= 0)
+                            return true;
+                        else
+                            return false;
+                    }).AsQueryable();
                 }
                 if (!string.IsNullOrEmpty(role) && role != "All")
                 {
@@ -167,6 +191,23 @@ namespace DataAccessObjects
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private string ConvertToUnSign(string input)
+        {
+            input = input.Trim();
+            for (int i = 0x20; i < 0x30; i++)
+            {
+                input = input.Replace(((char)i).ToString(), " ");
+            }
+            Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
+            string str = input.Normalize(NormalizationForm.FormD);
+            string str2 = regex.Replace(str, string.Empty).Replace('đ', 'd').Replace('Đ', 'D');
+            while (str2.IndexOf("?") >= 0)
+            {
+                str2 = str2.Remove(str2.IndexOf("?"), 1);
+            }
+            return str2;
         }
     }
 }

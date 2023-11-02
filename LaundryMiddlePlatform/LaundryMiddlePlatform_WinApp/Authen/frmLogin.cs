@@ -1,4 +1,5 @@
 using LaundryMiddlePlatform_WinApp.Authen;
+using LaundryMiddlePlatform_WinApp.Staff;
 using LaundryMiddlePlatform_WinApp.StoreManagement;
 using Repositories;
 
@@ -8,7 +9,7 @@ namespace LaundryMiddlePlatform_WinApp
     {
         IAccountRepository _repo = new AccountRepository();
         IStoreRepository _storeRepo = new StoreRepository();
-
+        public static int AccountID { get; private set; }
         public frmLogin()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace LaundryMiddlePlatform_WinApp
                 } 
                 else if (loginUser.Role == "Store")
                 {
+                    AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
                     frmStoreManager f = new frmStoreManager();
                     f.currentStore = _storeRepo.GetStoreByManagerId(loginUser.AccountId);
                     f.managerAccount = loginUser;
@@ -41,7 +43,13 @@ namespace LaundryMiddlePlatform_WinApp
                     f.loginUser = loginUser;
                     f.Show();
                     this.Hide();
-
+                }
+                else
+                {
+                    frmStaff f = new frmStaff();
+                    f.loginAccount = loginUser;
+                    f.Show();
+                    this.Hide();
                 }
             }
             else

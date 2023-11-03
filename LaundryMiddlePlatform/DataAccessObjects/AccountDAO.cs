@@ -193,6 +193,19 @@ namespace DataAccessObjects
             }
         }
 
+        public List<Account> GetStaff()
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                return db.Accounts.Where(a => a.Role == "Staff").ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         private string ConvertToUnSign(string input)
         {
             input = input.Trim();

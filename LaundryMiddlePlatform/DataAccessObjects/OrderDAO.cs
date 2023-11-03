@@ -107,5 +107,22 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
         }
+
+        public int SaveOrder(Order order)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                order.CreateDate = DateTime.Now;
+                order.Status = OrderStatus.Pending.ToString();
+                db.Orders.Add(order);
+                db.SaveChanges();
+                return order.OrderId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

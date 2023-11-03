@@ -62,5 +62,8 @@ namespace Repositories
             }
             return AccountDAO.Instance.UpdateAccount(account);
         }
+
+        public List<Account> GetStaff()
+            => AccountDAO.Instance.GetStaff();
     }
 }

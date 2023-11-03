@@ -16,6 +16,9 @@ namespace Repositories
         public List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to)
             => OrderDAO.Instance.GetOrders(sortBy, from, to);
 
+        public int SaveOrder(Order order)
+            => OrderDAO.Instance.SaveOrder(order);
+
         public bool UpdateOrder(Order order)
             => OrderDAO.Instance.UpdateOrder(order);
     }

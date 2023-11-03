@@ -15,6 +15,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
     public partial class frmServiceOfStore : Form
     {
         public Store currentStore { get; set; }
+        public Account loginUser { get; set; }
         IServiceRepository _repo = new ServiceRepository();
         public frmServiceOfStore()
         {
@@ -23,11 +24,16 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         }
         private void LoadServiceData()
         {
+            // load info store
+            lblStoreName.Text = currentStore.Name;
+            lblStoreAddress.Text = currentStore.Address;
+            lblStorePhone.Text = currentStore.PhoneNumber;
+
+            // load service store
             var services = _repo.GetSerivcesByStoreId(currentStore.StoreId, txtSearch.Text);
             var serviceView = services.Select(p => new
             {
                 p.ServiceId,
-                StoreName = p.Store.Name,
                 ServiceName = p.Name,
                 p.Description
             });
@@ -40,13 +46,13 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         }
         private void frmServiceOfStore_Load(object sender, EventArgs e)
         {
-            dgvServiceDetails.Visible = false;
             LoadServiceData();
+            dgvServiceDetails.Visible = false;
+            btnClose.Visible = false;
         }
 
         private void dgvServices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0)
             {
                 int location = dgvServices.CurrentCell.RowIndex;
@@ -66,22 +72,25 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 source.DataSource = serviceDetail;
 
                 dgvServiceDetails.DataSource = null;
-                dgvServiceDetails.Visible = true;
                 dgvServiceDetails.DataSource = serviceDetail;
+
+                dgvServiceDetails.Visible = true;
+                btnClose.Visible = true;
             }
         }
 
- 
-
-        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-                btnSearch_Click(sender, e);
+            dgvServiceDetails.Visible = false;
+            btnClose.Visible = false;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnBuy_Click(object sender, EventArgs e)
         {
-            LoadServiceData();
+            frmCustomerOrder f = new frmCustomerOrder();
+            f.orderStore = currentStore;
+            f.loginUser = loginUser;
+            f.ShowDialog();
         }
     }
 }

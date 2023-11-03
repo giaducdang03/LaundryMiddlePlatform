@@ -70,7 +70,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 int storeId = int.Parse(dgvStore.Rows[e.RowIndex].Cells["StoreId"].Value.ToString());
                 f.currentStore = resp.GetStoreById(storeId);
                 f.loginUser = loginUser;
-                f.Show();
+                f.ShowDialog();
             }
         }
     }

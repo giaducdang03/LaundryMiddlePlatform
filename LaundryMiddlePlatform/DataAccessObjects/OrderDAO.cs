@@ -57,11 +57,6 @@ namespace DataAccessObjects
                     query = query.Where(o => o.CreateDate.Value.Date >= from.Value.Date 
                     && o.CreateDate.Value.Date <= to.Value.Date);
                 }
-                if (!query.Any())
-                {
-                    throw new Exception("Not found");
-                }
-                
                 return query.ToList();
             }
             catch (Exception ex)

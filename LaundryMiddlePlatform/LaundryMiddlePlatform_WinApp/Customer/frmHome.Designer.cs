@@ -92,7 +92,7 @@
             Controls.Add(dgvStore);
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmHome";
-            Text = "frmHome";
+            Text = "Home";
             Load += frmHome_Load;
             ((System.ComponentModel.ISupportInitialize)dgvStore).EndInit();
             ResumeLayout(false);

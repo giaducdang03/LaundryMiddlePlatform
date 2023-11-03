@@ -17,7 +17,15 @@ namespace Repositories
             => OrderDAO.Instance.GetOrders(sortBy, from, to);
 
         public int SaveOrder(Order order)
-            => OrderDAO.Instance.SaveOrder(order);
+        {
+            var orderDeatails = order.OrderDetails;
+            foreach (var item in orderDeatails)
+            {
+                item.ServiceDetail = null;
+                item.Id = 0;
+            }
+            return OrderDAO.Instance.SaveOrder(order);
+        }
 
         public bool UpdateOrder(Order order)
             => OrderDAO.Instance.UpdateOrder(order);

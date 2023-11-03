@@ -216,7 +216,7 @@
             btnBuy.Name = "btnBuy";
             btnBuy.Size = new Size(95, 23);
             btnBuy.TabIndex = 8;
-            btnBuy.Text = "Buy now";
+            btnBuy.Text = "Order now";
             btnBuy.UseVisualStyleBackColor = true;
             btnBuy.Click += btnBuy_Click;
             // 

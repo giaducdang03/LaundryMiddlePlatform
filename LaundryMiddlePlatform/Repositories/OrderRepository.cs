@@ -18,5 +18,8 @@ namespace Repositories
 
         public bool UpdateOrder(Order order)
             => OrderDAO.Instance.UpdateOrder(order);
+
+        public List<Order> GetByStaffIdandStatus(int staffId,string status)
+            => OrderDAO.Instance.GetOrdersByStaffAndStatus(staffId, status);
     }
 }

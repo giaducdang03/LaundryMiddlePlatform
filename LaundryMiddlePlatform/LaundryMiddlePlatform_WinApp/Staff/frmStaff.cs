@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using LaundryMiddlePlatform_WinApp.StoreManagement;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,14 @@ namespace LaundryMiddlePlatform_WinApp.Staff
         private void frmStaff_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void viewTaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmViewOrder f = new frmViewOrder();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
         }
     }
 }

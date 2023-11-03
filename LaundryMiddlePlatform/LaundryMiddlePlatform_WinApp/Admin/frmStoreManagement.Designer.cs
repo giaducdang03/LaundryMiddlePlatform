@@ -67,7 +67,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 44);
+            label1.Location = new Point(6, 44);
             label1.Name = "label1";
             label1.Size = new Size(74, 25);
             label1.TabIndex = 1;
@@ -76,7 +76,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(735, 125);
+            label2.Location = new Point(706, 125);
             label2.Name = "label2";
             label2.Size = new Size(60, 25);
             label2.TabIndex = 2;
@@ -85,7 +85,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(716, 224);
+            label3.Location = new Point(706, 221);
             label3.Name = "label3";
             label3.Size = new Size(101, 25);
             label3.TabIndex = 3;
@@ -112,7 +112,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(27, 160);
+            label6.Location = new Point(6, 160);
             label6.Name = "label6";
             label6.Size = new Size(77, 25);
             label6.TabIndex = 6;
@@ -121,7 +121,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(30, 99);
+            label7.Location = new Point(6, 102);
             label7.Name = "label7";
             label7.Size = new Size(59, 25);
             label7.TabIndex = 7;
@@ -148,7 +148,6 @@
             txtManagement.Name = "txtManagement";
             txtManagement.Size = new Size(402, 31);
             txtManagement.TabIndex = 10;
-           
             // 
             // txtPhoneNumber
             // 

@@ -107,5 +107,25 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
         }
+        public List<Order> GetOrdersByStaffAndStatus(int? staffId, string? status)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                
+                var orders = db.Orders
+                    .Include(o => o.Store)
+                    .Include(o => o.Customer)
+                    .Include(o => o.Staff)
+                    .Include(o => o.OrderDetails).ThenInclude(od => od.ServiceDetail)
+                    .Where(o => o.StaffId == staffId && o.Status.Equals(status))
+                    .ToList();
+                return orders;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

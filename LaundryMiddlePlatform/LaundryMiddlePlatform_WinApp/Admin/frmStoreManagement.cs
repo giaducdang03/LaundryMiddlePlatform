@@ -74,16 +74,16 @@ namespace LaundryMiddlePlatform_WinApp
                     p.Name,
                     p.Address,
                     p.PhoneNumber,
-                    p.ManagementId,
+                    Manager = p.Manager.FullName,
                     p.IsAvailable,
                     p.Status,
                 });
-                source.DataSource = storeList;
+                source.DataSource = storeView;
                 ClearData();
                 ClearText();
 
                 txtAddress.DataBindings.Add("Text", source, "Address");
-                txtManagement.DataBindings.Add("Text", source, "ManagementId");
+                txtManagement.DataBindings.Add("Text", source, "Manager");
                 txtName.DataBindings.Add("Text", source, "Name");
                 txtPhoneNumber.DataBindings.Add("Text", source, "PhoneNumber");
                 txtStatus.DataBindings.Add("Text", source, "Status");
@@ -248,7 +248,7 @@ namespace LaundryMiddlePlatform_WinApp
 
         private void btnExit_Click(object sender, EventArgs e) => Close();
 
-    
+
     }
 }
 

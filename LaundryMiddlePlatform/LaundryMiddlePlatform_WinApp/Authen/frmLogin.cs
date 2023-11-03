@@ -46,6 +46,7 @@ namespace LaundryMiddlePlatform_WinApp
                 }
                 else
                 {
+                    AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
                     frmStaff f = new frmStaff();
                     f.loginAccount = loginUser;
                     f.Show();

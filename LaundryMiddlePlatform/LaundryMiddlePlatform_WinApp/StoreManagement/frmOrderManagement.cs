@@ -99,7 +99,7 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
             txtStaffName.ReadOnly = !status;
             txtStaffPhone.ReadOnly = !status;
         }
-
+        // làm theo 
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)
@@ -129,5 +129,7 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
         {
             LoadOrderList();
         }
+
+   
     }
 }

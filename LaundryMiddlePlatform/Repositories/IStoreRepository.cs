@@ -10,6 +10,7 @@ namespace Repositories
 {
     public interface IStoreRepository
     {
+         
         bool SaveStore(Store store);
         bool DeleteStore(Store store); 
         bool UpdateStore(Store store);

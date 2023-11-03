@@ -1,4 +1,5 @@
-﻿using LaundryMiddlePlatform_WinApp.StoreManagement;
+﻿using BusinessObjects.Models;
+using LaundryMiddlePlatform_WinApp.StoreManagement;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace LaundryMiddlePlatform_WinApp
     public partial class frmViewOrder : Form
     {
         IOrderRepository orderRepository = new OrderRepository();
+        private Order orderInfo { get; set; }
         public frmViewOrder()
         {
             InitializeComponent();
@@ -71,8 +73,10 @@ namespace LaundryMiddlePlatform_WinApp
                 txtStaffName.DataBindings.Add("Text", source, "Staff");
                 txtStaffPhone.DataBindings.Add("Text", source, "StaffPhone");
                 txtStatus.DataBindings.Add("Text", source, "Status");
+               
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = source;
+            
 
                 EnableText(false);
             }
@@ -94,6 +98,31 @@ namespace LaundryMiddlePlatform_WinApp
                 frmOrderDetail f = new frmOrderDetail();
                 f.currentOrder = currentOrder;
                 f.ShowDialog();
+                LoadOrderList();
+            }
+        }
+
+        private void btnUpdateStatus_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int location = dataGridView1.CurrentCell.RowIndex;
+                int orderId = int.Parse(dataGridView1.Rows[location].Cells["OrderId"].Value.ToString());
+                orderInfo = orderRepository.GetOrderById(orderId);
+            }
+            DialogResult d;
+            d = MessageBox.Show("Are you sure working this order?", "Storemanagement",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+            if (d == DialogResult.OK)
+            {
+                bool delStatus = orderRepository.UpdateStatus(orderInfo.OrderId);
+                if (delStatus)
+                {
+                    MessageBox.Show($" Now this order's status is Working.", "management",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 LoadOrderList();
             }
         }

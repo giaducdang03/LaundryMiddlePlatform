@@ -46,12 +46,14 @@
             label2 = new Label();
             label1 = new Label();
             dataGridView1 = new DataGridView();
+            btnUpdateStatus = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnUpdateStatus);
             groupBox1.Controls.Add(txtCustomer);
             groupBox1.Controls.Add(txtPhone);
             groupBox1.Controls.Add(txtOrderDate);
@@ -225,6 +227,17 @@
             dataGridView1.Size = new Size(1629, 311);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+           
+            // 
+            // btnUpdateStatus
+            // 
+            btnUpdateStatus.Location = new Point(913, 262);
+            btnUpdateStatus.Name = "btnUpdateStatus";
+            btnUpdateStatus.Size = new Size(112, 34);
+            btnUpdateStatus.TabIndex = 18;
+            btnUpdateStatus.Text = "Update";
+            btnUpdateStatus.UseVisualStyleBackColor = true;
+            btnUpdateStatus.Click += btnUpdateStatus_Click;
             // 
             // frmViewOrder
             // 
@@ -262,5 +275,6 @@
         private TextBox txtStaffPhone;
         private TextBox txtTotalPrice;
         private TextBox txtOrderID;
+        private Button btnUpdateStatus;
     }
 }

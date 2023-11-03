@@ -21,5 +21,8 @@ namespace Repositories
 
         public List<Order> GetByStaffIdandStatus(int staffId,string status)
             => OrderDAO.Instance.GetOrdersByStaffAndStatus(staffId, status);
+
+        public bool UpdateStatus(int id)
+            => OrderDAO.Instance.UpdateStatus(id);
     }
 }

@@ -108,9 +108,9 @@ namespace DataAccessObjects
             }catch(Exception ex)
             {
                 throw new Exception(ex.Message);
-            }
-            
+            }   
         }
+    
         public Store GetStoreById(int id)
         {
             using var db = new LaundryManagementPrnContext();

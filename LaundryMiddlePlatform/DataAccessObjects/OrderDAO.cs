@@ -107,6 +107,23 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
         }
+        public bool UpdateStatus(int id)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                Order order = GetOrderById(id);
+                order.Status = "Working";
+                db.Orders.Update(order);
+                db.SaveChanges();
+                return true;
+            }catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            
+        }
         public List<Order> GetOrdersByStaffAndStatus(int? staffId, string? status)
         {
             try

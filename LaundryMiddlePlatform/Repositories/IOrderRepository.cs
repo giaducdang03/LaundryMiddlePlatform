@@ -13,5 +13,6 @@ namespace Repositories
         List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to);
         Order GetOrderById(int id);
         bool UpdateOrder(Order order);
+        bool UpdateStatus(int id);
     }
 }

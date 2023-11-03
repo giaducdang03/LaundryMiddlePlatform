@@ -10,6 +10,8 @@ namespace Repositories
 {
     public class OrderRepository : IOrderRepository
     {
+        public List<Order> GetOrderByCustomerId(int customerId) => OrderDAO.Instance.GetOrderByCustomerId(customerId);
+
         public Order GetOrderById(int id)
             => OrderDAO.Instance.GetOrderById(id);
 

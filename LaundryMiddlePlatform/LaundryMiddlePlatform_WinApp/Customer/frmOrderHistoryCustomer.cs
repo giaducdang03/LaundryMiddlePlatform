@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BusinessObjects.Models;
+using LaundryMiddlePlatform_WinApp.StoreManagement;
+using Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +15,92 @@ namespace LaundryMiddlePlatform_WinApp.Customer
 {
     public partial class frmOrderHistoryCustomer : Form
     {
+        public Account loginUser { get; set; }
+        public Store currentStore { get; set; }
+        IOrderRepository _repo = new OrderRepository();
+
+        IOrderRepository orderRepository = new OrderRepository();
         public frmOrderHistoryCustomer()
         {
             InitializeComponent();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void LoadOrderList()
+        {
+            try
+            {
+                var orders = _repo.GetOrderByCustomerId(loginUser.AccountId);
+                
+                double totalAmount = 0;
+                foreach (var order in orders)
+                {
+                    totalAmount += order.TotalPrice.Value;
+                }
+                var ordersView = orders.Select(p => new
+                {
+                    p.OrderId,
+                    p.CreateDate,
+                    p.TotalPrice,
+                    p.Status,
+                    
+
+                });
+                BindingSource source = new BindingSource();
+                source.DataSource = ordersView;
+
+
+
+                dgvOrders.DataSource = null;
+                dgvOrders.DataSource = source;
+
+                lblNumOfOrder.Text = orders.Count().ToString();
+                lblTotalAmount.Text = string.Format("{0:C}", totalAmount);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Order Management",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void frmOrderHistoryCustomer_Load(object sender, EventArgs e)
+        {
+            cboSort.SelectedIndex = 0;
+            LoadOrderList();
+        }
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadOrderList();
+        }
+
+        private void dtpFrom_ValueChanged(object sender, EventArgs e)
+        {
+            LoadOrderList();
+        }
+
+        private void dtpTo_ValueChanged(object sender, EventArgs e)
+        {
+            LoadOrderList();
+        }
+
+        private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvOrders.SelectedRows.Count > 0)
+            {
+                int location = dgvOrders.CurrentCell.RowIndex;
+                int orderId = int.Parse(dgvOrders.Rows[location].Cells["OrderId"].Value.ToString());
+                var currentOrder = orderRepository.GetOrderById(orderId);
+                // show form order detail
+                frmOrderDetail f = new frmOrderDetail();
+                f.currentOrder = currentOrder;
+                f.ShowDialog();
+                LoadOrderList();
+            }
         }
     }
 }

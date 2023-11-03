@@ -92,7 +92,25 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
         }
-
+        public List<Order> GetOrderByCustomerId(int id)
+        {
+            List<Order> orders = new List<Order>();
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var query = db.Orders
+                    .Where(s => s.CustomerId == id)
+                    .Include(s => s.Customer)
+                    .Include(s => s.OrderDetails)
+                    .AsQueryable();
+                orders = query.ToList();
+                return orders;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public bool UpdateOrder(Order order)
         {
             try

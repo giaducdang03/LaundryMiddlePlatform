@@ -39,6 +39,8 @@ namespace LaundryMiddlePlatform_WinApp
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmHome f = new frmHome();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
             f.currentStore = currentStore;
             f.Show();
         }
@@ -46,6 +48,8 @@ namespace LaundryMiddlePlatform_WinApp
         private void yourProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProfile f = new frmProfile();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
             f.loginUser = loginUser;
             f.Show();
         }
@@ -66,5 +70,22 @@ namespace LaundryMiddlePlatform_WinApp
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+
+        private void frmCustomer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void frmCustomer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult d;
+            d = MessageBox.Show("Do you want exit?", "Laundry Middle Platform",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+            if (d == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace BusinessObjects.Models;
 
@@ -24,24 +23,13 @@ public partial class LaundryManagementPrnContext : DbContext
 
     public virtual DbSet<Service> Services { get; set; }
 
-    public virtual DbSet<Store> Stores { get; set; }
-
     public virtual DbSet<ServiceDetail> ServiceDetails { get; set; }
 
+    public virtual DbSet<Store> Stores { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(GetConnectionString());
-
-    private string GetConnectionString()
-    {
-        IConfiguration config = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", true, true)
-                    .Build();
-        var strConn = config["ConnectionStrings:DB"];
-
-        return strConn;
-    }
-
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=(local);uid=sa;pwd=12345;database= LaundryManagementPRN;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -52,6 +40,7 @@ public partial class LaundryManagementPrnContext : DbContext
             entity.ToTable("Account");
 
             entity.HasIndex(e => e.Email, "UQ__Account").IsUnique();
+
             entity.Property(e => e.Address).HasMaxLength(50);
             entity.Property(e => e.DateOfBirth).HasColumnType("date");
             entity.Property(e => e.Email).HasMaxLength(50);
@@ -61,10 +50,6 @@ public partial class LaundryManagementPrnContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false);
             entity.Property(e => e.Role).HasMaxLength(10);
-
-            entity.HasOne(e => e.Store).WithOne(p => p.Manager)
-                .HasForeignKey<Store>(p => p.ManagementId)
-                .HasConstraintName("FK_Store_Account");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -98,12 +83,8 @@ public partial class LaundryManagementPrnContext : DbContext
                 .HasForeignKey(d => d.OrderId)
                 .HasConstraintName("FK_OrderDetail_Order");
 
-            //entity.HasOne(d => d.Service).WithMany(p => p.OrderDetails)
-            //    .HasForeignKey(d => d.ServiceId)
-            //    .HasConstraintName("FK_OrderDetail_Service");
-
             entity.HasOne(d => d.ServiceDetail).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.Id)
+                .HasForeignKey(d => d.ServiceDetailId)
                 .HasConstraintName("FK_OrderDetail_ServiceDetail");
         });
 
@@ -114,12 +95,7 @@ public partial class LaundryManagementPrnContext : DbContext
             entity.ToTable("Service");
 
             entity.Property(e => e.Description).HasMaxLength(100);
-            //entity.Property(e => e.Duration)
-            //    .HasMaxLength(10)
-            //    .IsFixedLength();
             entity.Property(e => e.Name).HasMaxLength(50);
-            //entity.Property(e => e.WashOption).HasMaxLength(50);
-            //entity.Property(e => e.WashType).HasMaxLength(50);
 
             entity.HasOne(d => d.Store).WithMany(p => p.Services)
                 .HasForeignKey(d => d.StoreId)
@@ -128,13 +104,11 @@ public partial class LaundryManagementPrnContext : DbContext
 
         modelBuilder.Entity<ServiceDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK_ServiceDetail");
-
             entity.ToTable("ServiceDetail");
-            entity.Property(e => e.TypeName).HasMaxLength(60);
+
             entity.Property(e => e.Type).HasMaxLength(50);
+            entity.Property(e => e.TypeName).HasMaxLength(60);
             entity.Property(e => e.WashOption).HasMaxLength(20);
-            entity.Property(e => e.Duration).HasColumnType("time");
 
             entity.HasOne(d => d.Service).WithMany(p => p.ServiceDetails)
                 .HasForeignKey(d => d.ServiceId)
@@ -143,7 +117,7 @@ public partial class LaundryManagementPrnContext : DbContext
 
         modelBuilder.Entity<Store>(entity =>
         {
-            entity.HasKey(e => e.StoreId).HasName("PK__Store__3B82F1012EF6C1E7");
+            entity.HasKey(e => e.StoreId).HasName("PK__Store__3B82F1014AC3B10B");
 
             entity.ToTable("Store");
 
@@ -152,10 +126,11 @@ public partial class LaundryManagementPrnContext : DbContext
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(10)
                 .IsUnicode(false);
-            
-        });
 
-        
+            entity.HasOne(d => d.Management).WithMany(p => p.Stores)
+                .HasForeignKey(d => d.ManagementId)
+                .HasConstraintName("FK_Store_Account");
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }

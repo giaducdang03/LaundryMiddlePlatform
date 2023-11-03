@@ -101,6 +101,8 @@
             MainMenuStrip = menuStrip1;
             Name = "frmCustomer";
             Text = "frmCustomer";
+            FormClosing += frmCustomer_FormClosing;
+            FormClosed += frmCustomer_FormClosed;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

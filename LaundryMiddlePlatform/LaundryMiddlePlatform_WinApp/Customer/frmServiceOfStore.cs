@@ -70,5 +70,18 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 dgvServiceDetails.DataSource = serviceDetail;
             }
         }
+
+ 
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                btnSearch_Click(sender, e);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadServiceData();
+        }
     }
 }

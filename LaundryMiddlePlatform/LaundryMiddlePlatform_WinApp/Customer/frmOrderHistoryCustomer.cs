@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LaundryMiddlePlatform_WinApp.Customer
 {
-    public partial class frmOrder : Form
+    public partial class frmOrderHistoryCustomer : Form
     {
-        public frmOrder()
+        public frmOrderHistoryCustomer()
         {
             InitializeComponent();
         }

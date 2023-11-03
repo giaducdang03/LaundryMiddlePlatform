@@ -103,7 +103,7 @@ public partial class LaundryManagementPrnContext : DbContext
             //    .HasConstraintName("FK_OrderDetail_Service");
 
             entity.HasOne(d => d.ServiceDetail).WithMany(p => p.OrderDetails)
-                .HasForeignKey(d => d.Id)
+                .HasForeignKey(d => d.ServiceDetailId)
                 .HasConstraintName("FK_OrderDetail_ServiceDetail");
         });
 

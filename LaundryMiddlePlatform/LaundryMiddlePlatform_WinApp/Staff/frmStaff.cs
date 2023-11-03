@@ -15,6 +15,7 @@ namespace LaundryMiddlePlatform_WinApp.Staff
     public partial class frmStaff : Form
     {
         public Account loginAccount { get; set; }
+
         public frmStaff()
         {
             InitializeComponent();
@@ -57,6 +58,14 @@ namespace LaundryMiddlePlatform_WinApp.Staff
         private void viewTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmViewOrder f = new frmViewOrder();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
+
+        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProfileStaff f = new frmProfileStaff();
             f.MdiParent = this;
             f.WindowState = FormWindowState.Maximized;
             f.Show();

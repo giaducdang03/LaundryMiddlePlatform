@@ -98,7 +98,7 @@ namespace LaundryMiddlePlatform_WinApp
                 AddOrUpdate = true;
                 EnableText(true);
                 ClearData();
-                ClearText();
+               
 
                 //btn control
                 btnUpdate.Text = "Cancel";

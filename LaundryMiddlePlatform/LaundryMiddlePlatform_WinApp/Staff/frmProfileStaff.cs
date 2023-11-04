@@ -26,26 +26,25 @@ namespace LaundryMiddlePlatform_WinApp
 
         private void ClearData()
         {
-         
+
             txtFullname.DataBindings.Clear();
             dtpBirthDate.DataBindings.Clear();
             txtPhone.DataBindings.Clear();
             txtAddress.DataBindings.Clear();
-         
+
         }
         private void ClearText()
         {
-        
+
             txtFullname.Text = string.Empty;
             dtpBirthDate.Text = string.Empty;
             txtPhone.Text = string.Empty;
             txtAddress.Text = string.Empty;
-        
+
         }
 
         private void EnableText(bool status)
         {
-            txtEmail.ReadOnly = !status;
             txtFullname.ReadOnly = !status;
             dtpBirthDate.Enabled = status;
             txtPhone.ReadOnly = !status;
@@ -61,7 +60,7 @@ namespace LaundryMiddlePlatform_WinApp
         {
             try
             {
-                var account = repo.GetAccountById(frmLogin.AccountID);
+                var account = repo.GetAccountById(frmLogin.loginUser.AccountId);
                 BindingSource source = new BindingSource();
 
 
@@ -77,8 +76,6 @@ namespace LaundryMiddlePlatform_WinApp
                 txtAddress.DataBindings.Add("Text", source, "Address");
                 txtRole.DataBindings.Add("Text", source, "Role");
 
-                dgvProfileStaff.DataSource = null;
-                dgvProfileStaff.DataSource = source;
                 EnableText(false);
 
 
@@ -98,7 +95,7 @@ namespace LaundryMiddlePlatform_WinApp
                 AddOrUpdate = true;
                 EnableText(true);
                 ClearData();
-               
+
 
                 //btn control
                 btnUpdate.Text = "Cancel";
@@ -124,7 +121,7 @@ namespace LaundryMiddlePlatform_WinApp
         {
             try
             {
-                var account = _repo.GetAccountById(frmLogin.AccountID);
+                var account = _repo.GetAccountById(frmLogin.loginUser.AccountId);
                 if (account != null)
                 {
                     account.FullName = txtFullname.Text;
@@ -139,7 +136,7 @@ namespace LaundryMiddlePlatform_WinApp
                 {
                     MessageBox.Show("Can't find this Staff", "Profile Staff");
                 }
-               
+
             }
             catch (Exception ex)
             {

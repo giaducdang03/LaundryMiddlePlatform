@@ -20,5 +20,10 @@ namespace Repositories.Validation
                 return true;
             return false;
         }
+        public static bool CheckPhoneNumber(string phoneNumber)
+        {
+            string pattern = @"^0\d{9}$";
+            return Regex.IsMatch(phoneNumber, pattern);
+        }
     }
 }

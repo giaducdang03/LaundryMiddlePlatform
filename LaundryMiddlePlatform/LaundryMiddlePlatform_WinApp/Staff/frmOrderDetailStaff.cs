@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace LaundryMiddlePlatform_WinApp.StoreManagement
 {
-    public partial class frmOrderDetail : Form
+    public partial class frmOrderDetailStaff : Form
     {
         IOrderRepository orderRepo = new OrderRepository();
         IOrderDetailRepository orderDetailRepo = new OrderDetailRepository();
 
         bool AddOrUpdate = false;
         public Order currentOrder { get; set; }
-        public frmOrderDetail()
+        public frmOrderDetailStaff()
         {
             InitializeComponent();
         }
@@ -115,6 +115,33 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
             {
                 MessageBox.Show(ex.Message, "Order Management",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private void dgvOrderDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvOrderDetail.SelectedRows.Count > 0)
+            {
+                int location = dgvOrderDetail.CurrentCell.RowIndex;
+                int orderDetailId = int.Parse(dgvOrderDetail.Rows[location].Cells["Id"].Value.ToString());
+                var currentOrderDetail = orderDetailRepo.GetOrderDetail(orderDetailId);
+                // show form order detail
+                if (frmLogin.loginUser.Role.Equals("Staff"))
+                {
+
+                    frmOrderDetailManagement f = new frmOrderDetailManagement();
+                    f.currentOrderDetail = currentOrderDetail;
+                    f.currentOrderId = currentOrder.OrderId;
+                    f.ShowDialog();
+                    LoadOrderData();
+                }
+                else
+                {
+                    MessageBox.Show("You don't have this permission to do this function", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
         }
     }

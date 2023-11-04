@@ -1,3 +1,4 @@
+using BusinessObjects.Models;
 using LaundryMiddlePlatform_WinApp.Authen;
 using LaundryMiddlePlatform_WinApp.Staff;
 using LaundryMiddlePlatform_WinApp.StoreManagement;
@@ -10,6 +11,7 @@ namespace LaundryMiddlePlatform_WinApp
         IAccountRepository _repo = new AccountRepository();
         IStoreRepository _storeRepo = new StoreRepository();
         public static int AccountID { get; private set; }
+        public static Account loginUser { get; private set; } = null!;
         public frmLogin()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace LaundryMiddlePlatform_WinApp
                 {
                     throw new Exception("Email and password are required");
                 }
-                var loginUser = _repo.CheckLogin(txtEmail.Text, txtPassword.Text);
+                loginUser = _repo.CheckLogin(txtEmail.Text, txtPassword.Text);
                 if (loginUser != null)
                 {
                     if (loginUser.Role == "Admin")

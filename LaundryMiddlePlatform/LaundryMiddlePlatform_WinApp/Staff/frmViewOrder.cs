@@ -17,7 +17,7 @@ namespace LaundryMiddlePlatform_WinApp
     {
         IOrderRepository orderRepository = new OrderRepository();
         private Order orderInfo { get; set; }
-     
+
         public frmViewOrder()
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace LaundryMiddlePlatform_WinApp
         {
             try
             {
-                var orders = orderRepository.GetByStaffIdandStatus(frmLogin.AccountID, "Pending");
+                var orders = orderRepository.GetByStaffIdandStatus(frmLogin.loginUser.AccountId, OrderStatus.Pending.ToString());
                 var ordersView = orders.Select(p => new
                 {
                     p.OrderId,
@@ -74,10 +74,10 @@ namespace LaundryMiddlePlatform_WinApp
                 txtStaffName.DataBindings.Add("Text", source, "Staff");
                 txtStaffPhone.DataBindings.Add("Text", source, "StaffPhone");
                 txtStatus.DataBindings.Add("Text", source, "Status");
-               
+
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = source;
-            
+
 
                 EnableText(false);
             }
@@ -96,8 +96,8 @@ namespace LaundryMiddlePlatform_WinApp
                 int orderId = int.Parse(dataGridView1.Rows[location].Cells["OrderId"].Value.ToString());
                 var currentOrder = orderRepository.GetOrderById(orderId);
                 // show form order detail
-         
-                frmOrderDetail f = new frmOrderDetail();
+
+                frmOrderDetailStaff f = new frmOrderDetailStaff();
                 f.currentOrder = currentOrder;
                 f.ShowDialog();
                 LoadOrderList();
@@ -122,7 +122,7 @@ namespace LaundryMiddlePlatform_WinApp
                 return;
             }
             DialogResult d;
-            d = MessageBox.Show("Are you sure working this order?", "Storemanagement",
+            d = MessageBox.Show("Are you sure working this order?", "Order management",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button1);
             if (d == DialogResult.OK)
@@ -130,8 +130,8 @@ namespace LaundryMiddlePlatform_WinApp
                 bool delStatus = orderRepository.UpdateStatus(orderInfo.OrderId);
                 if (delStatus)
                 {
-                    MessageBox.Show($" Now this order's status is Working.", "management",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($" Now this order's status is Working.", "Order management",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 LoadOrderList();
             }

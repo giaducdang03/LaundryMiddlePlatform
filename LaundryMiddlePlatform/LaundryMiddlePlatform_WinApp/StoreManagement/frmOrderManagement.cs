@@ -122,7 +122,6 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
         {
             LoadOrderList();
         }
-
         private void ClearData()
         {
             txtOrderId.DataBindings.Clear();

@@ -52,7 +52,7 @@ namespace DataAccessObjects
                     throw new Exception("Not found.");
                 }
 
-                listStore = query.Include(m => m.Manager).ToList();
+                listStore = query.Include(m => m.Management).ToList();
 
                 return listStore;
             }

@@ -74,7 +74,7 @@ namespace LaundryMiddlePlatform_WinApp
                     p.Name,
                     p.Address,
                     p.PhoneNumber,
-                    Manager = p.Manager.FullName,
+                    Manager = p.Management.FullName,
                     p.IsAvailable,
                     p.Status,
                 });

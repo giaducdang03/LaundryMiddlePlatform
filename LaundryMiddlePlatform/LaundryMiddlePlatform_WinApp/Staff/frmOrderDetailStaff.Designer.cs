@@ -1,6 +1,6 @@
 ﻿namespace LaundryMiddlePlatform_WinApp.StoreManagement
 {
-    partial class frmOrderDetail
+    partial class frmOrderDetailStaff
     {
         /// <summary>
         /// Required designer variable.
@@ -231,6 +231,7 @@
             dgvOrderDetail.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOrderDetail.Size = new Size(760, 147);
             dgvOrderDetail.TabIndex = 1;
+            dgvOrderDetail.CellDoubleClick += dgvOrderDetail_CellDoubleClick;
             // 
             // label10
             // 

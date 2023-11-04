@@ -46,6 +46,10 @@ namespace Repositories
             {
                 throw new Exception("Address must be 4 to 50 characters");
             }
+            if (!CommonValidation.CheckPhoneNumber(account.PhoneNumber))
+            {
+                throw new Exception("Phone number is invalid. Ex: 0123456789");
+            }
             return AccountDAO.Instance.SaveAccount(account);
         }
 

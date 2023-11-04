@@ -49,6 +49,7 @@ namespace LaundryMiddlePlatform_WinApp
                     Customer = p.Customer.FullName,
                     CustomerPhone = p.Customer.PhoneNumber,
                     p.CreateDate,
+                    p.PaymentDate,
                     p.TotalPrice,
                     Staff = p.Staff.FullName,
                     StaffPhone = p.Staff.PhoneNumber,

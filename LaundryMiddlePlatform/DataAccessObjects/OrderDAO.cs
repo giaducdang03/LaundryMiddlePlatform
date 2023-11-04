@@ -206,6 +206,7 @@ namespace DataAccessObjects
                     .Include(o => o.Staff)
                     .Include(o => o.OrderDetails).ThenInclude(od => od.ServiceDetail)
                     .Where(o => o.StaffId == staffId)
+                    .OrderByDescending(o => o.CreateDate)
                     .ToList();
                 return orders;
             }

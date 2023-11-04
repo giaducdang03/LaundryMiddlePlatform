@@ -26,7 +26,23 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
 
         private void frmOrderDetail_Load(object sender, EventArgs e)
         {
+           
             LoadOrderData();
+            if (lblStatus.Text == "Pending")
+            {
+                btnWorking.Visible = true;
+                btnDelivered.Visible = false;
+            }
+            else if (lblStatus.Text == "Completed")
+            {
+                btnWorking.Visible = false;
+                btnDelivered.Visible = true;
+            }
+            else
+            {
+                btnWorking.Visible = false;
+                btnDelivered.Visible = false;
+            }
         }
 
         public void LoadOrderData()
@@ -52,6 +68,7 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                     p.Weight,
                     p.UnitPrice,
                     p.Price
+                    
                 });
 
                 BindingSource source = new BindingSource();
@@ -111,29 +128,24 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
         {
 
             {
-                try
+                var order = orderRepo.GetOrderById(currentOrder.OrderId);
+                if (order == null)
                 {
-                    DialogResult d;
-                    d = MessageBox.Show("Do you want to mark this order as 'Working'?", "Order management",
-                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
-                        MessageBoxDefaultButton.Button1);
-                    if (d == DialogResult.OK)
-                    {
-                        currentOrder.Status = OrderStatus.Working.ToString();
-                        orderRepo.UpdateOrder(currentOrder);
-                        LoadOrderData();
-                    }
+                    throw new Exception("Not found order");
                 }
-                catch (Exception ex)
+                DialogResult d;
+                d = MessageBox.Show("Do you want to mark this order as 'Working'?", "Order management",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1);
+                if (d == DialogResult.OK)
                 {
-                    MessageBox.Show(ex.Message, "Order Management",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    order.Status = OrderStatus.Working.ToString();
+                    orderRepo.UpdateOrder(order);
+                    LoadOrderData();
                 }
             }
 
         }
-
-
 
         private void dgvOrderDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -159,6 +171,32 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
             }
         }
 
-    
+        private void btnDelivered_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var order = orderRepo.GetOrderById(currentOrder.OrderId);
+                if (order == null)
+                {
+                    throw new Exception("Not found order");
+                }
+                DialogResult d;
+                d = MessageBox.Show("Do you want to mark this order as 'Delivered'?", "Order management",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1);
+                if (d == DialogResult.OK)
+                {
+                    order.Status = OrderStatus.Delivered.ToString();
+                    order.PaymentDate = DateTime.Now;
+                    orderRepo.UpdateOrder(order);
+                    LoadOrderData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Order Management",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

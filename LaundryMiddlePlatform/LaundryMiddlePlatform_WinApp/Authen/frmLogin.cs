@@ -17,44 +17,55 @@ namespace LaundryMiddlePlatform_WinApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var loginUser = _repo.CheckLogin(txtEmail.Text, txtPassword.Text);
-            if (loginUser != null)
+            try
             {
-                if (loginUser.Role == "Admin")
+                if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    frmLaundryManagement f = new frmLaundryManagement();
-                    f.loginAccount = loginUser;
-                    f.Show();
-                    this.Hide();
-                } 
-                else if (loginUser.Role == "Store")
-                {
-                    AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
-                    frmStoreManager f = new frmStoreManager();
-                    f.currentStore = _storeRepo.GetStoreByManagerId(loginUser.AccountId);
-                    f.managerAccount = loginUser;
-                    f.Show();
-                    this.Hide();
-                    
+                    throw new Exception("Email and password are required");
                 }
-                else if (loginUser.Role == "User")
+                var loginUser = _repo.CheckLogin(txtEmail.Text, txtPassword.Text);
+                if (loginUser != null)
                 {
-                    frmCustomer f = new frmCustomer();
-                    f.loginUser = loginUser;
-                    f.Show();
-                    this.Hide();
+                    if (loginUser.Role == "Admin")
+                    {
+                        frmLaundryManagement f = new frmLaundryManagement();
+                        f.loginAccount = loginUser;
+                        f.Show();
+                        this.Hide();
+                    }
+                    else if (loginUser.Role == "Store")
+                    {
+                        AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
+                        frmStoreManager f = new frmStoreManager();
+                        f.currentStore = _storeRepo.GetStoreByManagerId(loginUser.AccountId);
+                        f.managerAccount = loginUser;
+                        f.Show();
+                        this.Hide();
+
+                    }
+                    else if (loginUser.Role == "User")
+                    {
+                        frmCustomer f = new frmCustomer();
+                        f.loginUser = loginUser;
+                        f.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        frmStaff f = new frmStaff();
+                        f.loginAccount = loginUser;
+                        f.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    frmStaff f = new frmStaff();
-                    f.loginAccount = loginUser;
-                    f.Show();
-                    this.Hide();
+                    throw new Exception("Incorrect email or password.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Incorrect email or password.", "Laundry Middle Platform",
+                MessageBox.Show(ex.Message, "Laundry Middle Platform",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

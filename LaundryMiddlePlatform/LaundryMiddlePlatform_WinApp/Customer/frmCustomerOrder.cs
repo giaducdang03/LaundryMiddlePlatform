@@ -41,6 +41,9 @@ namespace LaundryMiddlePlatform_WinApp.Customer
             lblCustomerAddr.Text = loginUser.Address;
             lblCusPhone.Text = loginUser.PhoneNumber;
 
+            lblNotice.Text = "(Actual price may vary depending on your laundry quantity.)";
+            lblNotionalPrice.Text = string.Format("{0:C}", 0);
+
             LoadServiceList();
             // create new order
             order = new Order
@@ -148,6 +151,17 @@ namespace LaundryMiddlePlatform_WinApp.Customer
 
         private void LoadListOrderDetail()
         {
+            double tempPrice = 0;
+            if (listOrderDeatail.Any())
+            {
+                foreach (var item in listOrderDeatail)
+                {
+                    tempPrice += item.UnitPrice.Value;
+                }
+            }
+
+            lblNotionalPrice.Text = string.Format("{0:C}", tempPrice);
+
             var viewList = listOrderDeatail.Select(p => new
             {
                 p.ServiceDetailId,

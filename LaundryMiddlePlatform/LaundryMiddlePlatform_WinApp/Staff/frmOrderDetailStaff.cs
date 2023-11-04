@@ -111,14 +111,19 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
         {
             try
             {
+                var order = orderRepo.GetOrderById(currentOrder.OrderId);
+                if (order == null)
+                {
+                    throw new Exception("Not found order");
+                }
                 DialogResult d;
                 d = MessageBox.Show("Do you want to mark this order as 'Working'?", "Order management",
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button1);
                 if (d == DialogResult.OK)
                 {
-                    currentOrder.Status = OrderStatus.Working.ToString();
-                    orderRepo.UpdateOrder(currentOrder);
+                    order.Status = OrderStatus.Working.ToString();
+                    orderRepo.UpdateOrder(order);
                     LoadOrderData();
                 }
             }
@@ -128,8 +133,6 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
         private void dgvOrderDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

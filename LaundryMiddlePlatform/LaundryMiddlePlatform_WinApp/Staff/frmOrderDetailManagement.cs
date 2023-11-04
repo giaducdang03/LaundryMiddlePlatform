@@ -108,13 +108,19 @@ namespace LaundryMiddlePlatform_WinApp
                 List<OrderDetail> list = (List<OrderDetail>)order.OrderDetails;
                 foreach (var item in list)
                 {
-                    total += (double)item.Price;
+                    if (item.Price != null || item.Price > 0)
+                    {
+                        total += (double) item.Price;
+                    }
                 }
                 order.TotalPrice = total;
                 orderRepository.UpdateOrder(order);
 
                 LoadOrderDetail();
                 txtWeight.ReadOnly = true;
+
+                MessageBox.Show("Update weight successfully", "Order",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)

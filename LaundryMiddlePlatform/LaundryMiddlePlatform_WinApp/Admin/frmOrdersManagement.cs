@@ -11,47 +11,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LaundryMiddlePlatform_WinApp.Customer
+namespace LaundryMiddlePlatform_WinApp.Admin
 {
-    public partial class frmOrderHistoryCustomer : Form
+    public partial class frmOrdersManagement : Form
     {
-        public Account loginUser { get; set; }
-        public Store currentStore { get; set; }
-        IOrderRepository _repo = new OrderRepository();
-
+        public Account loginAccount { get; set; }
         IOrderRepository orderRepository = new OrderRepository();
-        public frmOrderHistoryCustomer()
+        public frmOrdersManagement()
         {
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void frmOrdersManagement_Load(object sender, EventArgs e)
         {
-
+            cboSort.SelectedIndex = 0;
+            LoadOrderList();
         }
-
         private void LoadOrderList()
         {
             try
             {
-                var orders = _repo.GetOrderByCustomerId(loginUser.AccountId, cboSort.Text);
-
+                var orders = orderRepository.GetOrders(cboSort.Text, dtpFrom.Value, dtpTo.Value);
                 double totalAmount = 0;
                 foreach (var order in orders)
                 {
                     totalAmount += order.TotalPrice.Value;
                 }
-                var ordersView = orders.Select(p => new
-                {
-                    p.OrderId,
-                    p.CreateDate,
-                    p.TotalPrice,
-                    p.Status,
 
-
-                });
                 BindingSource source = new BindingSource();
-                source.DataSource = ordersView;
+                source.DataSource = orders;
 
 
 
@@ -68,17 +56,6 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void frmOrderHistoryCustomer_Load(object sender, EventArgs e)
-        {
-            cboSort.SelectedIndex = 0;
-            LoadOrderList();
-        }
-
-        private void dtpTo_ValueChanged(object sender, EventArgs e)
-        {
-            LoadOrderList();
-        }
-
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)
@@ -92,6 +69,25 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 f.ShowDialog();
                 LoadOrderList();
             }
+        }
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadOrderList();
+        }
+
+        private void dtpFrom_ValueChanged(object sender, EventArgs e)
+        {
+            LoadOrderList();
+        }
+
+        private void dtpTo_ValueChanged(object sender, EventArgs e)
+        {
+            LoadOrderList();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,6 +13,6 @@ namespace Repositories
         Order GetOrderById(int id);
         bool UpdateOrder(Order order);
         int SaveOrder(Order order);
-        List<Order> GetOrderByCustomerId(int customerId);
+        List<Order> GetOrderByCustomerId(int customerId, string? sortBy);
     }
 }

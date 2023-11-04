@@ -92,19 +92,36 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
         }
-        public List<Order> GetOrderByCustomerId(int id)
+        public List<Order> GetOrderByCustomerId(int id, string? sortBy)
         {
             List<Order> orders = new List<Order>();
             try
             {
                 using var db = new LaundryManagementPrnContext();
                 var query = db.Orders
-                    .Where(s => s.CustomerId == id)
-                    .Include(s => s.Customer)
-                    .Include(s => s.OrderDetails)
+                    .Include(o => o.OrderDetails)
+                    .Include(o => o.Store)
+                    .Include(o => o.Customer)
+                    .Include(o => o.Staff)
                     .AsQueryable();
-                orders = query.ToList();
-                return orders;
+                // filter
+                if (!string.IsNullOrEmpty(sortBy))
+                {
+                    if (sortBy == "Newest")
+                    {
+                        query = query.OrderByDescending(o => o.CreateDate);
+                    }
+                    else
+                    {
+                        query = query.OrderBy(o => o.CreateDate);
+                    }
+                }
+                if (!query.Any())
+                {
+                    throw new Exception("Not found");
+                }
+
+                return query.ToList();
             }
             catch (Exception ex)
             {

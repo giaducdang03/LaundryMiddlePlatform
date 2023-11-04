@@ -70,5 +70,13 @@ namespace LaundryMiddlePlatform_WinApp
             f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
+
+        private void orderManagemnetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOrdersManagement f = new frmOrdersManagement();
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
     }
 }

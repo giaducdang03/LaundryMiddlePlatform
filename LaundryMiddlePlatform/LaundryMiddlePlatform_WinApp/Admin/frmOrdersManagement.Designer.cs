@@ -32,9 +32,7 @@
             lbFilter = new Label();
             comboBox1 = new ComboBox();
             groupBox3 = new GroupBox();
-            lblTotalAmount = new Label();
             lblNumOfOrder = new Label();
-            label16 = new Label();
             label15 = new Label();
             groupBox2 = new GroupBox();
             dtpTo = new DateTimePicker();
@@ -79,26 +77,13 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(lblTotalAmount);
             groupBox3.Controls.Add(lblNumOfOrder);
-            groupBox3.Controls.Add(label16);
             groupBox3.Controls.Add(label15);
             groupBox3.Location = new Point(12, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(462, 65);
+            groupBox3.Size = new Size(194, 65);
             groupBox3.TabIndex = 14;
             groupBox3.TabStop = false;
-            // 
-            // lblTotalAmount
-            // 
-            lblTotalAmount.AutoSize = true;
-            lblTotalAmount.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTotalAmount.ForeColor = Color.Red;
-            lblTotalAmount.Location = new Point(344, 28);
-            lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(56, 20);
-            lblTotalAmount.TabIndex = 3;
-            lblTotalAmount.Text = "label17";
             // 
             // lblNumOfOrder
             // 
@@ -109,15 +94,6 @@
             lblNumOfOrder.Size = new Size(56, 20);
             lblNumOfOrder.TabIndex = 2;
             lblNumOfOrder.Text = "label17";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(238, 28);
-            label16.Name = "label16";
-            label16.Size = new Size(100, 20);
-            label16.TabIndex = 1;
-            label16.Text = "Total amount:";
             // 
             // label15
             // 
@@ -228,9 +204,7 @@
         private Label lbFilter;
         private ComboBox comboBox1;
         private GroupBox groupBox3;
-        private Label lblTotalAmount;
         private Label lblNumOfOrder;
-        private Label label16;
         private Label label15;
         private GroupBox groupBox2;
         private DateTimePicker dtpTo;

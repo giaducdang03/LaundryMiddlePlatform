@@ -32,14 +32,22 @@ namespace LaundryMiddlePlatform_WinApp.Admin
             try
             {
                 var orders = orderRepository.GetOrders(cboSort.Text, dtpFrom.Value, dtpTo.Value);
-                double totalAmount = 0;
-                foreach (var order in orders)
+                
+                var ordersView = orders.Select(p => new
                 {
-                    totalAmount += order.TotalPrice.Value;
-                }
+                    p.OrderId,
+                    p.StoreId,
+                    p.CustomerId,
+                    storeName = p.Store.Name,
+                    p.PaymentDate,
+                    p.CreateDate,
+                    p.TotalPrice,
+                    p.Status,
 
+
+                });
                 BindingSource source = new BindingSource();
-                source.DataSource = orders;
+                source.DataSource = ordersView;
 
 
 
@@ -47,7 +55,6 @@ namespace LaundryMiddlePlatform_WinApp.Admin
                 dgvOrders.DataSource = source;
 
                 lblNumOfOrder.Text = orders.Count().ToString();
-                lblTotalAmount.Text = string.Format("{0:C}", totalAmount);
 
             }
             catch (Exception ex)

@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,9 @@ namespace DataAccessObjects
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                var orderDetail = db.OrderDetails.FirstOrDefault(x => x.Id == id);
+                var orderDetail = db.OrderDetails
+                    .Include(x => x.ServiceDetail).ThenInclude(xd => xd.Service)
+                    .FirstOrDefault(x => x.Id == id);
                 if (orderDetail == null)
                 {
                     throw new Exception("Not found");

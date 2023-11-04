@@ -31,58 +31,69 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
 
         public void LoadOrderData()
         {
-            txtOrderId.Text = currentOrder.OrderId.ToString();
-            txtCustomer.Text = currentOrder.Customer.FullName;
-            txtCustomerPhone.Text = currentOrder.Customer.PhoneNumber;
-            txtPrice.Text = string.Format("{0:C}", currentOrder.TotalPrice);
-            txtOrderDate.Text = currentOrder.CreateDate.ToString();
-            txtStaffName.Text = currentOrder.Staff.FullName;
-            txtStaffPhone.Text = currentOrder.Staff.PhoneNumber;
-            lblStatus.Text = currentOrder.Status;
-
-            var viewDetail = currentOrder.OrderDetails.Select(p => new
+            try
             {
-                p.Id,
-                Type = p.ServiceDetail.TypeName,
-                p.ServiceDetail.Duration,
-                p.Weight,
-                p.UnitPrice,
-                p.Price
-            });
+                var order = orderRepo.GetOrderById(currentOrder.OrderId);
 
-            BindingSource source = new BindingSource();
-            source.DataSource = viewDetail;
+                txtOrderId.Text = order.OrderId.ToString();
+                txtCustomer.Text = order.Customer.FullName;
+                txtCustomerPhone.Text = order.Customer.PhoneNumber;
+                txtPrice.Text = string.Format("{0:C}", order.TotalPrice);
+                txtOrderDate.Text = order.CreateDate.ToString();
+                txtStaffName.Text = currentOrder.Staff.FullName;
+                txtStaffPhone.Text = currentOrder.Staff.PhoneNumber;
+                lblStatus.Text = order.Status;
 
-            dgvOrderDetail.DataSource = null;
-            dgvOrderDetail.DataSource = source;
+                var viewDetail = order.OrderDetails.Select(p => new
+                {
+                    p.Id,
+                    Type = p.ServiceDetail.TypeName,
+                    p.ServiceDetail.Duration,
+                    p.Weight,
+                    p.UnitPrice,
+                    p.Price
+                });
 
-            DisableText();
+                BindingSource source = new BindingSource();
+                source.DataSource = viewDetail;
 
-            if (currentOrder.Status != OrderStatus.Working.ToString())
-            {
-                btnComplete.Enabled = false;
+                dgvOrderDetail.DataSource = null;
+                dgvOrderDetail.DataSource = source;
+
+                DisableText();
+
+                if (order.Status != OrderStatus.Pending.ToString())
+                {
+                    btnWorking.Enabled = false;
+                }
+
+                //change color status
+                if (lblStatus.Text == OrderStatus.Pending.ToString())
+                {
+                    lblStatus.ForeColor = Color.Red;
+                }
+                else if (lblStatus.Text == OrderStatus.Working.ToString())
+                {
+                    lblStatus.ForeColor = Color.White;
+                    lblStatus.BackColor = Color.Brown;
+                }
+                else if (lblStatus.Text == OrderStatus.Completed.ToString())
+                {
+                    lblStatus.ForeColor = Color.Black;
+                    lblStatus.BackColor = Color.Yellow;
+                }
+                else
+                {
+                    lblStatus.ForeColor = Color.White;
+                    lblStatus.BackColor = Color.Green;
+                }
             }
-
-            //change color status
-            if (lblStatus.Text == OrderStatus.Pending.ToString())
+            catch (Exception ex)
             {
-                lblStatus.ForeColor = Color.Red;
+                MessageBox.Show(ex.Message, "Order Management",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (lblStatus.Text == OrderStatus.Working.ToString())
-            {
-                lblStatus.ForeColor = Color.White;
-                lblStatus.BackColor = Color.Brown;
-            }
-            else if (lblStatus.Text == OrderStatus.Completed.ToString())
-            {
-                lblStatus.ForeColor = Color.Black;
-                lblStatus.BackColor = Color.Yellow;
-            }
-            else
-            {
-                lblStatus.ForeColor = Color.White;
-                lblStatus.BackColor = Color.Green;
-            }
+            
         }
 
         public void DisableText()
@@ -101,12 +112,12 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
             try
             {
                 DialogResult d;
-                d = MessageBox.Show("Do you want to mark this order as 'Complete'?", "Order management",
+                d = MessageBox.Show("Do you want to mark this order as 'Working'?", "Order management",
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button1);
                 if (d == DialogResult.OK)
                 {
-                    currentOrder.Status = OrderStatus.Completed.ToString();
+                    currentOrder.Status = OrderStatus.Working.ToString();
                     orderRepo.UpdateOrder(currentOrder);
                     LoadOrderData();
                 }
@@ -128,9 +139,8 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                 int orderDetailId = int.Parse(dgvOrderDetail.Rows[location].Cells["Id"].Value.ToString());
                 var currentOrderDetail = orderDetailRepo.GetOrderDetail(orderDetailId);
                 // show form order detail
-                if (frmLogin.loginUser.Role.Equals("Staff"))
+                if (frmLogin.loginUser.Role.Equals("Staff") && currentOrder.Status == OrderStatus.Pending.ToString())
                 {
-
                     frmOrderDetailManagement f = new frmOrderDetailManagement();
                     f.currentOrderDetail = currentOrderDetail;
                     f.currentOrderId = currentOrder.OrderId;

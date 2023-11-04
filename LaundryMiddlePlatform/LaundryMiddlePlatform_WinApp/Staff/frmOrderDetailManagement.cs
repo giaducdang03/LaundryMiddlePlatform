@@ -29,29 +29,14 @@ namespace LaundryMiddlePlatform_WinApp
 
         public void LoadOrderDetail()
         {
+            var orderDetail = detailRepository.GetOrderDetail(currentOrderDetail.Id);
 
-            txtId.Text = currentOrderDetail.Id.ToString();
-            txtPrice.Text = currentOrderDetail.Price.ToString();
-            txtUnitPrice.Text = currentOrderDetail.UnitPrice.ToString();
-            txtWeight.Text = currentOrderDetail.Weight.ToString();
-
-            var orderDetail = new OrderDetail
-            {
-                Id = currentOrderDetail.Id,
-                Price = currentOrderDetail.Price,
-                UnitPrice = currentOrderDetail.UnitPrice,
-                Weight = currentOrderDetail.Weight
-            };
-
-
-
-
-            BindingSource source = new BindingSource();
-            source.DataSource = orderDetail;
-
-
-            dgvOrderDetail.DataSource = null;
-            dgvOrderDetail.DataSource = source;
+            txtId.Text = orderDetail.Id.ToString();
+            txtService.Text = orderDetail.ServiceDetail.Service.Name;
+            txtType.Text = orderDetail.ServiceDetail.TypeName;
+            txtPrice.Text = orderDetail.Price.ToString();
+            txtUnitPrice.Text = orderDetail.UnitPrice.ToString();
+            txtWeight.Text = orderDetail.Weight.ToString();
 
         }
 
@@ -67,7 +52,7 @@ namespace LaundryMiddlePlatform_WinApp
                 AddOrUpdate = true;
                 txtWeight.ReadOnly = false;
                 ClearData();
-                ClearText();
+                //ClearText();
 
                 //btn control
                 btnUpdate.Text = "Cancel";
@@ -84,6 +69,7 @@ namespace LaundryMiddlePlatform_WinApp
                     btnUpdate.Text = "Update";
                     ClearText();
                     LoadOrderDetail();
+                    txtWeight.ReadOnly = true;
                 }
             }
         }
@@ -106,13 +92,10 @@ namespace LaundryMiddlePlatform_WinApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-            double total = 0;
-            if (dgvOrderDetail.SelectedRows.Count > 0)
+            try
             {
-                int location = dgvOrderDetail.CurrentCell.RowIndex;
-                int orderDetailId = int.Parse(dgvOrderDetail.Rows[location].Cells["Id"].Value.ToString());
-                OrderDetail = detailRepository.GetOrderDetail(orderDetailId);
+                double total = 0;
+                OrderDetail = detailRepository.GetOrderDetail(currentOrderDetail.Id);
 
                 if (OrderDetail != null)
                 {
@@ -130,25 +113,16 @@ namespace LaundryMiddlePlatform_WinApp
                 order.TotalPrice = total;
                 orderRepository.UpdateOrder(order);
 
-                var orderDetail = new OrderDetail
-                {
-                    Id = OrderDetail.Id,
-                    Price = OrderDetail.Price,
-                    UnitPrice = OrderDetail.UnitPrice,
-                    Weight = OrderDetail.Weight
-                };
-
-                ClearText();
-                txtId.Text = OrderDetail.Id.ToString();
-                txtPrice.Text = OrderDetail.Price.ToString();
-                txtUnitPrice.Text = OrderDetail.UnitPrice.ToString();
-                txtWeight.Text = OrderDetail.Weight.ToString();
-                BindingSource source = new BindingSource();
-                source.DataSource = orderDetail;
-                dgvOrderDetail.DataSource = null;
-                dgvOrderDetail.DataSource = source;
+                LoadOrderDetail();
+                txtWeight.ReadOnly = true;
 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Order",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
     }

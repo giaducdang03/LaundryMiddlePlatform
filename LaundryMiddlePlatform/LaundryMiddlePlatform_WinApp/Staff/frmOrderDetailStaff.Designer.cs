@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            btnComplete = new Button();
+            btnWorking = new Button();
             lblStatus = new Label();
             txtStaffPhone = new TextBox();
             txtOrderDate = new TextBox();
@@ -54,7 +54,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(btnComplete);
+            groupBox1.Controls.Add(btnWorking);
             groupBox1.Controls.Add(lblStatus);
             groupBox1.Controls.Add(txtStaffPhone);
             groupBox1.Controls.Add(txtOrderDate);
@@ -78,15 +78,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Order";
             // 
-            // btnComplete
+            // btnWorking
             // 
-            btnComplete.Location = new Point(550, 184);
-            btnComplete.Name = "btnComplete";
-            btnComplete.Size = new Size(90, 23);
-            btnComplete.TabIndex = 16;
-            btnComplete.Text = "Completed";
-            btnComplete.UseVisualStyleBackColor = true;
-            btnComplete.Click += btnComplete_Click;
+            btnWorking.Location = new Point(550, 184);
+            btnWorking.Name = "btnWorking";
+            btnWorking.Size = new Size(90, 23);
+            btnWorking.TabIndex = 16;
+            btnWorking.Text = "Working";
+            btnWorking.UseVisualStyleBackColor = true;
+            btnWorking.Click += btnComplete_Click;
             // 
             // lblStatus
             // 
@@ -242,7 +242,7 @@
             label10.TabIndex = 2;
             label10.Text = "Order details";
             // 
-            // frmOrderDetail
+            // frmOrderDetailStaff
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -250,7 +250,7 @@
             Controls.Add(label10);
             Controls.Add(dgvOrderDetail);
             Controls.Add(groupBox1);
-            Name = "frmOrderDetail";
+            Name = "frmOrderDetailStaff";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Order Detail";
             Load += frmOrderDetail_Load;
@@ -280,7 +280,7 @@
         private TextBox txtPrice;
         private TextBox txtCustomerPhone;
         private TextBox txtCustomer;
-        private Button btnComplete;
+        private Button btnWorking;
         private DataGridView dgvOrderDetail;
         private Label label10;
     }

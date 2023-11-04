@@ -205,7 +205,7 @@ namespace DataAccessObjects
                     .Include(o => o.Customer)
                     .Include(o => o.Staff)
                     .Include(o => o.OrderDetails).ThenInclude(od => od.ServiceDetail)
-                    .Where(o => o.StaffId == staffId && o.Status == status)
+                    .Where(o => o.StaffId == staffId)
                     .ToList();
                 return orders;
             }

@@ -71,9 +71,9 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(11, 27);
-            groupBox1.Margin = new Padding(2, 2, 2, 2);
+            groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2, 2, 2, 2);
+            groupBox1.Padding = new Padding(2);
             groupBox1.Size = new Size(1131, 202);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
@@ -82,18 +82,19 @@
             // btnUpdateStatus
             // 
             btnUpdateStatus.Location = new Point(621, 124);
-            btnUpdateStatus.Margin = new Padding(2, 2, 2, 2);
+            btnUpdateStatus.Margin = new Padding(2);
             btnUpdateStatus.Name = "btnUpdateStatus";
             btnUpdateStatus.Size = new Size(84, 22);
             btnUpdateStatus.TabIndex = 18;
             btnUpdateStatus.Text = "Update";
             btnUpdateStatus.UseVisualStyleBackColor = true;
+            btnUpdateStatus.Visible = false;
             btnUpdateStatus.Click += btnUpdateStatus_Click;
             // 
             // txtCustomer
             // 
             txtCustomer.Location = new Point(120, 76);
-            txtCustomer.Margin = new Padding(2, 2, 2, 2);
+            txtCustomer.Margin = new Padding(2);
             txtCustomer.Name = "txtCustomer";
             txtCustomer.ReadOnly = true;
             txtCustomer.Size = new Size(212, 23);
@@ -102,7 +103,7 @@
             // txtPhone
             // 
             txtPhone.Location = new Point(120, 125);
-            txtPhone.Margin = new Padding(2, 2, 2, 2);
+            txtPhone.Margin = new Padding(2);
             txtPhone.Name = "txtPhone";
             txtPhone.ReadOnly = true;
             txtPhone.Size = new Size(212, 23);
@@ -111,7 +112,7 @@
             // txtOrderDate
             // 
             txtOrderDate.Location = new Point(467, 26);
-            txtOrderDate.Margin = new Padding(2, 2, 2, 2);
+            txtOrderDate.Margin = new Padding(2);
             txtOrderDate.Name = "txtOrderDate";
             txtOrderDate.ReadOnly = true;
             txtOrderDate.Size = new Size(238, 23);
@@ -120,7 +121,7 @@
             // txtStaffName
             // 
             txtStaffName.Location = new Point(860, 26);
-            txtStaffName.Margin = new Padding(2, 2, 2, 2);
+            txtStaffName.Margin = new Padding(2);
             txtStaffName.Name = "txtStaffName";
             txtStaffName.ReadOnly = true;
             txtStaffName.Size = new Size(224, 23);
@@ -129,7 +130,7 @@
             // txtStaffPhone
             // 
             txtStaffPhone.Location = new Point(860, 74);
-            txtStaffPhone.Margin = new Padding(2, 2, 2, 2);
+            txtStaffPhone.Margin = new Padding(2);
             txtStaffPhone.Name = "txtStaffPhone";
             txtStaffPhone.ReadOnly = true;
             txtStaffPhone.RightToLeft = RightToLeft.No;
@@ -139,7 +140,7 @@
             // txtTotalPrice
             // 
             txtTotalPrice.Location = new Point(467, 77);
-            txtTotalPrice.Margin = new Padding(2, 2, 2, 2);
+            txtTotalPrice.Margin = new Padding(2);
             txtTotalPrice.Name = "txtTotalPrice";
             txtTotalPrice.ReadOnly = true;
             txtTotalPrice.Size = new Size(238, 23);
@@ -148,7 +149,7 @@
             // txtOrderID
             // 
             txtOrderID.Location = new Point(120, 26);
-            txtOrderID.Margin = new Padding(2, 2, 2, 2);
+            txtOrderID.Margin = new Padding(2);
             txtOrderID.Name = "txtOrderID";
             txtOrderID.ReadOnly = true;
             txtOrderID.Size = new Size(212, 23);
@@ -249,7 +250,7 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(11, 252);
-            dataGridView1.Margin = new Padding(2, 2, 2, 2);
+            dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
@@ -266,7 +267,7 @@
             ClientSize = new Size(1153, 630);
             Controls.Add(dataGridView1);
             Controls.Add(groupBox1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "frmViewOrder";
             Text = "View Order";
             Load += frmViewOrder_Load;

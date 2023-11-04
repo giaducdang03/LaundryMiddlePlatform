@@ -10,6 +10,7 @@ namespace Repositories
     public interface IOrderRepository
     {
         List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to);
+        List<Order> GetOrdersByAdmin(int storeID, string? sortBy, DateTime? from, DateTime? to);
         Order GetOrderById(int id);
         bool UpdateOrder(Order order);
         int SaveOrder(Order order);

@@ -73,5 +73,10 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 f.Show();
             }
         }
+
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadStoreList(cboSort.Text);
+        }
     }
 }

@@ -30,7 +30,7 @@
         {
             dgvOrders = new DataGridView();
             lbFilter = new Label();
-            comboBox1 = new ComboBox();
+            cboStore = new ComboBox();
             groupBox3 = new GroupBox();
             lblNumOfOrder = new Label();
             label15 = new Label();
@@ -48,11 +48,14 @@
             // 
             // dgvOrders
             // 
+            dgvOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOrders.Location = new Point(12, 130);
             dgvOrders.Name = "dgvOrders";
+            dgvOrders.ReadOnly = true;
             dgvOrders.RowHeadersWidth = 51;
             dgvOrders.RowTemplate.Height = 29;
+            dgvOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOrders.Size = new Size(1294, 484);
             dgvOrders.TabIndex = 0;
             dgvOrders.CellDoubleClick += dgvOrders_CellDoubleClick;
@@ -66,14 +69,14 @@
             lbFilter.TabIndex = 1;
             lbFilter.Text = "Filter By Store  ID";
             // 
-            // comboBox1
+            // cboStore
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(136, 92);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 2;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cboStore.FormattingEnabled = true;
+            cboStore.Location = new Point(136, 92);
+            cboStore.Name = "cboStore";
+            cboStore.Size = new Size(151, 28);
+            cboStore.TabIndex = 2;
+            cboStore.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // groupBox3
             // 
@@ -183,11 +186,11 @@
             ClientSize = new Size(1318, 840);
             Controls.Add(groupBox2);
             Controls.Add(groupBox3);
-            Controls.Add(comboBox1);
+            Controls.Add(cboStore);
             Controls.Add(lbFilter);
             Controls.Add(dgvOrders);
             Name = "frmOrdersManagement";
-            Text = "frmOrdersManagement";
+            Text = "Orders Management";
             Load += frmOrdersManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
             groupBox3.ResumeLayout(false);
@@ -202,7 +205,7 @@
 
         private DataGridView dgvOrders;
         private Label lbFilter;
-        private ComboBox comboBox1;
+        private ComboBox cboStore;
         private GroupBox groupBox3;
         private Label lblNumOfOrder;
         private Label label15;

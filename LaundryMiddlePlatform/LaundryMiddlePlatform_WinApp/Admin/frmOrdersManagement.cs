@@ -17,6 +17,7 @@ namespace LaundryMiddlePlatform_WinApp.Admin
     {
         public Account loginAccount { get; set; }
         IOrderRepository orderRepository = new OrderRepository();
+        IStoreRepository storeRepository = new StoreRepository();
         public frmOrdersManagement()
         {
             InitializeComponent();
@@ -25,14 +26,14 @@ namespace LaundryMiddlePlatform_WinApp.Admin
         private void frmOrdersManagement_Load(object sender, EventArgs e)
         {
             cboSort.SelectedIndex = 0;
-            LoadOrderList();
+            LoadStore();
         }
         private void LoadOrderList()
         {
             try
             {
-                var orders = orderRepository.GetOrders(cboSort.Text, dtpFrom.Value, dtpTo.Value);
-                
+                var orders = orderRepository.GetOrdersByAdmin(int.Parse(cboStore.SelectedValue.ToString()), cboSort.Text, dtpFrom.Value, dtpTo.Value);
+
                 var ordersView = orders.Select(p => new
                 {
                     p.OrderId,
@@ -63,6 +64,27 @@ namespace LaundryMiddlePlatform_WinApp.Admin
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void LoadStore()
+        {
+            try
+            {
+                var stores = storeRepository.GetStores(null);
+                if (!stores.Any())
+                {
+                    throw new Exception("Not found services of the store");
+                }
+
+                cboStore.ValueMember = "StoreId";
+                cboStore.DisplayMember = "Name";
+                cboStore.DataSource = stores;
+                cboStore.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Order",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvOrders.SelectedRows.Count > 0)
@@ -79,7 +101,8 @@ namespace LaundryMiddlePlatform_WinApp.Admin
         }
         private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadOrderList();
+            /*dgvOrders.Visible = true;
+            LoadOrderList();*/
         }
 
         private void dtpFrom_ValueChanged(object sender, EventArgs e)
@@ -94,7 +117,7 @@ namespace LaundryMiddlePlatform_WinApp.Admin
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            LoadOrderList();
         }
     }
 }

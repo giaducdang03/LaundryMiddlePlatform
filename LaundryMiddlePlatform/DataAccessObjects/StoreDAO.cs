@@ -60,7 +60,6 @@ namespace DataAccessObjects
             {
                 throw new Exception(ex.Message);
             }
-            return listStore;
         }
         public bool SaveStore(Store store)
         {

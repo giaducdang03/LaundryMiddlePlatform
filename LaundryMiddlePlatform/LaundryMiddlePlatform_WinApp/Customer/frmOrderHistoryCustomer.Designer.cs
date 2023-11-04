@@ -136,6 +136,7 @@
             cboSort.Name = "cboSort";
             cboSort.Size = new Size(138, 28);
             cboSort.TabIndex = 1;
+            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
             // 
             // label9
             // 

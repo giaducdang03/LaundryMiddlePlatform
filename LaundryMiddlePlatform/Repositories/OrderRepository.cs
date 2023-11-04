@@ -20,6 +20,8 @@ namespace Repositories
         public List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to)
             => OrderDAO.Instance.GetOrders(sortBy, from, to);
 
+        public List<Order> GetOrdersByAdmin(int storeID, string? sortBy, DateTime? from, DateTime? to) => OrderDAO.Instance.GetOrdersByAdmin(storeID, sortBy, from, to);
+
         public int SaveOrder(Order order)
             => OrderDAO.Instance.SaveOrder(order);
 

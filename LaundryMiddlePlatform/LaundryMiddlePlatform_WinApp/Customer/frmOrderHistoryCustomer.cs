@@ -74,10 +74,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
             LoadOrderList();
         }
 
-        private void dtpTo_ValueChanged(object sender, EventArgs e)
-        {
-            LoadOrderList();
-        }
+        
 
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -92,6 +89,11 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 f.ShowDialog();
                 LoadOrderList();
             }
+        }
+
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadOrderList();
         }
     }
 }

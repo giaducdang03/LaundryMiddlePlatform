@@ -26,7 +26,23 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
 
         private void frmOrderDetail_Load(object sender, EventArgs e)
         {
+           
             LoadOrderData();
+            if (lblStatus.Text == "Pending")
+            {
+                btnWorking.Visible = true;
+                btnDelivered.Visible = false;
+            }
+            else if (lblStatus.Text == "Completed")
+            {
+                btnWorking.Visible = false;
+                btnDelivered.Visible = true;
+            }
+            else
+            {
+                btnWorking.Visible = false;
+                btnDelivered.Visible = false;
+            }
         }
 
         public void LoadOrderData()
@@ -52,6 +68,7 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                     p.Weight,
                     p.UnitPrice,
                     p.Price
+                    
                 });
 
                 BindingSource source = new BindingSource();
@@ -93,7 +110,7 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                 MessageBox.Show(ex.Message, "Order Management",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         public void DisableText()
@@ -155,6 +172,34 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                     MessageBox.Show("You don't have this permission to do this function", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
+            }
+        }
+
+        private void btnDelivered_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var order = orderRepo.GetOrderById(currentOrder.OrderId);
+                if (order == null)
+                {
+                    throw new Exception("Not found order");
+                }
+                DialogResult d;
+                d = MessageBox.Show("Do you want to mark this order as 'Delivered'?", "Order management",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1);
+                if (d == DialogResult.OK)
+                {
+                    order.Status = OrderStatus.Delivered.ToString();
+                    order.PaymentDate = DateTime.Now;
+                    orderRepo.UpdateOrder(order);
+                    LoadOrderData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Order Management",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

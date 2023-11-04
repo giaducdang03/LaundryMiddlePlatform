@@ -78,7 +78,7 @@ namespace DataAccessObjects
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                var query = db.Accounts.Where(p => p.Role == "Store" && p.Stores == null).ToList();
+                var query = db.Accounts.Where(p => p.Role == "Store" && p.Stores.Count == 0).ToList();
                 accounts = query.ToList();
             }
             catch (Exception ex)
@@ -113,7 +113,7 @@ namespace DataAccessObjects
                 var query = db.Accounts.Where(a => a.Status == true).AsQueryable();
 
                 // sort and filter
-                if (!string.IsNullOrEmpty(txtSearch.Trim()))
+                if (!string.IsNullOrEmpty(txtSearch))
                 {
                     //query = query.Where(a => a.FullName.ToLower().Contains(txtSearch.ToLower()));
                     query = query.Where(delegate (Account c)

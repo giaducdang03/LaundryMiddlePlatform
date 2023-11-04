@@ -41,12 +41,13 @@ namespace LaundryMiddlePlatform_WinApp
                 EnableText(true);
                 ClearData();
                 ClearText();
-                
+
                 LoadManagerList();
                 btnCreate.Text = "Cancel";
                 btnCreate.Enabled = true;
                 btnSave.Enabled = true;
                 btnDelete.Enabled = false;
+                cboIsAvailable.SelectedIndex = 0;
             }
             else
             {
@@ -91,7 +92,8 @@ namespace LaundryMiddlePlatform_WinApp
                 txtPhoneNumber.DataBindings.Add("Text", source, "PhoneNumber");
                 txtStatus.DataBindings.Add("Text", source, "Status");
                 txtStoreID.DataBindings.Add("Text", source, "StoreId");
-                txtIsAvaiable.DataBindings.Add("Text", source, "IsAvailable");
+                //txtIsAvaiable.DataBindings.Add("Text", source, "IsAvailable");
+                cboIsAvailable.DataBindings.Add("Text", source, "IsAvailable");
 
                 dgvStore.DataSource = null;
                 dgvStore.DataSource = source;
@@ -110,9 +112,9 @@ namespace LaundryMiddlePlatform_WinApp
             // Lấy danh sách các quản lý từ nguồn dữ liệu
             var managerList = account.GetAccountWithoutInfo();
             List<string> managerName = new List<string>();
-            foreach (var  item in managerList)
+            foreach (var item in managerList)
             {
-                managerName.Add(item.FullName);   
+                managerName.Add(item.FullName);
             }
             // Xóa các mục có sẵn trong comboBox
             cbxManagement.Items.Clear();
@@ -123,10 +125,10 @@ namespace LaundryMiddlePlatform_WinApp
                 cbxManagement.Items.Add(manager);
             }
         }
+
         public void ClearText()
         {
             txtAddress.Text = "";
-            txtIsAvaiable.Text = "";
             cbxManagement.Text = "";
             txtName.Text = "";
             txtPhoneNumber.Text = "";
@@ -136,12 +138,12 @@ namespace LaundryMiddlePlatform_WinApp
         public void ClearData()
         {
             txtAddress.DataBindings.Clear();
-            txtIsAvaiable.DataBindings.Clear();
             cbxManagement.DataBindings.Clear();
             txtName.DataBindings.Clear();
             txtPhoneNumber.DataBindings.Clear();
             txtStatus.DataBindings.Clear();
             txtStoreID.DataBindings.Clear();
+            cboIsAvailable.DataBindings.Clear();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -154,7 +156,7 @@ namespace LaundryMiddlePlatform_WinApp
                     Address = txtAddress.Text,
                     PhoneNumber = txtPhoneNumber.Text,
                     ManagementId = account.GetAccountByName(cbxManagement.Text),
-                    IsAvailable = true,
+                    IsAvailable = bool.Parse(cboIsAvailable.Text),
                     Status = true,
                 };
                 if (AddOrUpdate == true)
@@ -176,6 +178,7 @@ namespace LaundryMiddlePlatform_WinApp
                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+                ClearData();
                 btnDelete.Enabled = true;
                 btnCreate.Text = "Create";
                 LoadStoreList();
@@ -189,11 +192,11 @@ namespace LaundryMiddlePlatform_WinApp
         private void EnableText(bool status)
         {
             txtAddress.ReadOnly = !status;
-        
             cbxManagement.Enabled = status;
             txtName.ReadOnly = !status;
             txtPhoneNumber.ReadOnly = !status;
-         
+            cboIsAvailable.Enabled = status;
+            txtStatus.Text = "True";
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -253,7 +256,7 @@ namespace LaundryMiddlePlatform_WinApp
 
         private void dgvStore_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvStore.SelectedColumns.Count > 0)
+            if (dgvStore.SelectedRows.Count > 0)
             {
                 int location = dgvStore.CurrentCell.RowIndex;
                 int storeId = int.Parse(dgvStore.Rows[location].Cells["storeId"].Value.ToString());

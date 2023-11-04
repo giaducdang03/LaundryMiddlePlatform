@@ -17,6 +17,8 @@ namespace LaundryMiddlePlatform_WinApp
     public partial class frmStoreManagement : Form
     {
         IStoreRepository resp = new StoreRepository();
+        IAccountRepository account = new AccountRepository();
+
 
         bool AddOrUpdate = false;
         private Store storeInfo { get; set; }
@@ -39,7 +41,8 @@ namespace LaundryMiddlePlatform_WinApp
                 EnableText(true);
                 ClearData();
                 ClearText();
-
+                
+                LoadManagerList();
                 btnCreate.Text = "Cancel";
                 btnCreate.Enabled = true;
                 btnSave.Enabled = true;
@@ -83,7 +86,7 @@ namespace LaundryMiddlePlatform_WinApp
                 ClearText();
 
                 txtAddress.DataBindings.Add("Text", source, "Address");
-                txtManagement.DataBindings.Add("Text", source, "Manager");
+                cbxManagement.DataBindings.Add("Text", source, "Manager");
                 txtName.DataBindings.Add("Text", source, "Name");
                 txtPhoneNumber.DataBindings.Add("Text", source, "PhoneNumber");
                 txtStatus.DataBindings.Add("Text", source, "Status");
@@ -102,11 +105,29 @@ namespace LaundryMiddlePlatform_WinApp
                 MessageBox.Show(ex.Message, "Error on load Store List");
             }
         }
+        private void LoadManagerList()
+        {
+            // Lấy danh sách các quản lý từ nguồn dữ liệu
+            var managerList = account.GetAccountWithoutInfo();
+            List<string> managerName = new List<string>();
+            foreach (var  item in managerList)
+            {
+                managerName.Add(item.FullName);   
+            }
+            // Xóa các mục có sẵn trong comboBox
+            cbxManagement.Items.Clear();
+
+            // Thêm các quản lý vào comboBox
+            foreach (var manager in managerName)
+            {
+                cbxManagement.Items.Add(manager);
+            }
+        }
         public void ClearText()
         {
             txtAddress.Text = "";
             txtIsAvaiable.Text = "";
-            txtManagement.Text = "";
+            cbxManagement.Text = "";
             txtName.Text = "";
             txtPhoneNumber.Text = "";
             txtStatus.Text = "";
@@ -116,7 +137,7 @@ namespace LaundryMiddlePlatform_WinApp
         {
             txtAddress.DataBindings.Clear();
             txtIsAvaiable.DataBindings.Clear();
-            txtManagement.DataBindings.Clear();
+            cbxManagement.DataBindings.Clear();
             txtName.DataBindings.Clear();
             txtPhoneNumber.DataBindings.Clear();
             txtStatus.DataBindings.Clear();
@@ -132,7 +153,7 @@ namespace LaundryMiddlePlatform_WinApp
                     Name = txtName.Text,
                     Address = txtAddress.Text,
                     PhoneNumber = txtPhoneNumber.Text,
-                    ManagementId = frmLogin.AccountID,
+                    ManagementId = account.GetAccountByName(cbxManagement.Text),
                     IsAvailable = true,
                     Status = true,
                 };
@@ -168,11 +189,11 @@ namespace LaundryMiddlePlatform_WinApp
         private void EnableText(bool status)
         {
             txtAddress.ReadOnly = !status;
-            txtIsAvaiable.ReadOnly = !status;
-            txtManagement.ReadOnly = !status;
+        
+            cbxManagement.Enabled = status;
             txtName.ReadOnly = !status;
             txtPhoneNumber.ReadOnly = !status;
-            txtStatus.ReadOnly = !status;
+         
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

@@ -52,7 +52,7 @@ namespace DataAccessObjects
                     throw new Exception("Not found.");
                 }
 
-                listStore = query.ToList();
+                listStore = query.Include(m => m.Manager).ToList();
 
                 return listStore;
             }
@@ -107,9 +107,9 @@ namespace DataAccessObjects
             }catch(Exception ex)
             {
                 throw new Exception(ex.Message);
-            }
-            
+            }   
         }
+    
         public Store GetStoreById(int id)
         {
             using var db = new LaundryManagementPrnContext();

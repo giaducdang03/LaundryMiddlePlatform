@@ -99,7 +99,6 @@ namespace LaundryMiddlePlatform_WinApp.Admin
         // tools
         private void ClearData()
         {
-            txtEmail.DataBindings.Clear();
             txtFullName.DataBindings.Clear();
             dtpBirthDate.DataBindings.Clear();
             txtPhone.DataBindings.Clear();
@@ -109,7 +108,7 @@ namespace LaundryMiddlePlatform_WinApp.Admin
 
         private void ClearText()
         {
-            txtEmail.Text = string.Empty;
+           
             txtFullName.Text = string.Empty;
             dtpBirthDate.Text = string.Empty;
             txtPhone.Text = string.Empty;
@@ -131,6 +130,7 @@ namespace LaundryMiddlePlatform_WinApp.Admin
         {
             if (btnAdd.Text == "Add")
             {
+                
                 AddOrUpdate = true;
                 EnableText(true);
                 ClearData();
@@ -164,7 +164,7 @@ namespace LaundryMiddlePlatform_WinApp.Admin
                 var account = new Account
                 {
                     Email = txtEmail.Text,
-                    Password = "1",
+         
                     FullName = txtFullName.Text,
                     Address = txtAddress.Text,
                     DateOfBirth = DateTime.Parse(dtpBirthDate.Value.ToString()),
@@ -284,6 +284,6 @@ namespace LaundryMiddlePlatform_WinApp.Admin
 
         private void btnClose_Click(object sender, EventArgs e) => Close();
 
-    
+
     }
 }

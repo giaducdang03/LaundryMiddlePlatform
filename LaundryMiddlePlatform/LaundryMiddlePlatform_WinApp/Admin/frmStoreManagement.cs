@@ -40,6 +40,7 @@ namespace LaundryMiddlePlatform_WinApp
                 ClearData();
                 ClearText();
 
+                btnCreate.Text = "Cancel";
                 btnCreate.Enabled = true;
                 btnSave.Enabled = true;
                 btnDelete.Enabled = false;
@@ -73,16 +74,16 @@ namespace LaundryMiddlePlatform_WinApp
                     p.Name,
                     p.Address,
                     p.PhoneNumber,
-                    p.ManagementId,
+                    Manager = p.Manager.FullName,
                     p.IsAvailable,
                     p.Status,
                 });
-                source.DataSource = storeList;
+                source.DataSource = storeView;
                 ClearData();
                 ClearText();
 
                 txtAddress.DataBindings.Add("Text", source, "Address");
-                txtManagement.DataBindings.Add("Text", source, "ManagementId");
+                txtManagement.DataBindings.Add("Text", source, "Manager");
                 txtName.DataBindings.Add("Text", source, "Name");
                 txtPhoneNumber.DataBindings.Add("Text", source, "PhoneNumber");
                 txtStatus.DataBindings.Add("Text", source, "Status");
@@ -172,8 +173,6 @@ namespace LaundryMiddlePlatform_WinApp
             txtName.ReadOnly = !status;
             txtPhoneNumber.ReadOnly = !status;
             txtStatus.ReadOnly = !status;
-            txtStoreID.ReadOnly = !status;
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -248,7 +247,8 @@ namespace LaundryMiddlePlatform_WinApp
         }
 
         private void btnExit_Click(object sender, EventArgs e) => Close();
-        
+
+
     }
 }
 

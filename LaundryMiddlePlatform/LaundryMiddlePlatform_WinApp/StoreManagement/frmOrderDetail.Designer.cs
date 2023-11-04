@@ -71,21 +71,21 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(14, 16);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Location = new Point(18, 20);
+            groupBox1.Margin = new Padding(4, 5, 4, 5);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(868, 301);
+            groupBox1.Padding = new Padding(4, 5, 4, 5);
+            groupBox1.Size = new Size(1085, 376);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Order";
             // 
             // btnComplete
             // 
-            btnComplete.Location = new Point(628, 245);
-            btnComplete.Margin = new Padding(3, 4, 3, 4);
+            btnComplete.Location = new Point(785, 306);
+            btnComplete.Margin = new Padding(4, 5, 4, 5);
             btnComplete.Name = "btnComplete";
-            btnComplete.Size = new Size(102, 31);
+            btnComplete.Size = new Size(128, 39);
             btnComplete.TabIndex = 16;
             btnComplete.Text = "Completed";
             btnComplete.UseVisualStyleBackColor = true;
@@ -95,137 +95,146 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblStatus.Location = new Point(526, 251);
+            lblStatus.Location = new Point(658, 314);
+            lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(68, 20);
+            lblStatus.Size = new Size(83, 25);
             lblStatus.TabIndex = 15;
             lblStatus.Text = "Working";
             // 
             // txtStaffPhone
             // 
-            txtStaffPhone.Location = new Point(526, 171);
-            txtStaffPhone.Margin = new Padding(3, 4, 3, 4);
+            txtStaffPhone.Location = new Point(658, 214);
+            txtStaffPhone.Margin = new Padding(4, 5, 4, 5);
             txtStaffPhone.Name = "txtStaffPhone";
-            txtStaffPhone.Size = new Size(114, 27);
+            txtStaffPhone.Size = new Size(142, 31);
             txtStaffPhone.TabIndex = 14;
             // 
             // txtOrderDate
             // 
-            txtOrderDate.Location = new Point(526, 35);
-            txtOrderDate.Margin = new Padding(3, 4, 3, 4);
+            txtOrderDate.Location = new Point(658, 44);
+            txtOrderDate.Margin = new Padding(4, 5, 4, 5);
             txtOrderDate.Name = "txtOrderDate";
-            txtOrderDate.Size = new Size(203, 27);
+            txtOrderDate.Size = new Size(253, 31);
             txtOrderDate.TabIndex = 13;
             // 
             // txtStaffName
             // 
-            txtStaffName.Location = new Point(526, 97);
-            txtStaffName.Margin = new Padding(3, 4, 3, 4);
+            txtStaffName.Location = new Point(658, 121);
+            txtStaffName.Margin = new Padding(4, 5, 4, 5);
             txtStaffName.Name = "txtStaffName";
-            txtStaffName.Size = new Size(203, 27);
+            txtStaffName.Size = new Size(253, 31);
             txtStaffName.TabIndex = 12;
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(102, 247);
-            txtPrice.Margin = new Padding(3, 4, 3, 4);
+            txtPrice.Location = new Point(128, 309);
+            txtPrice.Margin = new Padding(4, 5, 4, 5);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(114, 27);
+            txtPrice.Size = new Size(142, 31);
             txtPrice.TabIndex = 11;
             // 
             // txtCustomerPhone
             // 
-            txtCustomerPhone.Location = new Point(102, 171);
-            txtCustomerPhone.Margin = new Padding(3, 4, 3, 4);
+            txtCustomerPhone.Location = new Point(128, 214);
+            txtCustomerPhone.Margin = new Padding(4, 5, 4, 5);
             txtCustomerPhone.Name = "txtCustomerPhone";
-            txtCustomerPhone.Size = new Size(114, 27);
+            txtCustomerPhone.Size = new Size(142, 31);
             txtCustomerPhone.TabIndex = 10;
             // 
             // txtCustomer
             // 
-            txtCustomer.Location = new Point(102, 97);
-            txtCustomer.Margin = new Padding(3, 4, 3, 4);
+            txtCustomer.Location = new Point(128, 121);
+            txtCustomer.Margin = new Padding(4, 5, 4, 5);
             txtCustomer.Name = "txtCustomer";
-            txtCustomer.Size = new Size(203, 27);
+            txtCustomer.Size = new Size(253, 31);
             txtCustomer.TabIndex = 9;
             // 
             // txtOrderId
             // 
-            txtOrderId.Location = new Point(102, 35);
-            txtOrderId.Margin = new Padding(3, 4, 3, 4);
+            txtOrderId.Location = new Point(128, 44);
+            txtOrderId.Margin = new Padding(4, 5, 4, 5);
             txtOrderId.Name = "txtOrderId";
-            txtOrderId.Size = new Size(114, 27);
+            txtOrderId.Size = new Size(142, 31);
             txtOrderId.TabIndex = 8;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(443, 251);
+            label8.Location = new Point(554, 314);
+            label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(49, 20);
+            label8.Size = new Size(60, 25);
             label8.TabIndex = 7;
             label8.Text = "Status";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(443, 175);
+            label7.Location = new Point(554, 219);
+            label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(50, 20);
+            label7.Size = new Size(62, 25);
             label7.TabIndex = 6;
             label7.Text = "Phone";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(443, 101);
+            label6.Location = new Point(554, 126);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(40, 20);
+            label6.Size = new Size(48, 25);
             label6.TabIndex = 5;
             label6.Text = "Staff";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(443, 39);
+            label5.Location = new Point(554, 49);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(81, 20);
+            label5.Size = new Size(98, 25);
             label5.TabIndex = 4;
             label5.Text = "Order date";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(18, 251);
+            label4.Location = new Point(22, 314);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(79, 20);
+            label4.Size = new Size(92, 25);
             label4.TabIndex = 3;
             label4.Text = "Total price";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(18, 175);
+            label3.Location = new Point(22, 219);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(62, 25);
             label3.TabIndex = 2;
             label3.Text = "Phone";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(18, 101);
+            label2.Location = new Point(22, 126);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(72, 20);
+            label2.Size = new Size(89, 25);
             label2.TabIndex = 1;
             label2.Text = "Customer";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(18, 39);
+            label1.Location = new Point(22, 49);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(66, 20);
+            label1.Size = new Size(81, 25);
             label1.TabIndex = 0;
             label1.Text = "Order ID";
             // 
@@ -233,34 +242,36 @@
             // 
             dgvOrderDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvOrderDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOrderDetail.Location = new Point(14, 380);
-            dgvOrderDetail.Margin = new Padding(3, 4, 3, 4);
+            dgvOrderDetail.Location = new Point(18, 475);
+            dgvOrderDetail.Margin = new Padding(4, 5, 4, 5);
             dgvOrderDetail.Name = "dgvOrderDetail";
             dgvOrderDetail.ReadOnly = true;
             dgvOrderDetail.RowHeadersWidth = 51;
             dgvOrderDetail.RowTemplate.Height = 25;
             dgvOrderDetail.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvOrderDetail.Size = new Size(868, 196);
+            dgvOrderDetail.Size = new Size(1085, 245);
             dgvOrderDetail.TabIndex = 1;
+            dgvOrderDetail.CellDoubleClick += dgvOrderDetail_CellDoubleClick;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(14, 344);
+            label10.Location = new Point(18, 430);
+            label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(95, 20);
+            label10.Size = new Size(114, 25);
             label10.TabIndex = 2;
             label10.Text = "Order details";
             // 
             // frmOrderDetail
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(894, 620);
+            ClientSize = new Size(1118, 775);
             Controls.Add(label10);
             Controls.Add(dgvOrderDetail);
             Controls.Add(groupBox1);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmOrderDetail";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Order Detail";

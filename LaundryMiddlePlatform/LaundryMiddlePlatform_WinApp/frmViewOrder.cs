@@ -111,6 +111,14 @@ namespace LaundryMiddlePlatform_WinApp
                 int orderId = int.Parse(dataGridView1.Rows[location].Cells["OrderId"].Value.ToString());
                 orderInfo = orderRepository.GetOrderById(orderId);
             }
+            bool hasNonZeroHeight = orderInfo.OrderDetails.Any(detail => detail.Weight != 0);
+
+            if (!hasNonZeroHeight)
+            {
+                MessageBox.Show("The order's OrderDetail Weight must be different than 0.", "Store Management",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             DialogResult d;
             d = MessageBox.Show("Are you sure working this order?", "Storemanagement",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question,

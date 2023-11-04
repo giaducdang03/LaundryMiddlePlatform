@@ -10,6 +10,7 @@ namespace LaundryMiddlePlatform_WinApp
         IAccountRepository _repo = new AccountRepository();
         IStoreRepository _storeRepo = new StoreRepository();
         public static int AccountID { get; private set; }
+        public static string AccountRole { get; private set; }
         public static String Email  { get; private set; }
         public frmLogin()
         {
@@ -47,6 +48,7 @@ namespace LaundryMiddlePlatform_WinApp
                 }
                 else
                 {
+                    AccountRole = "Staff";
                     Email = txtEmail.Text;
                     AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
                     frmStaff f = new frmStaff();

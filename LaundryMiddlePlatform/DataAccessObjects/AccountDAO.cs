@@ -72,6 +72,37 @@ namespace DataAccessObjects
             }
 
         }
+        public List<Account> getAccountStoreRole()
+        {
+            List<Account> accounts = new List<Account>();
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var query = db.Accounts.Where(p => p.Role == "Store" && p.Store == null).ToList();
+                accounts = query.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return accounts;
+        }
+        public int getAccountbyName(string Name)
+        {
+
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+
+                Account account = db.Accounts.SingleOrDefault(a => a.FullName == Name);
+                return account.AccountId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
 
         public List<Account> GetAllAccounts(string? txtSearch, string? role, string? sortType)
         {

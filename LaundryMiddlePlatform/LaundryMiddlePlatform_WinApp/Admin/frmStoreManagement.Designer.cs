@@ -38,7 +38,6 @@
             label7 = new Label();
             txtStoreID = new TextBox();
             txtIsAvaiable = new TextBox();
-            txtManagement = new TextBox();
             txtPhoneNumber = new TextBox();
             txtAddress = new TextBox();
             txtName = new TextBox();
@@ -48,6 +47,7 @@
             btnDelete = new Button();
             btnExit = new Button();
             groupBox1 = new GroupBox();
+            cbxManagement = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgvStore).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -142,13 +142,6 @@
             txtIsAvaiable.Size = new Size(402, 31);
             txtIsAvaiable.TabIndex = 9;
             // 
-            // txtManagement
-            // 
-            txtManagement.Location = new Point(901, 30);
-            txtManagement.Name = "txtManagement";
-            txtManagement.Size = new Size(402, 31);
-            txtManagement.TabIndex = 10;
-            // 
             // txtPhoneNumber
             // 
             txtPhoneNumber.Location = new Point(161, 224);
@@ -220,6 +213,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cbxManagement);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(txtStoreID);
             groupBox1.Controls.Add(txtName);
@@ -229,7 +223,6 @@
             groupBox1.Controls.Add(txtStatus);
             groupBox1.Controls.Add(txtAddress);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(txtManagement);
             groupBox1.Controls.Add(txtPhoneNumber);
             groupBox1.Controls.Add(txtIsAvaiable);
             groupBox1.Controls.Add(label5);
@@ -240,6 +233,15 @@
             groupBox1.TabIndex = 19;
             groupBox1.TabStop = false;
             groupBox1.Text = "Store Information";
+            // 
+            // cbxManagement
+            // 
+            cbxManagement.Enabled = false;
+            cbxManagement.FormattingEnabled = true;
+            cbxManagement.Location = new Point(901, 30);
+            cbxManagement.Name = "cbxManagement";
+            cbxManagement.Size = new Size(402, 33);
+            cbxManagement.TabIndex = 15;
             // 
             // frmStoreManagement
             // 
@@ -273,7 +275,6 @@
         private Label label7;
         private TextBox txtStoreID;
         private TextBox txtIsAvaiable;
-        private TextBox txtManagement;
         private TextBox txtPhoneNumber;
         private TextBox txtAddress;
         private TextBox txtName;
@@ -283,5 +284,6 @@
         private Button btnDelete;
         private Button btnExit;
         private GroupBox groupBox1;
+        private ComboBox cbxManagement;
     }
 }

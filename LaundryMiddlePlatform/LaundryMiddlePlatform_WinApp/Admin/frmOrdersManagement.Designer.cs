@@ -41,6 +41,8 @@
             label10 = new Label();
             cboSort = new ComboBox();
             label9 = new Label();
+            lblTotalAmount = new Label();
+            label16 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -80,11 +82,13 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(lblTotalAmount);
+            groupBox3.Controls.Add(label16);
             groupBox3.Controls.Add(lblNumOfOrder);
             groupBox3.Controls.Add(label15);
             groupBox3.Location = new Point(12, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(194, 65);
+            groupBox3.Size = new Size(418, 65);
             groupBox3.TabIndex = 14;
             groupBox3.TabStop = false;
             // 
@@ -179,6 +183,26 @@
             label9.TabIndex = 0;
             label9.Text = "Sort by";
             // 
+            // lblTotalAmount
+            // 
+            lblTotalAmount.AutoSize = true;
+            lblTotalAmount.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTotalAmount.ForeColor = Color.Red;
+            lblTotalAmount.Location = new Point(327, 28);
+            lblTotalAmount.Name = "lblTotalAmount";
+            lblTotalAmount.Size = new Size(56, 20);
+            lblTotalAmount.TabIndex = 5;
+            lblTotalAmount.Text = "label17";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(221, 28);
+            label16.Name = "label16";
+            label16.Size = new Size(100, 20);
+            label16.TabIndex = 4;
+            label16.Text = "Total amount:";
+            // 
             // frmOrdersManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -216,5 +240,7 @@
         private Label label10;
         private ComboBox cboSort;
         private Label label9;
+        private Label lblTotalAmount;
+        private Label label16;
     }
 }

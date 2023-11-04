@@ -33,7 +33,11 @@ namespace LaundryMiddlePlatform_WinApp.Admin
             try
             {
                 var orders = orderRepository.GetOrdersByAdmin(int.Parse(cboStore.SelectedValue.ToString()), cboSort.Text, dtpFrom.Value, dtpTo.Value);
-
+                double totalAmount = 0;
+                foreach (var order in orders)
+                {
+                    totalAmount += order.TotalPrice.Value;
+                }
                 var ordersView = orders.Select(p => new
                 {
                     p.OrderId,
@@ -56,7 +60,7 @@ namespace LaundryMiddlePlatform_WinApp.Admin
                 dgvOrders.DataSource = source;
 
                 lblNumOfOrder.Text = orders.Count().ToString();
-
+                lblTotalAmount.Text = string.Format("{0:C}", totalAmount);
             }
             catch (Exception ex)
             {

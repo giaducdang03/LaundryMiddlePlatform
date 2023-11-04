@@ -124,16 +124,16 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         {
             try
             {
-                var serviceDeatil = serviceRepository.GetServiceDetailById(int.Parse(cboType.SelectedValue.ToString()));
-                if (serviceDeatil == null)
+                var serviceDeatail = serviceRepository.GetServiceDetailById(int.Parse(cboType.SelectedValue.ToString()));
+                if (serviceDeatail == null)
                 {
                     throw new Exception("Not found service.");
                 }
                 OrderDetail orderDetail = new OrderDetail
                 {
-                    ServiceDetailId = serviceDeatil.Id,
-                    UnitPrice = serviceDeatil.PricePerUnit,
-                    ServiceDetail = serviceDeatil
+                    ServiceDetailId = serviceDeatail.Id,
+                    UnitPrice = serviceDeatail.PricePerUnit,
+                    ServiceDetail = serviceDeatail
                 };
                 listOrderDeatail.Add(orderDetail);
                 LoadListOrderDetail();
@@ -153,7 +153,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 p.ServiceDetailId,
                 ServiceName = p.ServiceDetail.Service.Name,
                 Type = p.ServiceDetail.TypeName,
-                p.UnitPrice
+                PricePer5Kg = p.UnitPrice
             });
 
             BindingSource source = new BindingSource();
@@ -201,8 +201,17 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 {
                     throw new Exception("Please choose a service before Order!");
                 }
+                order.OrderDetails = listOrderDeatail;
                 order.StaffId = AssignStaff().AccountId;
-                //int orderId = orderRepository;
+                int orderId = orderRepository.SaveOrder(order);
+                if (orderId != 0)
+                {
+                    MessageBox.Show("Order successfully. The staff will contact you soon.",
+                        "Laundry Middle Platform", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                order = null;
+                listOrderDeatail.Clear();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -220,10 +229,10 @@ namespace LaundryMiddlePlatform_WinApp.Customer
             var orders = orderRepository.GetOrders(null, null, null);
             foreach (var staff in staffs)
             {
-                orders = orders.Where(o => o.StaffId == staff.AccountId)
+                var ordersWoking = orders.Where(o => o.StaffId == staff.AccountId)
                     .Where(o => o.CreateDate.Value.Date == DateTime.Now.Date)
                     .ToList();
-                if (!orders.Any())
+                if (!ordersWoking.Any())
                 {
                     workStaff = staff;
                     break;

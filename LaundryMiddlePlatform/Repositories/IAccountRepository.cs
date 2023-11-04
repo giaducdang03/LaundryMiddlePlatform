@@ -17,7 +17,8 @@ namespace Repositories
         bool ResetPassword(Account account);
         int GetAccountIdByEmail(string email);
         Account GetAccountById(int id);
-        List<Account> GetAccountWithoutInfo();
-        int GetAccountByName(String Name);
+        List<Account> GetStaff();
+        int GetAccountByName(string name);
+        public List<Account> GetAccountWithoutInfo();
     }
 }

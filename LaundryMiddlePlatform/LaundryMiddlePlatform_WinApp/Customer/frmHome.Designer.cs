@@ -37,12 +37,15 @@
             // 
             // dgvStore
             // 
+            dgvStore.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStore.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStore.Location = new Point(1, 128);
+            dgvStore.Location = new Point(14, 129);
             dgvStore.Name = "dgvStore";
+            dgvStore.ReadOnly = true;
             dgvStore.RowHeadersWidth = 51;
             dgvStore.RowTemplate.Height = 29;
-            dgvStore.Size = new Size(628, 624);
+            dgvStore.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStore.Size = new Size(1292, 609);
             dgvStore.TabIndex = 0;
             dgvStore.CellDoubleClick += dgvStore_CellDoubleClick;
             // 
@@ -50,7 +53,7 @@
             // 
             lbHeader.AutoSize = true;
             lbHeader.Font = new Font("Stencil", 28.2F, FontStyle.Italic, GraphicsUnit.Point);
-            lbHeader.Location = new Point(114, 9);
+            lbHeader.Location = new Point(488, 9);
             lbHeader.Name = "lbHeader";
             lbHeader.Size = new Size(390, 56);
             lbHeader.TabIndex = 1;
@@ -61,7 +64,7 @@
             // 
             txtSortBy.AutoSize = true;
             txtSortBy.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            txtSortBy.Location = new Point(1, 97);
+            txtSortBy.Location = new Point(14, 91);
             txtSortBy.Name = "txtSortBy";
             txtSortBy.Size = new Size(60, 20);
             txtSortBy.TabIndex = 2;
@@ -70,23 +73,24 @@
             // cboSort
             // 
             cboSort.FormattingEnabled = true;
-            cboSort.Items.AddRange(new object[] { "None", "Name: A -> Z", "Name: Z -> A" });
-            cboSort.Location = new Point(67, 94);
+            cboSort.Items.AddRange(new object[] { "Name: A -> Z", "Name: Z -> A" });
+            cboSort.Location = new Point(89, 87);
             cboSort.Name = "cboSort";
-            cboSort.Size = new Size(62, 28);
+            cboSort.Size = new Size(171, 28);
             cboSort.TabIndex = 3;
+            cboSort.SelectedIndexChanged += cboSort_SelectedIndexChanged;
             // 
             // frmHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(627, 752);
+            ClientSize = new Size(1318, 840);
             Controls.Add(cboSort);
             Controls.Add(txtSortBy);
             Controls.Add(lbHeader);
             Controls.Add(dgvStore);
             Name = "frmHome";
-            Text = "frmHome";
+            Text = "Home";
             Load += frmHome_Load;
             ((System.ComponentModel.ISupportInitialize)dgvStore).EndInit();
             ResumeLayout(false);

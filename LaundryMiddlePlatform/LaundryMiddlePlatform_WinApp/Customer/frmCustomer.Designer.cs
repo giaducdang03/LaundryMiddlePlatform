@@ -32,19 +32,20 @@
             yourProfileToolStripMenuItem = new ToolStripMenuItem();
             logOutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            homeToolStripMenuItem = new ToolStripMenuItem();
             yourProfileToolStripMenuItem2 = new ToolStripMenuItem();
             orderHistoryToolStripMenuItem = new ToolStripMenuItem();
-            homeToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { yourProfileToolStripMenuItem, yourProfileToolStripMenuItem2, orderHistoryToolStripMenuItem, homeToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { yourProfileToolStripMenuItem, homeToolStripMenuItem, yourProfileToolStripMenuItem2, orderHistoryToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1318, 28);
+            menuStrip1.Padding = new Padding(6, 3, 0, 3);
+            menuStrip1.Size = new Size(1318, 30);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -58,16 +59,25 @@
             // logOutToolStripMenuItem
             // 
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            logOutToolStripMenuItem.Size = new Size(224, 26);
+            logOutToolStripMenuItem.Size = new Size(139, 26);
             logOutToolStripMenuItem.Text = "Logout";
             logOutToolStripMenuItem.Click += logOutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(224, 26);
+            exitToolStripMenuItem.Size = new Size(139, 26);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // homeToolStripMenuItem
+            // 
+            homeToolStripMenuItem.Checked = true;
+            homeToolStripMenuItem.CheckState = CheckState.Checked;
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(64, 24);
+            homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
             // 
             // yourProfileToolStripMenuItem2
             // 
@@ -81,15 +91,7 @@
             orderHistoryToolStripMenuItem.Name = "orderHistoryToolStripMenuItem";
             orderHistoryToolStripMenuItem.Size = new Size(112, 24);
             orderHistoryToolStripMenuItem.Text = "Order History";
-            // 
-            // homeToolStripMenuItem
-            // 
-            homeToolStripMenuItem.Checked = true;
-            homeToolStripMenuItem.CheckState = CheckState.Checked;
-            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            homeToolStripMenuItem.Size = new Size(64, 24);
-            homeToolStripMenuItem.Text = "Home";
-            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
+            orderHistoryToolStripMenuItem.Click += orderHistoryToolStripMenuItem_Click;
             // 
             // frmCustomer
             // 
@@ -97,9 +99,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1318, 881);
             Controls.Add(menuStrip1);
+            IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
             Name = "frmCustomer";
-            Text = "frmCustomer";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Customer";
+            FormClosing += frmCustomer_FormClosing;
+            FormClosed += frmCustomer_FormClosed;
+            Load += frmCustomer_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

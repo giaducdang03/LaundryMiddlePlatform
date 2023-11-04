@@ -21,11 +21,11 @@ public partial class Account
 
     public string? Role { get; set; }
 
-    public bool? Status { get; set; } = true;
+    public bool? Status { get; set; }
 
     public virtual ICollection<Order> OrderCustomers { get; set; } = new List<Order>();
 
     public virtual ICollection<Order> OrderStaffs { get; set; } = new List<Order>();
 
-    public virtual Store? Store { get; set; }
+    public virtual ICollection<Store> Stores { get; set; } = new List<Store>();
 }

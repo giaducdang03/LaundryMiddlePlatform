@@ -11,9 +11,12 @@ namespace Repositories
     {
         List<Order> GetByStaffIdandStatus(int  staffId, string Status);
         List<Order> GetOrders(string? sortBy, DateTime? from, DateTime? to);
+        List<Order> GetOrdersByAdmin(int storeID, string? sortBy, DateTime? from, DateTime? to);
         Order GetOrderById(int id);
         bool UpdateOrder(Order order);
         bool UpdateStatus(int id);
        
+        int SaveOrder(Order order);
+        List<Order> GetOrderByCustomerId(int customerId, string? sortBy);
     }
 }

@@ -78,7 +78,7 @@ namespace DataAccessObjects
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                var query = db.Accounts.Where(p => p.Role == "Store" && p.Store == null).ToList();
+                var query = db.Accounts.Where(p => p.Role == "Store" && p.Stores.Count == 0).ToList();
                 accounts = query.ToList();
             }
             catch (Exception ex)
@@ -217,6 +217,19 @@ namespace DataAccessObjects
             {
                 using var db = new LaundryManagementPrnContext();
                 return db.Accounts.SingleOrDefault(a => a.AccountId == accountId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Account> GetStaff()
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                return db.Accounts.Where(a => a.Role == "Staff").ToList();
             }
             catch (Exception ex)
             {

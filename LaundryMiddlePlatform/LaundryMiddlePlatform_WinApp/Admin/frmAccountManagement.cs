@@ -223,26 +223,39 @@ namespace LaundryMiddlePlatform_WinApp.Admin
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvAccounts.SelectedRows.Count > 0)
+            try
             {
-                int location = dgvAccounts.CurrentCell.RowIndex;
-                int accountId = int.Parse(dgvAccounts.Rows[location].Cells["AccountId"].Value.ToString());
-                accountInfo = _repo.GetAccountById(accountId);
-                DialogResult d;
-                d = MessageBox.Show("Are you sure delete this account?", "Account management",
-                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
-                if (d == DialogResult.OK)
+                if (dgvAccounts.SelectedRows.Count > 0)
                 {
-                    bool delStatus = _repo.DeleteAccount(accountInfo);
-                    if (delStatus)
+                    int location = dgvAccounts.CurrentCell.RowIndex;
+                    int accountId = int.Parse(dgvAccounts.Rows[location].Cells["AccountId"].Value.ToString());
+                    accountInfo = _repo.GetAccountById(accountId);
+                    if (accountInfo.AccountId == loginAccount.AccountId)
                     {
-                        MessageBox.Show($"Delete account {accountInfo.Email} successfully.", "Account management",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        throw new Exception($"Account {accountInfo.Email} is already login. Can not delete!");
                     }
-                    LoadListAccount(txtSearchBox.Text, cboFilterRole.Text, cboSort.Text);
+                    DialogResult d;
+                    d = MessageBox.Show("Are you sure delete this account?", "Account management",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button1);
+                    if (d == DialogResult.OK)
+                    {
+                        bool delStatus = _repo.DeleteAccount(accountInfo);
+                        if (delStatus)
+                        {
+                            MessageBox.Show($"Delete account {accountInfo.Email} successfully.", "Account management",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        LoadListAccount(txtSearchBox.Text, cboFilterRole.Text, cboSort.Text);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Account Management",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void btnResetPw_Click(object sender, EventArgs e)

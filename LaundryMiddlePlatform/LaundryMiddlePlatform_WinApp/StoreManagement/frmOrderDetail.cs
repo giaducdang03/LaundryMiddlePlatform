@@ -117,32 +117,5 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
-        private void dgvOrderDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvOrderDetail.SelectedRows.Count > 0)
-            {
-                int location = dgvOrderDetail.CurrentCell.RowIndex;
-                int orderDetailId = int.Parse(dgvOrderDetail.Rows[location].Cells["Id"].Value.ToString());
-                var currentOrderDetail = orderDetailRepo.GetOrderDetail(orderDetailId);
-                // show form order detail
-                if (frmLogin.AccountRole.Equals("Staff"))
-                {
-                   
-                    frmOrderDetailManagement f = new frmOrderDetailManagement();
-                    f.currentOrderDetail = currentOrderDetail;
-                    f.currentOrderId = currentOrder.OrderId;
-                    f.ShowDialog();
-                    LoadOrderData();
-                }
-                else
-                {
-                    MessageBox.Show("You don't have this permission to do this function", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-            }
-        }
     }
 }

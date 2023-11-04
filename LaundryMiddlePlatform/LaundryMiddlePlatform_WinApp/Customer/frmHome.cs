@@ -20,6 +20,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
         IServiceRepository _serviceRepo = new ServiceRepository();
         IStoreRepository resp = new StoreRepository();
         public Store currentStore { get; set; }
+        public Account loginUser { get; set; }
 
         public frmHome()
         {
@@ -66,12 +67,16 @@ namespace LaundryMiddlePlatform_WinApp.Customer
             frmServiceOfStore f = new frmServiceOfStore();
             if (e.RowIndex >= 0)
             {
-
                 int storeId = int.Parse(dgvStore.Rows[e.RowIndex].Cells["StoreId"].Value.ToString());
                 f.currentStore = resp.GetStoreById(storeId);
-                f.Show();
-                this.Hide();
+                f.loginUser = loginUser;
+                f.ShowDialog();
             }
+        }
+
+        private void cboSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadStoreList(cboSort.Text);
         }
     }
 }

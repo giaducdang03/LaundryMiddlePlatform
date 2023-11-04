@@ -18,7 +18,7 @@ namespace Repositories
             => AccountDAO.Instance.DeleteAccount(account);
         public List<Account> GetAccountWithoutInfo()
             => AccountDAO.Instance.getAccountStoreRole();
-
+        
         public int GetAccountIdByEmail(string email) 
             => AccountDAO.Instance.GetAccountIdbyEmail(email);
         public int GetAccountByName(string name)
@@ -63,7 +63,14 @@ namespace Repositories
             {
                 throw new Exception("Address must be 4 to 50 characters");
             }
+            if (!CommonValidation.CheckPhoneNumber(account.PhoneNumber))
+            {
+                throw new Exception("Phone number is invalid. Ex: 0123456789");
+            }
             return AccountDAO.Instance.UpdateAccount(account);
         }
+
+        public List<Account> GetStaff()
+            => AccountDAO.Instance.GetStaff();
     }
 }

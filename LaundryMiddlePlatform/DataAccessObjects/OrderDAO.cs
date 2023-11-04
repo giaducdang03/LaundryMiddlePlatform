@@ -58,11 +58,44 @@ namespace DataAccessObjects
                     query = query.Where(o => o.CreateDate.Value.Date >= from.Value.Date 
                     && o.CreateDate.Value.Date <= to.Value.Date);
                 }
-                if (!query.Any())
+                return query.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Order> GetOrdersByAdmin(int id, string? sortBy, DateTime? from, DateTime? to)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var query = db.Orders
+                    .Include(o => o.OrderDetails)
+                    .Include(o => o.Store)
+                    .Include(o => o.Customer)
+                    .Include(o => o.Staff)
+                    .Where(o => o.StoreId == id)
+                    .AsQueryable();
+                // filter
+                if (!string.IsNullOrEmpty(sortBy))
                 {
-                    throw new Exception("Not found");
+                    if (sortBy == "Newest")
+                    {
+                        query = query.OrderByDescending(o => o.CreateDate);
+                    } 
+                    else
+                    {
+                        query = query.OrderBy(o => o.CreateDate);
+                    }
                 }
-                
+                if (from != null && to != null)
+                {
+                    query = query.Where(o => o.CreateDate.Value.Date >= from.Value.Date
+                    && o.CreateDate.Value.Date <= to.Value.Date);
+                }
+
                 return query.ToList();
             }
             catch (Exception ex)
@@ -93,7 +126,42 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
         }
+        public List<Order> GetOrderByCustomerId(int id, string? sortBy)
+        {
+            List<Order> orders = new List<Order>();
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                var query = db.Orders
+                    .Include(o => o.OrderDetails)
+                    .Include(o => o.Store)
+                    .Include(o => o.Customer)
+                    .Include(o => o.Staff)
+                    .AsQueryable();
+                // filter
+                if (!string.IsNullOrEmpty(sortBy))
+                {
+                    if (sortBy == "Newest")
+                    {
+                        query = query.OrderByDescending(o => o.CreateDate);
+                    }
+                    else
+                    {
+                        query = query.OrderBy(o => o.CreateDate);
+                    }
+                }
+                if (!query.Any())
+                {
+                    throw new Exception("Not found");
+                }
 
+                return query.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public bool UpdateOrder(Order order)
         {
             try
@@ -137,7 +205,7 @@ namespace DataAccessObjects
                     .Include(o => o.Customer)
                     .Include(o => o.Staff)
                     .Include(o => o.OrderDetails).ThenInclude(od => od.ServiceDetail)
-                    .Where(o => o.StaffId == staffId && o.Status.Equals(status))
+                    .Where(o => o.StaffId == staffId)
                     .ToList();
                 return orders;
             }
@@ -146,6 +214,22 @@ namespace DataAccessObjects
                 throw new Exception(ex.Message);
             }
         }
-      
+
+        public int SaveOrder(Order order)
+        {
+            try
+            {
+                using var db = new LaundryManagementPrnContext();
+                order.CreateDate = DateTime.Now;
+                order.Status = OrderStatus.Pending.ToString();
+                db.Orders.Add(order);
+                db.SaveChanges();
+                return order.OrderId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

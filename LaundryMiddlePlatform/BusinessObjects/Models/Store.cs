@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BusinessObjects.Models;
@@ -19,9 +19,9 @@ public partial class Store
 
     public bool? Status { get; set; }
 
+    public virtual Account? Management { get; set; }
+
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual ICollection<Service> Services { get; set; } = new List<Service>();
-
-    public virtual Account? Manager { get; set; }
 }

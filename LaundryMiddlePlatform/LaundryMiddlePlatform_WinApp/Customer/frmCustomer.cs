@@ -27,19 +27,18 @@ namespace LaundryMiddlePlatform_WinApp
             InitializeComponent();
         }
 
-        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+        private void frmCustomer_Load(object sender, EventArgs e)
         {
-        }
-
-        private void toolStripLabel1_Click(object sender, EventArgs e)
-        {
-
+            homeToolStripMenuItem_Click(sender, e);
         }
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmHome f = new frmHome();
             f.currentStore = currentStore;
+            f.loginUser = loginUser;
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
 
@@ -47,6 +46,8 @@ namespace LaundryMiddlePlatform_WinApp
         {
             frmProfile f = new frmProfile();
             f.loginUser = loginUser;
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
             f.Show();
         }
 
@@ -66,5 +67,32 @@ namespace LaundryMiddlePlatform_WinApp
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Close();
+
+        private void frmCustomer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void frmCustomer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult d;
+            d = MessageBox.Show("Do you want exit?", "Laundry Middle Platform",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+            if (d == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void orderHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOrderHistoryCustomer f = new frmOrderHistoryCustomer();
+            f.currentStore = currentStore;
+            f.loginUser = loginUser;
+            f.MdiParent = this;
+            f.WindowState = FormWindowState.Maximized;
+            f.Show();
+        }
     }
 }

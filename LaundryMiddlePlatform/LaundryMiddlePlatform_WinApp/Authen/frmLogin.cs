@@ -1,3 +1,4 @@
+using BusinessObjects.Models;
 using LaundryMiddlePlatform_WinApp.Authen;
 using LaundryMiddlePlatform_WinApp.Staff;
 using LaundryMiddlePlatform_WinApp.StoreManagement;
@@ -10,8 +11,7 @@ namespace LaundryMiddlePlatform_WinApp
         IAccountRepository _repo = new AccountRepository();
         IStoreRepository _storeRepo = new StoreRepository();
         public static int AccountID { get; private set; }
-        public static string AccountRole { get; private set; }
-        public static String Email  { get; private set; }
+        public static Account loginUser { get; private set; } = null!;
         public frmLogin()
         {
             InitializeComponent();
@@ -19,47 +19,55 @@ namespace LaundryMiddlePlatform_WinApp
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var loginUser = _repo.CheckLogin(txtEmail.Text, txtPassword.Text);
-            if (loginUser != null)
+            try
             {
-                if (loginUser.Role == "Admin")
+                if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text))
                 {
-                    frmLaundryManagement f = new frmLaundryManagement();
-                    f.loginAccount = loginUser;
-                    f.Show();
-                    this.Hide();
-                } 
-                else if (loginUser.Role == "Store")
-                {
-                    AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
-                    frmStoreManager f = new frmStoreManager();
-                    f.currentStore = _storeRepo.GetStoreByManagerId(loginUser.AccountId);
-                    f.managerAccount = loginUser;
-                    f.Show();
-                    this.Hide();
-                    
+                    throw new Exception("Email and password are required");
                 }
-                else if (loginUser.Role == "User")
+                loginUser = _repo.CheckLogin(txtEmail.Text, txtPassword.Text);
+                if (loginUser != null)
                 {
-                    frmCustomer f = new frmCustomer();
-                    f.loginUser = loginUser;
-                    f.Show();
-                    this.Hide();
+                    if (loginUser.Role == "Admin")
+                    {
+                        frmLaundryManagement f = new frmLaundryManagement();
+                        f.loginAccount = loginUser;
+                        f.Show();
+                        this.Hide();
+                    }
+                    else if (loginUser.Role == "Store")
+                    {
+                        AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
+                        frmStoreManager f = new frmStoreManager();
+                        f.currentStore = _storeRepo.GetStoreByManagerId(loginUser.AccountId);
+                        f.managerAccount = loginUser;
+                        f.Show();
+                        this.Hide();
+
+                    }
+                    else if (loginUser.Role == "User")
+                    {
+                        frmCustomer f = new frmCustomer();
+                        f.loginUser = loginUser;
+                        f.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        frmStaff f = new frmStaff();
+                        f.loginAccount = loginUser;
+                        f.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    AccountRole = "Staff";
-                    Email = txtEmail.Text;
-                    AccountID = _repo.GetAccountIdByEmail(txtEmail.Text);
-                    frmStaff f = new frmStaff();
-                    f.loginAccount = loginUser;
-                    f.Show();
-                    this.Hide();
+                    throw new Exception("Incorrect email or password.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Incorrect email or password.", "Laundry Middle Platform",
+                MessageBox.Show(ex.Message, "Laundry Middle Platform",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

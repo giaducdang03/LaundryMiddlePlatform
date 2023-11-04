@@ -18,5 +18,7 @@ namespace Repositories
         int GetAccountIdByEmail(string email);
         Account GetAccountById(int id);
         List<Account> GetStaff();
+        List<Account> GetAccountWithoutInfo();
+        int GetAccountByName(String Name);
     }
 }

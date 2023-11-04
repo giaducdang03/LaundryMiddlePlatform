@@ -78,7 +78,7 @@ namespace DataAccessObjects
             try
             {
                 using var db = new LaundryManagementPrnContext();
-                var query = db.Accounts.Where(p => p.Role == "Store" && p.Store == null).ToList();
+                var query = db.Accounts.Where(p => p.Role == "Store" && p.Stores == null).ToList();
                 accounts = query.ToList();
             }
             catch (Exception ex)

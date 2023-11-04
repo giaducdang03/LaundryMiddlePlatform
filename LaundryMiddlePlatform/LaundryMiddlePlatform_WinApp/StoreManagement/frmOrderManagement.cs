@@ -74,8 +74,8 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                 {
                     ClearText();
                     source.DataSource = null;
-                    MessageBox.Show("Not found orders in the period. Please choose another time.", "Order Management",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Not found orders in the period. Please choose another time.", "Order Management",
+                    //    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 dgvOrders.DataSource = null;

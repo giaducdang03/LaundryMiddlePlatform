@@ -17,6 +17,7 @@ namespace LaundryMiddlePlatform_WinApp
     {
         IOrderRepository orderRepository = new OrderRepository();
         private Order orderInfo { get; set; }
+     
         public frmViewOrder()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace LaundryMiddlePlatform_WinApp
             txtOrderID.Enabled = !status;
 
         }
-        private void LoadOrderList()
+        public void LoadOrderList()
         {
             try
             {
@@ -95,6 +96,7 @@ namespace LaundryMiddlePlatform_WinApp
                 int orderId = int.Parse(dataGridView1.Rows[location].Cells["OrderId"].Value.ToString());
                 var currentOrder = orderRepository.GetOrderById(orderId);
                 // show form order detail
+         
                 frmOrderDetail f = new frmOrderDetail();
                 f.currentOrder = currentOrder;
                 f.ShowDialog();

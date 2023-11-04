@@ -29,7 +29,7 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
             LoadOrderData();
         }
 
-        private void LoadOrderData()
+        public void LoadOrderData()
         {
             txtOrderId.Text = currentOrder.OrderId.ToString();
             txtCustomer.Text = currentOrder.Customer.FullName;
@@ -130,8 +130,10 @@ namespace LaundryMiddlePlatform_WinApp.StoreManagement
                 // show form order detail
                 if (frmLogin.AccountRole.Equals("Staff"))
                 {
+                   
                     frmOrderDetailManagement f = new frmOrderDetailManagement();
                     f.currentOrderDetail = currentOrderDetail;
+                    f.currentOrderId = currentOrder.OrderId;
                     f.ShowDialog();
                     LoadOrderData();
                 }

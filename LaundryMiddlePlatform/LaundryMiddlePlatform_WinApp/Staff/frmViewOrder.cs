@@ -46,6 +46,7 @@ namespace LaundryMiddlePlatform_WinApp
                 var ordersView = orders.Select(p => new
                 {
                     p.OrderId,
+                    Store = p.Store.Name,
                     Customer = p.Customer.FullName,
                     CustomerPhone = p.Customer.PhoneNumber,
                     p.CreateDate,

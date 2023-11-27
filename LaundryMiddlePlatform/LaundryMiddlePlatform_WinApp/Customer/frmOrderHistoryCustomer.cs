@@ -44,11 +44,11 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 var ordersView = orders.Select(p => new
                 {
                     p.OrderId,
+                    Store = p.Store.Name,
                     p.CreateDate,
+                    p.PaymentDate,
                     p.TotalPrice,
                     p.Status,
-
-
                 });
                 BindingSource source = new BindingSource();
                 source.DataSource = ordersView;
@@ -84,7 +84,7 @@ namespace LaundryMiddlePlatform_WinApp.Customer
                 int orderId = int.Parse(dgvOrders.Rows[location].Cells["OrderId"].Value.ToString());
                 var currentOrder = orderRepository.GetOrderById(orderId);
                 // show form order detail
-                frmOrderDetail f = new frmOrderDetail();
+                frmOrderDetailCus f = new frmOrderDetailCus();
                 f.currentOrder = currentOrder;
                 f.ShowDialog();
                 LoadOrderList();
